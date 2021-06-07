@@ -12,6 +12,7 @@ import IcFacebook from "./IC_Facebook.svg";
 import IcTwitter from "./IC_Twitter.svg";
 import IcInstagram from "./IC_Instagram.svg";
 import IcGoogle from "./IC_Google.svg";
+import IcMessage from "./IC_Messages.svg";
 
 export {
   IcLogo,
@@ -28,4 +29,5 @@ export {
   IcTwitter,
   IcInstagram,
   IcGoogle,
+  IcMessage,
 };

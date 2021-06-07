@@ -1,29 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "..";
-function MainHeader() {
+function MainHeader({ home, product, cart, history }) {
   return (
     <nav className="flex flex-row justify-between py-8 items-center">
       <Logo />
       <div>
         <ul className="flex flex-row space-x-8 text-md">
           <li>
-            <Link className="text-yellow-900 font-bold" to="/">
+            <Link className={home} to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link className="text-gray-500" to="/product">
+            <Link className={product} to="/product">
               Product
             </Link>
           </li>
           <li>
-            <Link className="text-gray-500" to="/cart">
+            <Link className={cart} to="/cart">
               Your Cart
             </Link>
           </li>
           <li>
-            <Link className="text-gray-500" to="/history">
+            <Link className={history} to="/history">
               History
             </Link>
           </li>

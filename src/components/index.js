@@ -9,6 +9,9 @@ import CommentBox from "./CommentBox";
 import Slider from "./Slider";
 import Footer from "./Footer";
 import Form from "./Form";
+import Coupon from "./Coupon";
+import Item from "./Item";
+import Counter from "./Counter";
 
 export {
   Header,
@@ -22,4 +25,7 @@ export {
   Slider,
   Footer,
   Form,
+  Coupon,
+  Item,
+  Counter,
 };

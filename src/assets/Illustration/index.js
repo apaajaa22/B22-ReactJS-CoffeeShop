@@ -15,6 +15,7 @@ import ILPartner from "./IL_partner.png";
 import ILUser1 from "./IL_user1.png";
 import ILUser2 from "./IL_user2.png";
 import ILUser3 from "./IL_user3.png";
+import ILUser4 from "./IL_user4.png";
 import BGForm from "./BG_Form.png";
 
 export {
@@ -35,5 +36,6 @@ export {
   ILUser1,
   ILUser2,
   ILUser3,
+  ILUser4,
   BGForm,
 };

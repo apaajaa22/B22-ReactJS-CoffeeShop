@@ -26,7 +26,13 @@ function Home() {
   return (
     <div>
       <header className="px-32 sticky top-0 bg-white">
-        <Header />
+        <Header
+          type="main"
+          home="text-yellow-900 font-bold"
+          product="text-gray-500"
+          cart="text-gray-500"
+          history="text-gray-500"
+        />
       </header>
       <main>
         <section className="bg-bg-hero bg-cover w-full h-screen bg-center px-32 flex-row flex">
@@ -39,7 +45,7 @@ function Home() {
               meals made by love just for you. Start your day with us <br /> for
               a bigger smile!
             </p>
-            <div className="w-56">
+            <div className="w-60">
               <Button type="square" text="Get Started" />
             </div>
           </div>

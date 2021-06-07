@@ -65,6 +65,10 @@ module.exports = {
       widthBox: "400px",
       heightBox: "230px",
       widthSection: "1140px",
+      wcoupon: "30%",
+      fourpersen: "40%",
+      wdetailbox: "559px",
+      hdetailbox: "550px",
     },
     animation: {
       none: "none",
