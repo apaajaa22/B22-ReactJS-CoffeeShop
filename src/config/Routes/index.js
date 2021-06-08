@@ -21,10 +21,10 @@ function Routes() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/product">
+        <Route exact path="/products">
           <Product />
         </Route>
-        <Route path="/productdetail">
+        <Route path="/products/:id">
           <ProductDetail />
         </Route>
         <Route path="/cart">

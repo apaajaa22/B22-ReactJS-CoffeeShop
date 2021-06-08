@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { ILFood6 } from "../../assets";
-import { Button, Coupon, Footer, Header, Item } from "../../components";
-import axios from "axios";
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import { Button, Coupon, Footer, Header, Item } from "../../components"
 
 function Product() {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    axios.get("https://reqres.in/api/users?page=2").then((res) => {
-      console.log(res.data.data);
-      setItems(res.data.data);
+    axios.get(`http://localhost:8080/products`).then((res) => {
+      console.log(res.data.results);
+      setItems(res.data.results);
     });
   }, []);
 
@@ -73,11 +72,7 @@ function Product() {
             <div className="grid grid-cols-4 grid-rows-3 gap-7 px-32">
               {items.map((item) => {
                 return (
-                  <Item
-                    name={item.first_name}
-                    price={item.id}
-                    pic={item.avatar}
-                  />
+                  <Item key={item.id} to={`/products/${item.id}`} name={item.name} price={item.price} pic={item.picture} />
                 );
               })}
             </div>

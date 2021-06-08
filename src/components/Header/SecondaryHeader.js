@@ -15,7 +15,7 @@ function SecondaryHeader({ home, product, cart, history, isSearchInput }) {
               </Link>
             </li>
             <li>
-              <Link className={product} to="/product">
+              <Link className={product} to="/products">
                 Product
               </Link>
             </li>
@@ -38,7 +38,7 @@ function SecondaryHeader({ home, product, cart, history, isSearchInput }) {
               </Link>
             </li>
             <li>
-              <Link className={product} to="/product">
+              <Link className={product} to="/products">
                 Product
               </Link>
             </li>
