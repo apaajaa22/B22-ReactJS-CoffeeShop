@@ -1,5 +1,4 @@
 import React from "react";
-import { IcSearch } from "../../assets";
 import HeaderSearch from "./HeaderSearch";
 import MainSearch from "./MainSearch";
 function Search({ type }) {

@@ -20,14 +20,14 @@ function Counter({ onValueChange }) {
     <div className="flex flex-row space-x-4 items-center text-xl font-bold">
       <button
         onClick={() => onCount("minus")}
-        className="focus:outline-none w-10 h-10 bg-yellow-400 text-3xl text-center rounded-full"
+        className="font-bold focus:outline-none w-10 h-10 bg-yellow-400 text-3xl text-center rounded-full"
       >
         -
       </button>
       <p>{counter}</p>
       <button
         onClick={() => onCount("plus")}
-        className="focus:outline-none w-10 h-10 bg-yellow-400 text-3xl text-center rounded-full"
+        className="font-bold focus:outline-none w-10 h-10 bg-yellow-400 text-3xl text-center rounded-full"
       >
         +
       </button>

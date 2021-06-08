@@ -67,6 +67,7 @@ module.exports = {
       widthSection: "1140px",
       wcoupon: "30%",
       fourpersen: "40%",
+      threepersen: "35%",
       wdetailbox: "559px",
       hdetailbox: "550px",
     },
@@ -88,6 +89,10 @@ module.exports = {
     backdropSepia: (theme) => theme("sepia"),
     backgroundColor: (theme) => theme("colors"),
     backgroundImage: {
+      "bg-password": "url('/src/assets/Illustration/BG_Password.png')",
+      "bg-history": "url('/src/assets/Illustration/BG_History.png')",
+      "bg-profile": "url('/src/assets/Illustration/BG_Profile.png')",
+      "bg-cart": "url('/src/assets/Illustration/BG_Cart.png')",
       "bg-hero": "url('/src/assets/Illustration/hero.png')",
       "bg-form": "url('/src/assets/Illustration/BG_Form.png')",
       none: "none",

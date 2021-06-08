@@ -17,6 +17,10 @@ import ILUser2 from "./IL_user2.png";
 import ILUser3 from "./IL_user3.png";
 import ILUser4 from "./IL_user4.png";
 import BGForm from "./BG_Form.png";
+import BGCart from "./BG_Cart.png";
+import BGProfile from "./BG_Profile.png";
+import BGPassword from "./BG_Password.png";
+import BGHistory from "./BG_History.png";
 
 export {
   HeroBg,
@@ -38,4 +42,8 @@ export {
   ILUser3,
   ILUser4,
   BGForm,
+  BGCart,
+  BGProfile,
+  BGPassword,
+  BGHistory,
 };

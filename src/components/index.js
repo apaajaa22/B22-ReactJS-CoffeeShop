@@ -12,6 +12,10 @@ import Form from "./Form";
 import Coupon from "./Coupon";
 import Item from "./Item";
 import Counter from "./Counter";
+import ItemCart from "./ItemCart";
+import PaymentMethod from "./PaymentMethod";
+import FormProfile from "./FormProfile";
+import ItemHistory from "./ItemHistory";
 
 export {
   Header,
@@ -28,4 +32,8 @@ export {
   Coupon,
   Item,
   Counter,
+  ItemCart,
+  PaymentMethod,
+  FormProfile,
+  ItemHistory,
 };

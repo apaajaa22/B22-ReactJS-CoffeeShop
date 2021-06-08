@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ILFood6 } from "../../assets";
 import { Button, Coupon, Footer, Header, Item } from "../../components";
+import axios from "axios";
 
 function Product() {
-  const [items] = useState(true);
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    axios.get("https://reqres.in/api/users?page=2").then((res) => {
+      console.log(res.data.data);
+      setItems(res.data.data);
+    });
+  }, []);
+
   return (
     <div>
       <header className="px-32">
@@ -62,22 +70,16 @@ function Product() {
                 <button className=" text-lg text-gray-400">Add-on</button>
               </li>
             </ul>
-            <div className="grid grid-cols-4 gap-7 px-32">
-              {/* {items.map((item) => {
-                return <Item name={item.name} price={item.price} />;
-              })} */}
-              <Item name="Drum Sticks" pic={ILFood6} price="20.000" />
-              <Item name="nasi goreng cihuy" pic={ILFood6} price="20.000" />
-              <Item name="capucino" pic={ILFood6} price="20.000" />
-              <Item name="capucino" pic={ILFood6} price="20.000" />
-              <Item name="nasi goreng cihuy" pic={ILFood6} price="20.000" />
-              <Item name="nasi goreng cihuy" pic={ILFood6} price="20.000" />
-              <Item name="capucino" pic={ILFood6} price="20.000" />
-              <Item name="capucino" pic={ILFood6} price="20.000" />
-              <Item name="nasi goreng cihuy" pic={ILFood6} price="20.000" />
-              <Item name="capucino" pic={ILFood6} price="20.000" />
-              <Item name="capucino" pic={ILFood6} price="20.000" />
-              <Item name="nasi goreng cihuy" pic={ILFood6} price="20.000" />
+            <div className="grid grid-cols-4 grid-rows-3 gap-7 px-32">
+              {items.map((item) => {
+                return (
+                  <Item
+                    name={item.first_name}
+                    price={item.id}
+                    pic={item.avatar}
+                  />
+                );
+              })}
             </div>
           </div>
         </section>

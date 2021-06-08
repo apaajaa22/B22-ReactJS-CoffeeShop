@@ -13,6 +13,9 @@ import IcTwitter from "./IC_Twitter.svg";
 import IcInstagram from "./IC_Instagram.svg";
 import IcGoogle from "./IC_Google.svg";
 import IcMessage from "./IC_Messages.svg";
+import IcBank from "./IC_Bank.svg";
+import IcCard from "./IC_Card.svg";
+import IcCar from "./IC_Car.svg";
 
 export {
   IcLogo,
@@ -30,4 +33,7 @@ export {
   IcInstagram,
   IcGoogle,
   IcMessage,
+  IcBank,
+  IcCar,
+  IcCard,
 };
