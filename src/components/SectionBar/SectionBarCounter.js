@@ -1,6 +1,5 @@
-import React from "react";
-import { Counter } from "..";
-import { ILFood9 } from "../../assets";
+import React from "react"
+import { Counter } from ".."
 
 function SectionBarCounter({ title, subTitle, buttonName, picture }) {
   return (

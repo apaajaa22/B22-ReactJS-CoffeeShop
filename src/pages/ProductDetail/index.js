@@ -1,8 +1,7 @@
 import axios from "axios"
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 import { useParams } from "react-router"
-import { ILFood7 } from "../../assets";
-import { Button, Footer, Header, SectionBar } from "../../components";
+import { Button, Footer, Header, SectionBar } from "../../components"
 
 function ProductDetail() {
   const [data, setData] = useState([]);
@@ -15,7 +14,7 @@ function ProductDetail() {
       console.log(response.data.results)
       setData(response.data.results)
     })
-  },[])
+  },[id])
   return (
     <div>
       <header className="px-32">
