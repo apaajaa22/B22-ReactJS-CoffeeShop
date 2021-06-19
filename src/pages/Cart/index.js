@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { ILFood4 } from "../../assets";
 import {
   Button,
@@ -7,8 +8,9 @@ import {
   ItemCart,
   PaymentMethod,
 } from "../../components";
-export default class Cart extends Component {
+class Cart extends Component {
   render() {
+    const { products } = this.props.carts;
     return (
       <section>
         <header className="px-32">
@@ -30,20 +32,18 @@ export default class Cart extends Component {
                 Order Summary
               </h4>
               <div className="border-b-2 border-gray-300 mx-10 pb-2">
-                <ItemCart
-                  pic={ILFood4}
-                  name="spaghetti"
-                  quantity="1"
-                  size="Regular"
-                  price="30.0"
-                />
-                <ItemCart
-                  pic={ILFood4}
-                  name="spaghetti"
-                  quantity="1"
-                  size="Regular"
-                  price="30.0"
-                />
+                {products.map((product) => {
+                  return (
+                    <ItemCart
+                      key={product.id}
+                      pic={product.picture}
+                      name={product.name}
+                      quantity={product.quantity}
+                      size="Regular"
+                      price={product.base_price}
+                    />
+                  );
+                })}
               </div>
               <div className="flex flex-row items-center justify-between mt-5 mx-10">
                 <div className="leading-relaxed flex-1">
@@ -96,3 +96,8 @@ export default class Cart extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  carts: state.carts,
+});
+export default connect(mapStateToProps)(Cart);

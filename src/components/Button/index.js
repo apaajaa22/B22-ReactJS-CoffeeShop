@@ -4,18 +4,18 @@ import ButtonFull from "./ButtonFull";
 import ButtonSquareSec from "./ButtonSquareSec";
 import ButtonSquareBrown from "./ButtonSquareBrown";
 
-function Button({ type, text, icon }) {
+function Button({ type, text, icon, ...rest }) {
   switch (type) {
     case "square":
-      return <ButtonSquare text={text} />;
+      return <ButtonSquare text={text} {...rest} />;
     case "brown":
-      return <ButtonSquareBrown text={text} />;
+      return <ButtonSquareBrown text={text} {...rest} />;
     case "squaresec":
-      return <ButtonSquareSec text={text} icon={icon} />;
+      return <ButtonSquareSec text={text} icon={icon} {...rest} />;
     case "full":
-      return <ButtonFull text={text} />;
+      return <ButtonFull text={text} {...rest} />;
     default:
-      return <ButtonSquare text={text} />;
+      return <ButtonSquare text={text} {...rest} />;
   }
 }
 

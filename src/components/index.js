@@ -16,6 +16,8 @@ import ItemCart from "./ItemCart";
 import PaymentMethod from "./PaymentMethod";
 import FormProfile from "./FormProfile";
 import ItemHistory from "./ItemHistory";
+import ListCategory from "./ListCategory";
+import Alert from "./Alert";
 
 export {
   Header,
@@ -36,4 +38,6 @@ export {
   PaymentMethod,
   FormProfile,
   ItemHistory,
+  ListCategory,
+  Alert,
 };

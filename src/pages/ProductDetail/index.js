@@ -1,20 +1,19 @@
-import axios from "axios"
-import React, { useEffect, useState } from "react"
-import { useParams } from "react-router"
-import { Button, Footer, Header, SectionBar } from "../../components"
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { useParams } from "react-router";
+import { Button, Footer, Header, SectionBar } from "../../components";
+import { getDetailProducts } from "../../redux/actions/products";
+import { addProducts } from "../../redux/actions/carts";
 
-function ProductDetail() {
-  const [data, setData] = useState([]);
-  const {id} = useParams()
-
+function ProductDetail(props) {
+  const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/products/${id}`)
-    .then((response) =>{
-      console.log(response.data.results)
-      setData(response.data.results)
-    })
-  },[id])
+    props.getDetailProducts(id);
+  }, [id]);
+
+  const { details } = props.products;
   return (
     <div>
       <header className="px-32">
@@ -31,27 +30,36 @@ function ProductDetail() {
         <section className="bg-gray-200 w-full h-full px-32 flex flex-row pb-40">
           <div className="w-fourpersen ml-20">
             <p className="text-sm my-10">
-              Favorite & Promo <span>{">"} {data.name}</span>
+              Favorite & Promo{" "}
+              <span>
+                {">"} {details?.name}
+              </span>
             </p>
             <div className="w-72 text-center space-y-5">
               <img
-                src={data.picture}
+                src={details?.picture}
                 alt="food"
                 className="w-72 h-72 rounded-full object-cover"
               />
-              <h3 className="text-4xl font-extrabold">{data.name}</h3>
-              <h4 className="text-2xl font-medium">IDR {data.base_price}</h4>
-              <Button type="brown" text="Add to Cart" />
+              <h3 className="text-4xl font-extrabold">{details?.name}</h3>
+              <h4 className="text-2xl font-medium">
+                IDR {details?.base_price}
+              </h4>
+              <Button
+                onClick={() => props.addProducts(details)}
+                type="brown"
+                text="Add to Cart"
+              />
               <Button type="main" text="Ask a Staff" />
             </div>
           </div>
           <div className="flex-1 ">
             <div className="w-wdetailbox h-hdetailbox bg-white mb-3  mt-10 p-20 rounded-xl">
               <p className="text-xl mb-10 w-72 text-yellow-900 font-medium">
-                {data.delivery_on}
+                {details?.delivery_on}
               </p>
               <p className="text-xl w-96 text-yellow-900">
-                {data.description}
+                {details?.description}
               </p>
               <p className="text-center font-bold text-xl py-5">
                 Choose a size
@@ -100,7 +108,11 @@ function ProductDetail() {
             </div>
           </div>
         </section>
-        <SectionBar title={data.name} picture={data.picture} type="counter" />
+        <SectionBar
+          title={details?.name}
+          picture={details?.picture}
+          type="counter"
+        />
         <footer className="px-32 my-32">
           <Footer />
         </footer>
@@ -109,4 +121,10 @@ function ProductDetail() {
   );
 }
 
-export default ProductDetail;
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
+
+const mapdispatchToProps = { getDetailProducts, addProducts };
+
+export default connect(mapStateToProps, mapdispatchToProps)(ProductDetail);
