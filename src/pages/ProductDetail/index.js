@@ -46,7 +46,7 @@ function ProductDetail(props) {
     <div>
       <header className="px-32">
         <Header
-          type="secondary"
+          type="main"
           home="text-gray-500"
           product="text-yellow-900 font-bold"
           cart="text-gray-500"
