@@ -18,7 +18,7 @@ function Login(props) {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { errMessage, token } = props.auth;
+  const { message, token } = props.auth;
 
   const isLogin = () => {
     if (token !== null) {
@@ -45,7 +45,7 @@ function Login(props) {
               <h3 className="text-center font-bold text-2xl text-red-900">
                 Login
               </h3>
-              {errMessage !== "" && <Alert errMessage={errMessage} />}
+              {message !== "" && <Alert message={message} />}
               <form className="px-32 space-y-6 mb-8">
                 <Form
                   onChange={(e) => setEmail(e.target.value)}

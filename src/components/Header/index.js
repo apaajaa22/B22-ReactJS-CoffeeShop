@@ -20,6 +20,7 @@ function Header({
           product={product}
           cart={cart}
           history={history}
+          isSearchInput={isSearchInput}
         />
       );
     case "secondary":

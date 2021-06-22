@@ -2,7 +2,7 @@ import React from "react";
 import { IcSearch } from "../../assets";
 function HeaderSearch() {
   return (
-    <div className="focus:outline-none bg-gray-300 px-3 py-2 rounded-full flex flex-row justify-center items-center space-x-2">
+    <div className="focus:outline-none -ml-40 bg-gray-300 px-3 py-2 rounded-full flex flex-row justify-center items-center space-x-2">
       <button>
         <img src={IcSearch} alt="icon search" />
       </button>

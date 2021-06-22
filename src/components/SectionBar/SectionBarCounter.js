@@ -22,12 +22,14 @@ function SectionBarCounter({
   const onIncrease = (idx) => {
     const data = [...item];
     data[idx].amount = data[idx].amount + 1;
-    console.log("onIncrease");
+    console.log(data);
     setItem(data);
   };
+
   const onDecrease = (idx) => {
     const data = [...item];
     data[idx].amount = data[idx].amount - 1;
+    console.log(data);
     setItem(data);
   };
 
@@ -49,7 +51,7 @@ function SectionBarCounter({
             );
           })}
         </div>
-        <div>
+        <div className="space-y-1">
           {item.map((res, idx) => {
             return (
               <Counter

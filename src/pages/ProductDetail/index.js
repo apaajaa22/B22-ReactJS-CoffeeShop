@@ -14,7 +14,7 @@ function ProductDetail(props) {
   const [variant, setVariant] = useState(null);
 
   useEffect(() => {
-    console.log(details?.variants);
+
     if (!variant && details?.variants) {
       const data = details?.variants.map((variant) => {
         return { ...variant, amount: 0 };
@@ -25,9 +25,9 @@ function ProductDetail(props) {
   }, [variant, details]);
 
   useEffect(() => {
-    console.log("asd", details?.base_price);
+
     if (details?.base_price) {
-      setPrice(details?.base_price);
+      setPrice(details?.base_price)
     }
   }, [details]);
 
@@ -37,12 +37,9 @@ function ProductDetail(props) {
 
   const getPrice = (idx) => {
     const getPrice = details.variants[idx].price;
-    console.log(getPrice);
+
     setPrice(getPrice);
     setSelectedVariant(getPrice);
-    // getPrice.forEach((prc, idx) => {
-    //   console.log(getPrice[idx].price, idx);
-    // });
   };
 
   return (
@@ -77,7 +74,7 @@ function ProductDetail(props) {
                 IDR {price.toLocaleString("en")}
               </h4>
               <Button
-                onClick={() => props.addProducts(details)}
+                onClick={() => props.addProducts(variant)}
                 type="brown"
                 text="Add to Cart"
               />
@@ -147,7 +144,7 @@ function ProductDetail(props) {
         </section>
         <SectionBar
           variant={variant || []}
-          onClick={() => props.addProducts(details)}
+          onClick={() => props.addProducts(variant)}
           title={details?.name}
           picture={details?.picture}
           type="counter"

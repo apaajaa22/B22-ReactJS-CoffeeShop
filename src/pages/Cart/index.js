@@ -8,6 +8,7 @@ import {
   PaymentMethod,
 } from "../../components";
 class Cart extends Component {
+
   render() {
     const { products } = this.props.carts;
     return (
@@ -37,15 +38,15 @@ class Cart extends Component {
                     Order Summary
                   </h4>
                   <div className="border-b-2 border-gray-300 mx-10 pb-2">
-                    {products.map((product) => {
+                    {products.map((product, idx) => {
                       return (
                         <ItemCart
-                          key={product.id}
-                          pic={product.picture}
-                          name={product.name}
-                          quantity={product.quantity}
-                          size="Regular"
-                          price={product.base_price.toLocaleString("en")}
+                          key={product[idx].id}
+                          pic={product[idx]?.picture !== undefined ? product[idx]?.picture : null}
+                          name={product[idx]?.product}
+                          quantity={product[idx].amount}
+                          size={product[idx].name}
+                          price={product[idx].price}
                         />
                       );
                     })}
@@ -76,8 +77,7 @@ class Cart extends Component {
               </div>
               <div className="bg-white w-full p-10 space-y-3 rounded-2xl">
                 <p className="border-b-2 border-gray-300 py-1">
-                  <span className="font-bold">Delivery</span>{" "}
-                  <span className="font-medium">to Iskandar Street</span>
+                  <span className="font-bold">Delivery to</span>
                 </p>
                 <div className="border-b-2 border-gray-300 ">
                   <p className="py-1 w-96">

@@ -31,7 +31,7 @@ function SecondaryHeader({ home, product, cart, history, isSearchInput }) {
             </li>
           </ul>
         ) : (
-          <ul className="flex flex-row space-x-8 text-md -ml-8 ">
+          <ul className="flex flex-row space-x-8 text-md  ">
             <li>
               <Link className={home} to="/">
                 Home

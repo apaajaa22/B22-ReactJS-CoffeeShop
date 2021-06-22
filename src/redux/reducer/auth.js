@@ -1,7 +1,8 @@
 const initialState = {
   onAuth: false,
   token: null,
-  errMessage: "",
+  message: "",
+  isRegister: false,
 };
 
 const auth = (state = initialState, action) => {
@@ -19,9 +20,13 @@ const auth = (state = initialState, action) => {
     case "SET_AUTH_LOGIN_FAILED":
       return {
         ...state,
-        errMessage: action.payload,
+        message: action.payload,
       };
-
+    case "SET_AUTH_REGISTER":
+      return {
+        ...state,
+        isRegister: !state.payload,
+      };
     default:
       return {
         ...state,

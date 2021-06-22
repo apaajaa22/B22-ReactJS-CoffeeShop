@@ -8,8 +8,10 @@ import { connect } from "react-redux";
 import { getUser } from "../../redux/actions/users";
 
 function UserProfile(props) {
+  const { users } = props.users;
+
   useEffect(() => {
-    console.log(props.auth.token);
+    console.log(props.auth);
     props.getUser(props.auth.token);
   }, []);
 
@@ -47,37 +49,55 @@ function UserProfile(props) {
                   </button>
                 </div>
                 <div className="flex flex-col items-center">
-                  <p className="font-bold text-xl">Zulaikha</p>
-                  <p className="text-xs">zulaikha17@gmail.com</p>
+                  {users.map((user) => {
+                    return (
+                      <div>
+                        <p className="font-bold text-xl text-center">
+                          {user.name}
+                        </p>
+                        <p className="text-xs text-center">{user.email}</p>
+                      </div>
+                    );
+                  })}
                 </div>
                 <p className="text-gray-500">Has been ordered 15 products</p>
               </div>
             </div>
-            <FormProfile
-              title="Contact"
-              label1="Email address :"
-              valuelabel1="zulaikha17@gmail.com"
-              label2="Delivery address : "
-              valuelabel2="Iskandar Street no. 67 Block A Near Bus Stop"
-              label4="Mobile number :"
-              valuelabel4="(+62)813456782"
-            />
+            {users.map((user) => {
+              return (
+                <FormProfile
+                  title="Contact"
+                  label1="Email address :"
+                  valuelabel1={user.email}
+                  label2="Delivery address : "
+                  valuelabel2={user.address}
+                  label4="Mobile number :"
+                  valuelabel4={user.phone_number}
+                />
+              );
+            })}
           </div>
         </section>
         <section className="flex flex-row pb-20">
           <div className="flex-1">
-            <FormProfile
-              title="Details"
-              label1="Display name :"
-              valuelabel1="Zulaikha"
-              label2="First name :"
-              valuelabel2="Zulaikha"
-              label3="Last name :"
-              valuelabel3="Nirmala"
-              label4="DD/MM/YY"
-              valuelabel4="03/04/90"
-              isRadio
-            />
+            {users.map((user) => {
+              return (
+                <FormProfile
+                  title="Details"
+                  label1="Display name :"
+                  valuelabel1={user.name}
+                  label2="First name :"
+                  valuelabel2={user.name.split(" ")[0]}
+                  label3="Last name :"
+                  valuelabel3={
+                    user.name.split(" ")[1] ? user.name.split(" ")[1] : ""
+                  }
+                  label4="DD/MM/YY"
+                  valuelabel4="03/04/90"
+                  isRadio
+                />
+              );
+            })}
           </div>
           <div className="w-fourpersen flex flex-col items-center">
             <h3 className="text-white font-bold text-xl w-60 text-center mb-4">

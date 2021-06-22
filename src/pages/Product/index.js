@@ -15,22 +15,31 @@ function Product(props) {
 
   const loadMore = () => {
     const { nextPage } = props.products.pageInfo;
-    props.getProducts(nextPage);
+    if(nextPage !== null) {
+      props.getProducts(nextPage);
+    }else{
+      window.alert('no more items')
+    }
   };
   const loadMoreProdCat = () => {
     const { nextPage } = props.category.pageInfo;
-    props.getProductCategory(null, nextPage);
+    if(nextPage !== null){
+      props.getProductCategory(null, nextPage);
+    }else{
+      window.alert('no more items')
+    }
   };
 
   return (
     <div>
       <header className="px-32">
         <Header
-          type="secondary"
+          type="main"
           home="text-gray-500"
           product="text-yellow-900 font-bold"
           cart="text-gray-500"
           history="text-gray-500"
+          isSearchInput
         />
       </header>
       <main>
