@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { PrivateRoute } from "../../components";
 import {
   Cart,
   ForgotPassword,
@@ -27,18 +28,18 @@ function Routes() {
         <Route path="/products/:id">
           <ProductDetail />
         </Route>
-        <Route path="/cart">
+        <PrivateRoute path="/cart">
           <Cart />
-        </Route>
-        <Route path="/userprofile">
+        </PrivateRoute>
+        <PrivateRoute path="/userprofile">
           <UserProfile />
-        </Route>
+        </PrivateRoute>
         <Route path="/forgotpassword">
           <ForgotPassword />
         </Route>
-        <Route path="/history">
+        <PrivateRoute path="/history">
           <History />
-        </Route>
+        </PrivateRoute>
         <Route exact path="/">
           <Home />
         </Route>

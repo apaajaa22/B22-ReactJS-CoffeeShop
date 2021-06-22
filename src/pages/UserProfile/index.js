@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsPencil } from "react-icons/bs";
 import { ILUser4 } from "../../assets";
 import { Button, Footer, FormProfile, Header } from "../../components";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
+import { getUser } from "../../redux/actions/users";
 
-function UserProfile() {
+function UserProfile(props) {
+  useEffect(() => {
+    console.log(props.auth.token);
+    props.getUser(props.auth.token);
+  }, []);
+
   return (
     <div>
       <header className="px-32">
@@ -49,7 +57,7 @@ function UserProfile() {
               title="Contact"
               label1="Email address :"
               valuelabel1="zulaikha17@gmail.com"
-              label2="Delivery address : adress :"
+              label2="Delivery address : "
               valuelabel2="Iskandar Street no. 67 Block A Near Bus Stop"
               label4="Mobile number :"
               valuelabel4="(+62)813456782"
@@ -98,5 +106,10 @@ function UserProfile() {
     </div>
   );
 }
+const mapStateToProps = (state) => ({
+  users: state.users,
+  auth: state.auth,
+});
 
-export default UserProfile;
+const mapDisPatchToProps = { getUser };
+export default connect(mapStateToProps, mapDisPatchToProps)(UserProfile);

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ILFood4 } from "../../assets";
 import {
   Button,
   Footer,
@@ -28,39 +27,47 @@ class Cart extends Component {
           </h3>
           <div className="flex flex-row">
             <section className="w-threepersen bg-white h-full rounded-xl py-16 ">
-              <h4 className="text-yellow-800 text-2xl font-bold text-center">
-                Order Summary
-              </h4>
-              <div className="border-b-2 border-gray-300 mx-10 pb-2">
-                {products.map((product) => {
-                  return (
-                    <ItemCart
-                      key={product.id}
-                      pic={product.picture}
-                      name={product.name}
-                      quantity={product.quantity}
-                      size="Regular"
-                      price={product.base_price}
-                    />
-                  );
-                })}
-              </div>
-              <div className="flex flex-row items-center justify-between mt-5 mx-10">
-                <div className="leading-relaxed flex-1">
-                  <p>SUBTOTAL</p>
-                  <p>TAX & FEES</p>
-                  <p>SHIPPING</p>
+              {products.length < 1 ? (
+                <h4 className="text-yellow-800 text-2xl font-bold text-center">
+                  You don't have any orders
+                </h4>
+              ) : (
+                <div>
+                  <h4 className="text-yellow-800 text-2xl font-bold text-center">
+                    Order Summary
+                  </h4>
+                  <div className="border-b-2 border-gray-300 mx-10 pb-2">
+                    {products.map((product) => {
+                      return (
+                        <ItemCart
+                          key={product.id}
+                          pic={product.picture}
+                          name={product.name}
+                          quantity={product.quantity}
+                          size="Regular"
+                          price={product.base_price.toLocaleString("en")}
+                        />
+                      );
+                    })}
+                  </div>
+                  <div className="flex flex-row items-center justify-between mt-5 mx-10">
+                    <div className="leading-relaxed flex-1">
+                      <p>SUBTOTAL</p>
+                      <p>TAX & FEES</p>
+                      <p>SHIPPING</p>
+                    </div>
+                    <div className="leading-relaxed ">
+                      <p>IDR 120.000</p>
+                      <p>IDR 20.000</p>
+                      <p>IDR 10.000</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-row justify-between mx-10 text-yellow-900 font-bold text-2xl pt-5">
+                    <p>TOTAL</p>
+                    <p>IDR 150.000</p>
+                  </div>
                 </div>
-                <div className="leading-relaxed ">
-                  <p>IDR 120.000</p>
-                  <p>IDR 20.0000</p>
-                  <p>IDR 10.000</p>
-                </div>
-              </div>
-              <div className="flex flex-row justify-between mx-10 text-yellow-900 font-bold text-2xl pt-5">
-                <p>TOTAL</p>
-                <p>IDR 150.000</p>
-              </div>
+              )}
             </section>
             <section className="flex-1 w-fourpersen h-screen ml-20 px-28 pr-52 -mt-12">
               <div className="text-white font-bold flex flex-row justify-between mb-5">

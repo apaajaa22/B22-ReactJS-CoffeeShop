@@ -18,6 +18,7 @@ import FormProfile from "./FormProfile";
 import ItemHistory from "./ItemHistory";
 import ListCategory from "./ListCategory";
 import Alert from "./Alert";
+import PrivateRoute from "./PrivateRoute";
 
 export {
   Header,
@@ -40,4 +41,5 @@ export {
   ItemHistory,
   ListCategory,
   Alert,
+  PrivateRoute,
 };

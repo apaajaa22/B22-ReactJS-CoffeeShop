@@ -3,7 +3,17 @@ import SectionBarCounter from "./SectionBarCounter";
 import SectionBarInfo from "./SectionBarInfo";
 import SectionBarStatus from "./SectionBarStatus";
 
-function SectionBar({ type, title, subTitle, buttonName, picture }) {
+function SectionBar({
+  type,
+  title,
+  subTitle,
+  buttonName,
+  picture,
+  stateValue,
+  max,
+  onClick,
+  variant,
+}) {
   switch (type) {
     case "status":
       return <SectionBarStatus />;
@@ -16,12 +26,17 @@ function SectionBar({ type, title, subTitle, buttonName, picture }) {
         />
       );
     case "counter":
+      console.log("asdasdasd", variant);
       return (
         <SectionBarCounter
+          variant={variant}
+          max={max}
+          stateValue={stateValue}
           title={title}
           subTitle={subTitle}
           buttonName={buttonName}
           picture={picture}
+          onClick={onClick}
         />
       );
     default:

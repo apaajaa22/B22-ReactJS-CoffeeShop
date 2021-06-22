@@ -46,7 +46,7 @@ function Login(props) {
                 Login
               </h3>
               {errMessage !== "" && <Alert errMessage={errMessage} />}
-              <form onClick={onLogin} className="px-32 space-y-6 mb-8">
+              <form className="px-32 space-y-6 mb-8">
                 <Form
                   onChange={(e) => setEmail(e.target.value)}
                   label="Email Address :"

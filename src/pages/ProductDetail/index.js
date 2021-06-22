@@ -1,19 +1,50 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router";
 import { Button, Footer, Header, SectionBar } from "../../components";
-import { getDetailProducts } from "../../redux/actions/products";
 import { addProducts } from "../../redux/actions/carts";
+import { getDetailProducts } from "../../redux/actions/products";
 
 function ProductDetail(props) {
   const { id } = useParams();
+  const { details } = props.products;
+  const [price, setPrice] = useState(0);
+  const [selectedVariant, setSelectedVariant] = useState(0);
+  const [variant, setVariant] = useState(null);
+
+  useEffect(() => {
+    console.log(details?.variants);
+    if (!variant && details?.variants) {
+      const data = details?.variants.map((variant) => {
+        return { ...variant, amount: 0 };
+      });
+      setVariant(data);
+      console.log(`data`, data);
+    }
+  }, [variant, details]);
+
+  useEffect(() => {
+    console.log("asd", details?.base_price);
+    if (details?.base_price) {
+      setPrice(details?.base_price);
+    }
+  }, [details]);
 
   useEffect(() => {
     props.getDetailProducts(id);
-  }, [id]);
+  }, []);
 
-  const { details } = props.products;
+  const getPrice = (idx) => {
+    const getPrice = details.variants[idx].price;
+    console.log(getPrice);
+    setPrice(getPrice);
+    setSelectedVariant(getPrice);
+    // getPrice.forEach((prc, idx) => {
+    //   console.log(getPrice[idx].price, idx);
+    // });
+  };
+
   return (
     <div>
       <header className="px-32">
@@ -43,7 +74,7 @@ function ProductDetail(props) {
               />
               <h3 className="text-4xl font-extrabold">{details?.name}</h3>
               <h4 className="text-2xl font-medium">
-                IDR {details?.base_price}
+                IDR {price.toLocaleString("en")}
               </h4>
               <Button
                 onClick={() => props.addProducts(details)}
@@ -65,15 +96,18 @@ function ProductDetail(props) {
                 Choose a size
               </p>
               <div className="space-x-16 flex flex-row justify-center ">
-                <button className="bg-yellow-400 w-16 h-16 rounded-full text-xl font-bold">
-                  R
-                </button>
-                <button className="bg-yellow-400 w-16 h-16 rounded-full text-xl font-bold">
-                  L
-                </button>
-                <button className="bg-yellow-400 w-16 h-16 rounded-full text-xl font-bold">
-                  XL
-                </button>
+                {details?.variants?.map((variant, idx) => {
+                  return (
+                    <button
+                      onClick={() => getPrice(idx)}
+                      key={variant.id}
+                      className="bg-yellow-400 w-16 h-16 rounded-full text-xl font-bold
+                      focus:outline-none transform hover:scale-110 motion-reduce:transform-none"
+                    >
+                      {variant.code}
+                    </button>
+                  );
+                })}
               </div>
             </div>
             <div className=" flex flex-col items-center -ml-32">
@@ -86,13 +120,15 @@ function ProductDetail(props) {
                 </button>
                 <button
                   disable
-                  className="bg-gray-300 cursor-not-allowed focus:outline-none p-3 rounded-lg text-gray-500 font-medium"
+                  className="bg-gray-300 cursor-not-allowed focus:outline-none p-3
+                  rounded-lg text-gray-500 font-medium"
                 >
                   Door Delivery
                 </button>
                 <button
                   disable
-                  className="bg-gray-300 cursor-not-allowed focus:outline-none p-3 rounded-lg text-gray-500 font-medium"
+                  className="bg-gray-300 cursor-not-allowed focus:outline-none p-3
+                  rounded-lg text-gray-500 font-medium"
                 >
                   Pick Up
                 </button>
@@ -102,16 +138,21 @@ function ProductDetail(props) {
                 <input
                   type="text"
                   placeholder="Enter the time you’ll arrived"
-                  className="bg-gray-200 text-sm w-72 focus:outline-none border-b-2 border-gray-400"
+                  className="bg-gray-200 text-sm w-72 focus:outline-none border-b-2
+                  border-gray-400"
                 />
               </div>
             </div>
           </div>
         </section>
         <SectionBar
+          variant={variant || []}
+          onClick={() => props.addProducts(details)}
           title={details?.name}
           picture={details?.picture}
           type="counter"
+          stateValue={0}
+          max={details?.quantity}
         />
         <footer className="px-32 my-32">
           <Footer />

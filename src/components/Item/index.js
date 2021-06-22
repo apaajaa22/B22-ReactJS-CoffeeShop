@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Item({ name, pic, price, to }) {
+function Item({ name, picture, price, to }) {
   return (
     <Link
       to={to}
@@ -9,7 +9,7 @@ function Item({ name, pic, price, to }) {
     >
       <img
         className="w-28 h-28 rounded-full object-cover"
-        src={pic}
+        src={`${picture}`}
         alt="food"
       />
       <h4 className="text-center flex-1 font-bold w-20 flex justify-center text-xl leading-tight">

@@ -1,19 +1,25 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Button, Coupon, Footer, Header, Item } from "../../components";
+import { getCategory, getProductCategory } from "../../redux/actions/category";
 import { getProducts } from "../../redux/actions/products";
 
 function Product(props) {
+  const { data } = props.products;
+  const { data: categoryData } = props.category;
+  const { productCategory } = props.category;
   useEffect(() => {
     props.getProducts();
+    props.getCategory();
   }, []);
-
-  const { data } = props.products;
 
   const loadMore = () => {
     const { nextPage } = props.products.pageInfo;
     props.getProducts(nextPage);
+  };
+  const loadMoreProdCat = () => {
+    const { nextPage } = props.category.pageInfo;
+    props.getProductCategory(null, nextPage);
   };
 
   return (
@@ -29,7 +35,7 @@ function Product(props) {
       </header>
       <main>
         <section className="flex flex-row ">
-          <div className="w-wcoupon bg-white h-full border-t-2 border-gray-300 border-r-2">
+          <div className="w-wcoupon bg-white h-full border-t-2 border-gray-300 border-r-2 flex flex-col">
             <div className="flex flex-col items-center">
               <h4 className="text-center text-xl text-yellow-900 font-semibold my-8">
                 Promo for you
@@ -56,50 +62,64 @@ function Product(props) {
           </div>
           <div className="flex-1 bg-white h-full border-t-2 border-gray-300 flex-col flex ">
             <ul className="my-8 flex flex-row space-x-16 justify-center">
-              <li>
-                <button className="px-2 font-bold text-lg text-gray-400 border-white focus:outline-none focus:border-yellow-900 focus:text-yellow-900 border-b-2">
-                  Favorite Product
-                </button>
-              </li>
-              <li>
-                <button className="px-2 font-bold text-lg text-gray-400 border-white focus:outline-none focus:border-yellow-900 focus:text-yellow-900 border-b-2">
-                  Coffee
-                </button>
-              </li>
-              <li>
-                <button className="px-2 font-bold text-lg text-gray-400 border-white focus:outline-none focus:border-yellow-900 focus:text-yellow-900 border-b-2">
-                  Non Coffee
-                </button>
-              </li>
-              <li>
-                <button className="px-2 font-bold text-lg text-gray-400 border-white focus:outline-none focus:border-yellow-900 focus:text-yellow-900 border-b-2">
-                  Foods
-                </button>
-              </li>
-              <li>
-                <button className="px-2 font-bold text-lg text-gray-400 border-white focus:outline-none focus:border-yellow-900 focus:text-yellow-900 border-b-2">
-                  Add-on
-                </button>
-              </li>
-            </ul>
-            <div className="grid grid-cols-4 gap-7 px-32">
-              {data.map((products) => {
+              {categoryData.map((cat) => {
                 return (
-                  <Item
-                    key={products.id}
-                    name={products.name}
-                    price={products.price.toLocaleString("en")}
-                    picture={products.picture}
-                    to={`/products/${products.id}`}
-                  />
+                  <li key={cat.id}>
+                    <button
+                      onClick={() => props.getProductCategory(cat.id)}
+                      className="px-2 font-bold text-lg text-gray-400 border-white focus:outline-none focus:border-yellow-900 focus:text-yellow-900 border-b-2"
+                    >
+                      {cat.name}
+                    </button>
+                  </li>
                 );
               })}
+            </ul>
+            <div className="grid grid-cols-4 gap-7 px-32">
+              {props.category.productCategory < 1
+                ? data.map((products) => {
+                    return (
+                      <Item
+                        key={products.id}
+                        name={products.name}
+                        price={products.price.toLocaleString("en")}
+                        picture={products.picture}
+                        to={`/products/${products.id}`}
+                      />
+                    );
+                  })
+                : productCategory.map((product) => {
+                    if (props.category.productCategory === 0) {
+                      return <></>;
+                    }
+                    return (
+                      <Item
+                        key={product.id}
+                        name={product.name}
+                        price={product.price.toLocaleString("en")}
+                        picture={product.picture}
+                        to={`/products/${product.id}`}
+                      />
+                    );
+                  })}
             </div>
-            <div className=" flex flex-row justify-center mt-10">
-              <div className="w-72">
-                <Button onClick={loadMore} type="square" text="Load More" />
+            {props.category.productCategory < 1 ? (
+              <div className=" flex flex-row justify-center mt-10">
+                <div className="w-72">
+                  <Button onClick={loadMore} type="square" text="Load More" />
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className=" flex flex-row justify-center mt-10">
+                <div className="w-72">
+                  <Button
+                    onClick={loadMoreProdCat}
+                    type="square"
+                    text="Load More"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </section>
       </main>
@@ -112,7 +132,8 @@ function Product(props) {
 
 const mapStateToProps = (state) => ({
   products: state.products,
+  category: state.category,
 });
-const mapDispatchToProps = { getProducts };
+const mapDispatchToProps = { getProducts, getCategory, getProductCategory };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 
-function Counter({ onValueChange }) {
-  const [counter, setCounter] = useState(1);
+function Counter({ onValueChange, stateValue, max, onIncrease, onDecrease }) {
+  const [counter, setCounter] = useState(stateValue);
 
   const onCount = (type) => {
     let result = counter;
     if (type === "plus") {
-      result = counter + 1;
+      if (counter === max) {
+        window.alert(`There are only ${max} of these items`);
+      } else {
+        onIncrease();
+        result = counter + 1;
+      }
     }
     if (type === "minus") {
-      if (counter > 1) {
+      if (counter > 0) {
+        onDecrease();
         result = counter - 1;
       }
     }
@@ -34,5 +40,8 @@ function Counter({ onValueChange }) {
     </div>
   );
 }
-
+Counter.defaultProps = {
+  onIncrease: () => {},
+  onDecrease: () => {},
+};
 export default Counter;

@@ -13,7 +13,7 @@ function FormProfile({
   isRadio,
 }) {
   return (
-    <div className="rounded-xl bg-yellow-900 pb-4 flex-1">
+    <div className="rounded-xl bg-yellow-900 pb-4 flex-1 ">
       <div className="bg-white rounded-t-xl px-10 py-6">
         <div className="flex flex-row justify-between items-center mb-5">
           <h3 className="font-bold text-2xl ">{title}</h3>
@@ -29,13 +29,13 @@ function FormProfile({
           <div className="space-y-3 flex flex-col flex-1">
             <h5 className="text-gray-500 text-lg">{label1}</h5>
             <input
-              className="border-b-2 border-gray-400 focus:outline-none"
+              className="border-b-2 border-gray-400 focus:outline-none cursor-default"
               type="text"
               value={valuelabel1}
             />
             <h5 className="text-gray-500 text-lg">{label2}</h5>
             <input
-              className="border-b-2 border-gray-400 focus:outline-none"
+              className="border-b-2 border-gray-400 focus:outline-none cursor-default"
               type="text"
               value={valuelabel2}
             />
@@ -43,7 +43,7 @@ function FormProfile({
               <div>
                 <h5 className="text-gray-500 text-lg ">{label3}</h5>
                 <input
-                  className="border-b-2 border-gray-400 focus:outline-none w-full"
+                  className="border-b-2 border-gray-400 focus:outline-none w-full cursor-default"
                   type="text"
                   value={valuelabel3}
                 />
@@ -55,7 +55,7 @@ function FormProfile({
           <div className=" flex flex-col flex-1">
             <h5 className="text-gray-500 text-lg pb-3">{label4}</h5>
             <input
-              className="border-b-2 border-gray-400 focus:outline-none"
+              className="border-b-2 border-gray-400 focus:outline-none cursor-default"
               type="text"
               value={valuelabel4}
             />
