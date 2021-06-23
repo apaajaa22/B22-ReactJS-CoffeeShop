@@ -11,12 +11,13 @@ import { authLogout } from "../../redux/actions/auth";
 import { getUser } from "../../redux/actions/users";
 
 class Cart extends Component {
+  componentDidMount() {
+    this.props.getUser(this.props.auth.token);
+  }
   render() {
     const { products } = this.props.carts;
     const { users } = this.props.users;
     console.log(users);
-
-
 
     return (
       <section>
@@ -103,17 +104,19 @@ class Cart extends Component {
                 <p className="text-xl">Address details</p>
                 <button className="focus:outline-none">edit</button>
               </div>
-              <div className="bg-white w-full p-10 space-y-3 rounded-2xl">
-                <p className="border-b-2 border-gray-300 py-1">
-                  <span className="font-bold">Delivery to</span>
-                </p>
-                <div className="border-b-2 border-gray-300 ">
-                  <p className="py-1 w-96">
-                    Km 5 refinery road oppsite re public road, effurun, Jakarta
-                  </p>
-                </div>
-                <p>+62 81348287878</p>
-              </div>
+              {users.map((user) => {
+                return (
+                  <div className="bg-white w-full p-10 space-y-3 rounded-2xl">
+                    <p className="border-b-2 border-gray-300 py-1">
+                      <span className="font-bold">Delivery to</span>
+                    </p>
+                    <div className="border-b-2 border-gray-300 ">
+                      <p className="py-1 w-96">{user.address}</p>
+                    </div>
+                    <p>{user.phone_number}</p>
+                  </div>
+                );
+              })}
               <p className="text-white pt-5 pb-2 font-bold text-xl">
                 Payment Method
               </p>

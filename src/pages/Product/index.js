@@ -15,18 +15,18 @@ function Product(props) {
 
   const loadMore = () => {
     const { nextPage } = props.products.pageInfo;
-    if(nextPage !== null) {
+    if (nextPage !== null) {
       props.getProducts(nextPage);
-    }else{
-      window.alert('no more items')
+    } else {
+      window.alert("no more items");
     }
   };
   const loadMoreProdCat = () => {
     const { nextPage } = props.category.pageInfo;
-    if(nextPage !== null){
+    if (nextPage !== null) {
       props.getProductCategory(null, nextPage);
-    }else{
-      window.alert('no more items')
+    } else {
+      window.alert("no more items");
     }
   };
 

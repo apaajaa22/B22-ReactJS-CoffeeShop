@@ -2,17 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
-function PrivateRoute(props) {
-  const { token } = props.auth;
+function PrivateRoute({ auth, children, ...rest }) {
+  const { token } = auth;
   return (
     <Route
       render={() => {
         if (token !== null) {
-          return props.children;
+          return children;
         } else {
           return <Redirect to="/login" />;
         }
       }}
+      {...rest}
     />
   );
 }

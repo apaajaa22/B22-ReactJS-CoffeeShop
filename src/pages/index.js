@@ -7,6 +7,7 @@ import Cart from "./Cart";
 import UserProfile from "./UserProfile";
 import ForgotPassword from "./ForgotPassword";
 import History from "./History";
+import HistoryDetail from "./HistoryDetail";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   UserProfile,
   ForgotPassword,
   History,
+  HistoryDetail,
 };

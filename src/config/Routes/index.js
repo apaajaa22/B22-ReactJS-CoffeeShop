@@ -5,6 +5,7 @@ import {
   Cart,
   ForgotPassword,
   History,
+  HistoryDetail,
   Home,
   Login,
   Product,
@@ -37,8 +38,11 @@ function Routes() {
         <Route path="/forgotpassword">
           <ForgotPassword />
         </Route>
-        <PrivateRoute path="/history">
+        <PrivateRoute exact path="/history">
           <History />
+        </PrivateRoute>
+        <PrivateRoute path="/history/:slug">
+          <HistoryDetail />
         </PrivateRoute>
         <Route exact path="/">
           <Home />

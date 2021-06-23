@@ -13,9 +13,9 @@ const getHistory = (token) => {
   };
 };
 
-const getDetailHistory = (id) => {
+const getDetailHistory = (token, id) => {
   return async (dispatch) => {
-    const { data } = await http().get(`${URL}/private/transactions/${id}`);
+    const { data } = await http(token).get(`${URL}/private/transactions/${id}`);
     dispatch({
       type: "SET_GET_DETAILS_HISTORY",
       payload: { results: data.results, invoice: data.invoice },
