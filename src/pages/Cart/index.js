@@ -7,10 +7,17 @@ import {
   ItemCart,
   PaymentMethod,
 } from "../../components";
-class Cart extends Component {
+import { authLogout } from "../../redux/actions/auth";
+import { getUser } from "../../redux/actions/users";
 
+class Cart extends Component {
   render() {
     const { products } = this.props.carts;
+    const { users } = this.props.users;
+    console.log(users);
+
+
+
     return (
       <section>
         <header className="px-32">
@@ -20,6 +27,7 @@ class Cart extends Component {
             product="text-gray-500"
             cart="text-yellow-900 font-bold"
             history="text-gray-500"
+            onClick={this.props.authLogout}
           />
         </header>
         <main className="bg-bg-cart w-full h-full px-32 bg-cover bg-center">
@@ -38,18 +46,38 @@ class Cart extends Component {
                     Order Summary
                   </h4>
                   <div className="border-b-2 border-gray-300 mx-10 pb-2">
-                    {products.map((product, idx) => {
+                    {/* {products.map((product, idx) => {
                       return (
                         <ItemCart
-                          key={product[idx].id}
-                          pic={product[idx]?.picture !== undefined ? product[idx]?.picture : null}
+                          key={product[idx]?.id}
+                          pic={
+                            product[idx]?.picture !== undefined
+                              ? product[idx]?.picture
+                              : null
+                          }
                           name={product[idx]?.product}
-                          quantity={product[idx].amount}
-                          size={product[idx].name}
-                          price={product[idx].price}
+                          quantity={product[idx]?.amount}
+                          size={product[idx]?.name}
+                          price={product[idx]?.price}
                         />
                       );
-                    })}
+                    })} */}
+                    {products.map((data) =>
+                      data
+                        .filter((item) => item.amount !== 0)
+                        .map((item, idx) => (
+                          <ItemCart
+                            key={item?.id}
+                            pic={
+                              item?.picture !== undefined ? item?.picture : null
+                            }
+                            name={item?.product}
+                            quantity={item?.amount}
+                            size={item?.name}
+                            price={item?.price}
+                          />
+                        ))
+                    )}
                   </div>
                   <div className="flex flex-row items-center justify-between mt-5 mx-10">
                     <div className="leading-relaxed flex-1">
@@ -106,5 +134,9 @@ class Cart extends Component {
 
 const mapStateToProps = (state) => ({
   carts: state.carts,
+  auth: state.auth,
+  users: state.users,
 });
-export default connect(mapStateToProps)(Cart);
+
+const mapDispatchToProps = { authLogout, getUser };
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

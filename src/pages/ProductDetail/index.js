@@ -14,25 +14,27 @@ function ProductDetail(props) {
   const [variant, setVariant] = useState(null);
 
   useEffect(() => {
-
-    if (!variant && details?.variants) {
+    if (details?.variants) {
+      console.log("changing");
       const data = details?.variants.map((variant) => {
         return { ...variant, amount: 0 };
       });
       setVariant(data);
       console.log(`data`, data);
     }
-  }, [variant, details]);
+  }, [details?.variants]);
 
   useEffect(() => {
-
     if (details?.base_price) {
-      setPrice(details?.base_price)
+      setPrice(details?.base_price);
     }
   }, [details]);
 
   useEffect(() => {
     props.getDetailProducts(id);
+    return () => {
+      setVariant(null);
+    };
   }, []);
 
   const getPrice = (idx) => {

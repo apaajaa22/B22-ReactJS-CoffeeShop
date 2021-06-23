@@ -50,4 +50,8 @@ const authRegister = (email, password, phoneNumber) => {
   };
 };
 
-export { toggleAuth, authLogin, authRegister };
+const authLogout = () => ({
+  type: "SET_AUTH_LOGOUT",
+});
+
+export { toggleAuth, authLogin, authRegister, authLogout };

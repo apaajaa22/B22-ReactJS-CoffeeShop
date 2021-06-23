@@ -11,6 +11,7 @@ function Header({
   cart,
   history,
   isSearchInput,
+  onClick,
 }) {
   switch (type) {
     case "main":
@@ -31,6 +32,7 @@ function Header({
           cart={cart}
           history={history}
           isSearchInput={isSearchInput}
+          onClick={onClick}
         />
       );
     case "form":

@@ -2,7 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Logo, Search } from "..";
 import { IcMessage, IcSearch, ILUser4 } from "../../assets";
-function SecondaryHeader({ home, product, cart, history, isSearchInput }) {
+function SecondaryHeader({
+  home,
+  product,
+  cart,
+  history,
+  isSearchInput,
+  onClick,
+}) {
   return (
     <nav className="flex flex-row justify-between py-7 items-center">
       <Logo />
@@ -59,8 +66,10 @@ function SecondaryHeader({ home, product, cart, history, isSearchInput }) {
         {isSearchInput ? (
           <Search type="header" />
         ) : (
-          <button>
-            <img src={IcSearch} alt="icon search" />
+          <button onClick={onClick}>
+            <p className="bg-yellow-400 px-4 py-2 rounded-xl font-medium text-yellow-900">
+              LOGOUT
+            </p>
           </button>
         )}
         <button className="relative">

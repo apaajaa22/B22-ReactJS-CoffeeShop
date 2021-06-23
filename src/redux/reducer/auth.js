@@ -27,6 +27,11 @@ const auth = (state = initialState, action) => {
         ...state,
         isRegister: !state.payload,
       };
+    case "SET_AUTH_LOGOUT":
+      return {
+        ...state,
+        token: null,
+      };
     default:
       return {
         ...state,

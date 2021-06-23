@@ -6,6 +6,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUser } from "../../redux/actions/users";
+import { authLogout } from "../../redux/actions/auth";
 
 function UserProfile(props) {
   const { users } = props.users;
@@ -24,6 +25,7 @@ function UserProfile(props) {
           product="text-gray-500"
           cart="text-gray-500"
           history="text-gray-500"
+          onClick={props.authLogout}
         />
       </header>
       <main className="bg-bg-profile w-full h-full px-32 bg-cover">
@@ -131,5 +133,5 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-const mapDisPatchToProps = { getUser };
+const mapDisPatchToProps = { getUser, authLogout };
 export default connect(mapStateToProps, mapDisPatchToProps)(UserProfile);

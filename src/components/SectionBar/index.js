@@ -26,7 +26,7 @@ function SectionBar({
         />
       );
     case "counter":
-      console.log("asdasdasd", variant);
+      console.log("telat masuk", variant);
       return (
         <SectionBarCounter
           variant={variant}
