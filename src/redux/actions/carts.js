@@ -13,11 +13,13 @@ const createTransaction = (data, token) => {
   return async (dispatch) => {
     const form = new URLSearchParams();
     data.forEach((product) =>
-      product.forEach((item) => {
-        form.append("product_id", item.id);
-        form.append("product_amount", item.amount);
-        form.append("product_variant", item.id_variant);
-      })
+      product
+        .filter((item) => item.amount !== 0)
+        .forEach((item) => {
+          form.append("product_id", item.id);
+          form.append("product_amount", item.amount);
+          form.append("product_variant", item.id_variant);
+        })
     );
     form.append("payment_method", "Bank");
     try {

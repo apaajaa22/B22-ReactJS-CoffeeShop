@@ -76,7 +76,6 @@ class Cart extends Component {
                         .filter((item) => item.amount !== 0)
                         .map((item, idx) => (
                           <ItemCart
-                            key={item?.id}
                             pic={
                               item?.picture !== undefined ? item?.picture : null
                             }
@@ -114,10 +113,7 @@ class Cart extends Component {
               </div>
               {users.map((user) => {
                 return (
-                  <div
-                    key={user.id}
-                    className="bg-white w-full p-10 space-y-3 rounded-2xl"
-                  >
+                  <div className="bg-white w-full p-10 space-y-3 rounded-2xl">
                     <p className="border-b-2 border-gray-300 py-1">
                       <span className="font-bold">Delivery to</span>
                     </p>

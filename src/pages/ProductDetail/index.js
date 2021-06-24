@@ -98,7 +98,6 @@ function ProductDetail(props) {
                   return (
                     <button
                       onClick={() => getPrice(idx)}
-                      key={variant.id}
                       className="bg-yellow-400 w-16 h-16 rounded-full text-xl font-bold
                       focus:outline-none transform hover:scale-110 motion-reduce:transform-none"
                     >

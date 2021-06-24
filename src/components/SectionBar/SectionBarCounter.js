@@ -45,7 +45,7 @@ function SectionBarCounter({
           <h4>{title}</h4>
           {item.map((variant) => {
             return (
-              <h5 key={variant.name}>
+              <h5>
                 x{variant.amount} {variant.name}
               </h5>
             );

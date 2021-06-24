@@ -73,7 +73,7 @@ function Product(props) {
             <ul className="my-8 flex flex-row space-x-16 justify-center">
               {categoryData.map((cat) => {
                 return (
-                  <li key={cat.id}>
+                  <li>
                     <button
                       onClick={() => props.getProductCategory(cat.id)}
                       className="px-2 font-bold text-lg text-gray-400 border-white focus:outline-none focus:border-yellow-900 focus:text-yellow-900 border-b-2"
@@ -89,7 +89,6 @@ function Product(props) {
                 ? data.map((products) => {
                     return (
                       <Item
-                        key={products.id}
                         name={products.name}
                         price={products.price.toLocaleString("en")}
                         picture={products.picture}
@@ -103,7 +102,6 @@ function Product(props) {
                     }
                     return (
                       <Item
-                        key={product.id}
                         name={product.name}
                         price={product.price.toLocaleString("en")}
                         picture={product.picture}

@@ -39,12 +39,12 @@ function History(props) {
           </div>
           <div className="grid grid-flow-row grid-cols-3 gap-5 px-32">
             {history.map((item) => {
+              const total = item.total + item.tax + item.shipping_cost;
               return (
                 <ItemHistory
-                  key={item.id}
                   to={`/history/${item.id}`}
                   code={item.code}
-                  total={item.total.toLocaleString("en")}
+                  total={total.toLocaleString("en")}
                   payment={item.payment_method}
                 />
               );

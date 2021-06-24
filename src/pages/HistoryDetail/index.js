@@ -25,7 +25,7 @@ function HistoryDetail(props) {
   };
 
   return (
-    <>
+    <div className="overflow-y-hidden relative">
       <div>
         <header className="px-32">
           <Header
@@ -51,12 +51,13 @@ function HistoryDetail(props) {
           </div>
           <div className="grid grid-flow-row grid-cols-3 gap-5 px-32">
             {history?.map((item) => {
+              const total = item.total + item.tax + item.shipping_cost;
               return (
                 <ItemHistory
                   key={item.id}
                   onClick={modalChecked}
                   code={item.code}
-                  total={item.total.toLocaleString("en")}
+                  total={total.toLocaleString("en")}
                   payment={item.payment_method}
                 />
               );
@@ -67,7 +68,7 @@ function HistoryDetail(props) {
           <Footer />
         </footer>
       </div>
-      <div className="bg-black bg-opacity-70 absolute top-0 w-full h-screen flex flex-col flex-1 justify-center items-center">
+      <div className=" bg-black bg-opacity-70 absolute top-0 w-full h-full flex flex-col flex-1 justify-center items-center">
         <div className="w-threepersen bg-white rounded-xl py-10 px-10">
           <h4 className="text-yellow-800 text-2xl font-bold text-center">
             INVOICE
@@ -80,6 +81,7 @@ function HistoryDetail(props) {
                   name={item.name}
                   quantity={item.amount}
                   price={item.price.toLocaleString("en")}
+                  size={item.variants}
                 />
               );
             })}
@@ -94,10 +96,9 @@ function HistoryDetail(props) {
             </div>
             <div className="leading-relaxed ">
               {invoice?.map((res) => {
-                const total = res.total - (res.tax + res.shipping_cost);
                 return (
                   <div>
-                    <p>IDR {total.toLocaleString("en")}</p>
+                    <p>IDR {res.total.toLocaleString("en")}</p>
                     <p>IDR {res.tax.toLocaleString("en")}</p>
                     <p>IDR {res.shipping_cost.toLocaleString("en")}</p>
                     <p className="uppercase"> {res.payment_method}</p>
@@ -110,7 +111,8 @@ function HistoryDetail(props) {
           <div className="flex flex-row justify-between text-yellow-900 font-bold text-2xl pt-5">
             <p>TOTAL</p>
             {invoice?.map((res) => {
-              return <p>IDR {res.total.toLocaleString("en")}</p>;
+              const total = res.total + res.tax + res.shipping_cost;
+              return <p>IDR {total.toLocaleString("en")}</p>;
             })}
           </div>
           <div className="flex flex-row justify-center mt-10">
@@ -123,7 +125,7 @@ function HistoryDetail(props) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -10,9 +10,7 @@ import { authLogout } from "../../redux/actions/auth";
 
 function UserProfile(props) {
   const { users } = props.users;
-  const [email, setEmail] = useState("reza@email.com");
-  const [address, setAddress] = useState("Bandung Kopo");
-  const [phone, setPhone] = useState("0822171717171");
+
 
   useEffect(() => {
     console.log(props.auth);
@@ -73,11 +71,11 @@ function UserProfile(props) {
                 <FormProfile
                   title="Contact"
                   label1="Email address :"
-                  valuelabel1={email}
+                  valuelabel1={user.email}
                   label2="Delivery address : "
-                  valuelabel2={address}
+                  valuelabel2={user.address}
                   label4="Mobile number :"
-                  valuelabel4={phone}
+                  valuelabel4={user.phone_number}
                 />
               );
             })}
