@@ -9,11 +9,19 @@ import {
 } from "../../components";
 import { authLogout } from "../../redux/actions/auth";
 import { getUser } from "../../redux/actions/users";
+import { createTransaction } from "../../redux/actions/carts";
 
 class Cart extends Component {
   componentDidMount() {
     this.props.getUser(this.props.auth.token);
   }
+
+  onCheckout = () => {
+    const { products } = this.props.carts;
+    const { token } = this.props.auth;
+    this.props.createTransaction(products, token);
+  };
+
   render() {
     const { products } = this.props.carts;
     const { users } = this.props.users;
@@ -75,7 +83,7 @@ class Cart extends Component {
                             name={item?.product}
                             quantity={item?.amount}
                             size={item?.name}
-                            price={item?.price}
+                            price={item?.price.toLocaleString("en")}
                           />
                         ))
                     )}
@@ -106,7 +114,10 @@ class Cart extends Component {
               </div>
               {users.map((user) => {
                 return (
-                  <div className="bg-white w-full p-10 space-y-3 rounded-2xl">
+                  <div
+                    key={user.id}
+                    className="bg-white w-full p-10 space-y-3 rounded-2xl"
+                  >
                     <p className="border-b-2 border-gray-300 py-1">
                       <span className="font-bold">Delivery to</span>
                     </p>
@@ -122,7 +133,11 @@ class Cart extends Component {
               </p>
               <div className="space-y-4">
                 <PaymentMethod />
-                <Button type="brown" text="Confirm and Pay" />
+                <Button
+                  onClick={this.onCheckout}
+                  type="brown"
+                  text="Confirm and Pay"
+                />
               </div>
             </section>
           </div>
@@ -141,5 +156,5 @@ const mapStateToProps = (state) => ({
   users: state.users,
 });
 
-const mapDispatchToProps = { authLogout, getUser };
+const mapDispatchToProps = { authLogout, getUser, createTransaction };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

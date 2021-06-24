@@ -10,15 +10,15 @@ function HistoryDetail(props) {
   const { slug } = useParams();
   const [setModal] = useState(false);
   const { history } = props.history;
-  const { results } = props.history.details;
-  const { invoice } = props.history.details;
+  const { results } = props.history?.details;
+  const { invoice } = props.history?.details;
 
   useEffect(() => {
     console.log("ini id", slug);
     props.getHistory(props.auth.token);
     props.getDetailHistory(props.auth.token, slug);
     console.log(invoice, results);
-  }, [results, invoice, results]);
+  }, [slug]);
 
   const modalChecked = () => {
     setModal(true);
@@ -50,7 +50,7 @@ function HistoryDetail(props) {
             </button>
           </div>
           <div className="grid grid-flow-row grid-cols-3 gap-5 px-32">
-            {history.map((item) => {
+            {history?.map((item) => {
               return (
                 <ItemHistory
                   key={item.id}
@@ -73,13 +73,12 @@ function HistoryDetail(props) {
             INVOICE
           </h4>
           <div className="border-b-2 border-gray-300 pb-2">
-            {results.map((item) => {
+            {results?.map((item) => {
               return (
                 <ItemCart
                   pic={ILFood4}
                   name={item.name}
                   quantity={item.amount}
-                  size={"variant"}
                   price={item.price.toLocaleString("en")}
                 />
               );
@@ -94,7 +93,7 @@ function HistoryDetail(props) {
               <p>ADDRESS</p>
             </div>
             <div className="leading-relaxed ">
-              {invoice.map((res) => {
+              {invoice?.map((res) => {
                 const total = res.total - (res.tax + res.shipping_cost);
                 return (
                   <div>
@@ -110,7 +109,7 @@ function HistoryDetail(props) {
           </div>
           <div className="flex flex-row justify-between text-yellow-900 font-bold text-2xl pt-5">
             <p>TOTAL</p>
-            {invoice.map((res) => {
+            {invoice?.map((res) => {
               return <p>IDR {res.total.toLocaleString("en")}</p>;
             })}
           </div>

@@ -11,6 +11,10 @@ function FormProfile({
   valuelabel3,
   valuelabel4,
   isRadio,
+  onChange1,
+  onChange2,
+  onChange3,
+  onChange4,
 }) {
   return (
     <div className="rounded-xl bg-yellow-900 pb-4 flex-1 ">
@@ -32,12 +36,14 @@ function FormProfile({
               className="border-b-2 border-gray-400 focus:outline-none cursor-default"
               type="text"
               value={valuelabel1}
+              onChange={onChange1}
             />
             <h5 className="text-gray-500 text-lg">{label2}</h5>
             <input
               className="border-b-2 border-gray-400 focus:outline-none cursor-default"
               type="text"
               value={valuelabel2}
+              onChange={onChange2}
             />
             {label3 ? (
               <div>
@@ -46,6 +52,7 @@ function FormProfile({
                   className="border-b-2 border-gray-400 focus:outline-none w-full cursor-default"
                   type="text"
                   value={valuelabel3}
+                  onChange={onChange3}
                 />
               </div>
             ) : (
@@ -58,6 +65,7 @@ function FormProfile({
               className="border-b-2 border-gray-400 focus:outline-none cursor-default"
               type="text"
               value={valuelabel4}
+              onChange={onChange4}
             />
             {isRadio ? (
               <div className="-ml-2">

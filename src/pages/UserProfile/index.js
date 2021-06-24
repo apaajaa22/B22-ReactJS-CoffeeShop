@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BsPencil } from "react-icons/bs";
 import { ILUser4 } from "../../assets";
 import { Button, Footer, FormProfile, Header } from "../../components";
@@ -10,6 +10,9 @@ import { authLogout } from "../../redux/actions/auth";
 
 function UserProfile(props) {
   const { users } = props.users;
+  const [email, setEmail] = useState("reza@email.com");
+  const [address, setAddress] = useState("Bandung Kopo");
+  const [phone, setPhone] = useState("0822171717171");
 
   useEffect(() => {
     console.log(props.auth);
@@ -70,11 +73,11 @@ function UserProfile(props) {
                 <FormProfile
                   title="Contact"
                   label1="Email address :"
-                  valuelabel1={user.email}
+                  valuelabel1={email}
                   label2="Delivery address : "
-                  valuelabel2={user.address}
+                  valuelabel2={address}
                   label4="Mobile number :"
-                  valuelabel4={user.phone_number}
+                  valuelabel4={phone}
                 />
               );
             })}

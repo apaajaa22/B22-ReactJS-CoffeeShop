@@ -39,7 +39,6 @@ function ProductDetail(props) {
 
   const getPrice = (idx) => {
     const getPrice = details.variants[idx].price;
-
     setPrice(getPrice);
     setSelectedVariant(getPrice);
   };
