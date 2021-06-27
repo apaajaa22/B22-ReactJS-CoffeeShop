@@ -35,6 +35,9 @@ const createTransaction = (data, token) => {
         type: "SET_TRANSACTION_SUCCESS",
         payload: window.alert(newData.message),
       });
+      dispatch({
+        type: "SET_CLEAR_PRODUCTS",
+      });
     } catch (error) {
       dispatch({
         type: "SET_TRANSACTION_FAILED",
