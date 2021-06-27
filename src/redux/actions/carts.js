@@ -33,12 +33,12 @@ const createTransaction = (data, token) => {
       });
       dispatch({
         type: "SET_TRANSACTION_SUCCESS",
-        payload: newData.message,
+        payload: window.alert(newData.message),
       });
     } catch (error) {
       dispatch({
         type: "SET_TRANSACTION_FAILED",
-        payload: error.response.data.message,
+        payload: window.alert(error.response.data.message),
       });
     }
   };

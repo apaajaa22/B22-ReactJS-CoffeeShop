@@ -25,8 +25,7 @@ class Cart extends Component {
   render() {
     const { products } = this.props.carts;
     const { users } = this.props.users;
-    const { transactions } = this.props.message;
-    const { successOrder } = this.props.message;
+
     console.log(users);
 
     return (
@@ -44,8 +43,7 @@ class Cart extends Component {
           <h3 className="text-white font-bold w-56 text-2xl shadow-2xl py-10">
             Checkout your item now!
           </h3>
-          {transactions !== "" && window.alert(transactions)}
-          {successOrder !== "" && window.alert(successOrder)}
+
           <div className="flex flex-row">
             <section className="w-threepersen bg-white h-full rounded-xl py-16 ">
               {products.length < 1 ? (
