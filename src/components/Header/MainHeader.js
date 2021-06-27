@@ -1,71 +1,85 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Logo } from "..";
-import { IcMessage, IcSearch, ILUser4 } from "../../assets";
+import { IcMessage, IcSearch } from "../../assets";
 import Search from "../Search";
+import { getUser } from "../../redux/actions/users";
 
-function MainHeader({ auth, home, product, cart, history, isSearchInput }) {
+function MainHeader({
+  auth,
+  home,
+  product,
+  cart,
+  history,
+  isSearchInput,
+  users,
+}) {
+  useEffect(() => {
+    console.log(auth);
+    getUser(auth.token);
+  }, []);
+
   return (
     <nav className="flex flex-row justify-between py-7 items-center  ">
       <Logo />
       {isSearchInput ? (
-          <ul className="flex flex-row space-x-8 text-md ">
-            <li>
-              <Link className={home} to="/">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link className={product} to="/products">
-                Product
-              </Link>
-            </li>
-            <li>
-              <Link className={cart} to="/cart">
-                Your Cart
-              </Link>
-            </li>
-            <li>
-              <Link className={history} to="/history">
-                History
-              </Link>
-            </li>
-          </ul>
-        ) : (
-          <ul className="flex flex-row space-x-8 text-md  ">
-            <li>
-              <Link className={home} to="/">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link className={product} to="/products">
-                Product
-              </Link>
-            </li>
-            <li>
-              <Link className={cart} to="/cart">
-                Your Cart
-              </Link>
-            </li>
-            <li>
-              <Link className={history} to="/history">
-                History
-              </Link>
-            </li>
-          </ul>
-        )}
+        <ul className="flex flex-row space-x-8 text-md ">
+          <li>
+            <Link className={home} to="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className={product} to="/products">
+              Product
+            </Link>
+          </li>
+          <li>
+            <Link className={cart} to="/cart">
+              Your Cart
+            </Link>
+          </li>
+          <li>
+            <Link className={history} to="/history">
+              History
+            </Link>
+          </li>
+        </ul>
+      ) : (
+        <ul className="flex flex-row space-x-8 text-md  ">
+          <li>
+            <Link className={home} to="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className={product} to="/products">
+              Product
+            </Link>
+          </li>
+          <li>
+            <Link className={cart} to="/cart">
+              Your Cart
+            </Link>
+          </li>
+          <li>
+            <Link className={history} to="/history">
+              History
+            </Link>
+          </li>
+        </ul>
+      )}
       <div className="flex flex-row items-center space-x-5">
         {auth.token !== null ? (
           <div className="flex flex-row items-center justify-center space-x-8 ">
-          {isSearchInput ? (
-          <Search type="header" />
-        ) : (
-          <button>
-            <img src={IcSearch} alt="icon search" />
-          </button>
-        )}
+            {isSearchInput ? (
+              <Search type="header" />
+            ) : (
+              <button>
+                <img src={IcSearch} alt="icon search" />
+              </button>
+            )}
             <button className="relative">
               <img src={IcMessage} alt="icon message" />
               <p className="bg-yellow-900 text-white rounded-full w-4 h-4 items-center justify-center flex flex-row text-xs absolute -top-2 -left-2">
@@ -73,11 +87,15 @@ function MainHeader({ auth, home, product, cart, history, isSearchInput }) {
               </p>
             </button>
             <Link to="/userprofile">
-              <img
-                className="w-10 h-10 rounded-full"
-                src={ILUser4}
-                alt="illustration user"
-              />
+              {users.users.map((user) => {
+                return (
+                  <img
+                    className="w-10 h-10 rounded-full object-cover"
+                    src={user.picture !== null ? user.picture : null}
+                    alt="user"
+                  />
+                );
+              })}
             </Link>
           </div>
         ) : (
@@ -103,5 +121,9 @@ function MainHeader({ auth, home, product, cart, history, isSearchInput }) {
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  users: state.users,
 });
-export default connect(mapStateToProps)(MainHeader);
+
+const mapDisPatchToProps = { getUser };
+
+export default connect(mapStateToProps, mapDisPatchToProps)(MainHeader);

@@ -6,22 +6,23 @@ function FormProfile({
   label2,
   label3,
   label4,
-  valuelabel1,
-  valuelabel2,
-  valuelabel3,
-  valuelabel4,
+  placeholder1,
+  placeholder2,
+  placeholder3,
+  placeholder4,
   isRadio,
   onChange1,
   onChange2,
   onChange3,
   onChange4,
+  onClick,
 }) {
   return (
     <div className="rounded-xl bg-yellow-900 pb-4 flex-1 ">
       <div className="bg-white rounded-t-xl px-10 py-6">
         <div className="flex flex-row justify-between items-center mb-5">
           <h3 className="font-bold text-2xl ">{title}</h3>
-          <button>
+          <button onClick={onClick} className="focus:outline-none">
             <BsPencil
               size={35}
               color="#fff"
@@ -33,25 +34,25 @@ function FormProfile({
           <div className="space-y-3 flex flex-col flex-1">
             <h5 className="text-gray-500 text-lg">{label1}</h5>
             <input
-              className="border-b-2 border-gray-400 focus:outline-none cursor-default"
+              className="border-b-2 border-gray-400 focus:outline-none cursor-default placeholder-black"
               type="text"
-              value={valuelabel1}
+              placeholder={placeholder1}
               onChange={onChange1}
             />
             <h5 className="text-gray-500 text-lg">{label2}</h5>
             <input
-              className="border-b-2 border-gray-400 focus:outline-none cursor-default"
+              className="border-b-2 border-gray-400 focus:outline-none cursor-default placeholder-black"
               type="text"
-              value={valuelabel2}
+              placeholder={placeholder2}
               onChange={onChange2}
             />
             {label3 ? (
               <div>
                 <h5 className="text-gray-500 text-lg ">{label3}</h5>
                 <input
-                  className="border-b-2 border-gray-400 focus:outline-none w-full cursor-default"
+                  className="border-b-2 border-gray-400 focus:outline-none w-full cursor-default placeholder-black"
                   type="text"
-                  value={valuelabel3}
+                  placeholder={placeholder3}
                   onChange={onChange3}
                 />
               </div>
@@ -62,9 +63,9 @@ function FormProfile({
           <div className=" flex flex-col flex-1">
             <h5 className="text-gray-500 text-lg pb-3">{label4}</h5>
             <input
-              className="border-b-2 border-gray-400 focus:outline-none cursor-default"
+              className="border-b-2 border-gray-400 focus:outline-none cursor-default placeholder-black"
               type="text"
-              value={valuelabel4}
+              placeholder={placeholder4}
               onChange={onChange4}
             />
             {isRadio ? (

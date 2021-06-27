@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Footer, Header, ItemHistory } from "../../components";
 import { authLogout } from "../../redux/actions/auth";
@@ -22,7 +22,6 @@ function History(props) {
             product="text-gray-500"
             cart="text-gray-500"
             history="text-yellow-900 font-bold"
-            onClick={props.authLogout}
           />
         </header>
         <main className="bg-bg-history w-full h-full bg-cover bg-center px-32 py-20 flex flex-col ">

@@ -11,14 +11,15 @@ import {
   Header,
   SectionBar,
 } from "../../components";
-import { toggleAuth, authLogin } from "../../redux/actions/auth";
+import { toggleAuth, authLogin, clearMessage } from "../../redux/actions/auth";
 import { useHistory } from "react-router-dom";
 
 function Login(props) {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { message, token } = props.auth;
+  const { token } = props.auth;
+  const { message } = props.message;
 
   const isLogin = () => {
     if (token !== null) {
@@ -31,6 +32,7 @@ function Login(props) {
 
   useEffect(() => {
     props.toggleAuth();
+    props.clearMessage();
     isLogin();
   }, [token]);
 
@@ -91,7 +93,8 @@ function Login(props) {
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  message: state.message,
 });
-const mapDispatchToProps = { toggleAuth, authLogin };
+const mapDispatchToProps = { toggleAuth, authLogin, clearMessage };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Logo, Search } from "..";
-import { IcMessage, IcSearch, ILUser4 } from "../../assets";
+import { IcMessage, IcSearch } from "../../assets";
+import { getUser } from "../../redux/actions/users";
 function SecondaryHeader({
   home,
   product,
@@ -9,7 +11,13 @@ function SecondaryHeader({
   history,
   isSearchInput,
   onClick,
+  auth,
+  users,
 }) {
+  useEffect(() => {
+    console.log(auth);
+    getUser(auth.token);
+  }, []);
   return (
     <nav className="flex flex-row justify-between py-7 items-center">
       <Logo />
@@ -66,10 +74,8 @@ function SecondaryHeader({
         {isSearchInput ? (
           <Search type="header" />
         ) : (
-          <button onClick={onClick}>
-            <p className="bg-yellow-400 px-4 py-2 rounded-xl font-medium text-yellow-900">
-              LOGOUT
-            </p>
+          <button className="focus:outline-none">
+            <img src={IcSearch} alt="search" />
           </button>
         )}
         <button className="relative">
@@ -79,15 +85,25 @@ function SecondaryHeader({
           </p>
         </button>
         <Link to="/userprofile">
-          <img
-            className="w-10 h-10 rounded-full"
-            src={ILUser4}
-            alt="illustration user"
-          />
+          {users.users.map((user) => {
+            return (
+              <img
+                className="w-10 h-10 rounded-full object-cover"
+                src={user.picture !== null ? user.picture : null}
+                alt="user"
+              />
+            );
+          })}
         </Link>
       </div>
     </nav>
   );
 }
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  users: state.users,
+});
 
-export default SecondaryHeader;
+const mapDisPatchToProps = { getUser };
+
+export default connect(mapStateToProps, mapDisPatchToProps)(SecondaryHeader);

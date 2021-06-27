@@ -9,7 +9,7 @@ import {
   Header,
   SectionBar,
 } from "../../components";
-import { authRegister } from "../../redux/actions/auth";
+import { authRegister } from "../../redux/actions/register";
 import { useHistory } from "react-router-dom";
 
 function Register(props) {
@@ -17,7 +17,8 @@ function Register(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const { message, isRegister } = props.auth;
+  const { message } = props.message;
+  const { isRegister } = props.register;
 
   const isLogin = () => {
     if (isRegister) {
@@ -52,6 +53,7 @@ function Register(props) {
                   placeholder="Enter your email address"
                 />
                 <Form
+                  type="password"
                   onChange={(e) => setPassword(e.target.value)}
                   label="Password :"
                   placeholder="Enter your email password"
@@ -87,7 +89,8 @@ function Register(props) {
   );
 }
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  message: state.message,
+  register: state.register,
 });
 const mapDispatchToProps = { authRegister };
 

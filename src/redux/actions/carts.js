@@ -31,8 +31,15 @@ const createTransaction = (data, token) => {
         type: "SET_CREATE_TRANSACTION",
         payload: newData,
       });
+      dispatch({
+        type: "SET_TRANSACTION_SUCCESS",
+        payload: newData.message,
+      });
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: "SET_TRANSACTION_FAILED",
+        payload: error.response.data.message,
+      });
     }
   };
 };

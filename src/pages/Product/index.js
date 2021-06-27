@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Button, Coupon, Footer, Header, Item } from "../../components";
 import { getCategory, getProductCategory } from "../../redux/actions/category";
 import { getProducts } from "../../redux/actions/products";
+import { getUser } from "../../redux/actions/users";
 
 function Product(props) {
   const { data } = props.products;
   const { data: categoryData } = props.category;
   const { productCategory } = props.category;
   useEffect(() => {
+    props.getUser(props.auth.token);
     props.getProducts();
     props.getCategory();
   }, []);
@@ -140,7 +142,14 @@ function Product(props) {
 const mapStateToProps = (state) => ({
   products: state.products,
   category: state.category,
+
+  auth: state.auth,
 });
-const mapDispatchToProps = { getProducts, getCategory, getProductCategory };
+const mapDispatchToProps = {
+  getProducts,
+  getCategory,
+  getProductCategory,
+  getUser,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

@@ -7,6 +7,9 @@ import products from "./products";
 import category from "./category";
 import users from "./users";
 import history from "./history";
+import register from "./register";
+import message from "./message";
+import profile from "./profile";
 
 const persistAuth = {
   storage,
@@ -20,6 +23,9 @@ const reducer = combineReducers({
   category,
   users,
   history,
+  register,
+  message,
+  profile,
 });
 
 export default reducer;

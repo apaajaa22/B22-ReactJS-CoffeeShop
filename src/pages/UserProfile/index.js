@@ -1,21 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { BsPencil } from "react-icons/bs";
-import { ILUser4 } from "../../assets";
 import { Button, Footer, FormProfile, Header } from "../../components";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUser } from "../../redux/actions/users";
 import { authLogout } from "../../redux/actions/auth";
+import { updateProfile } from "../../redux/actions/profile";
+import { getHistory } from "../../redux/actions/history";
 
 function UserProfile(props) {
   const { users } = props.users;
+  const { history } = props.history;
 
+  const lengthHistory = history.length;
+  // const { data } = props.profile;
+  const hiddenFileInput = React.useRef(null);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [number, setNumber] = useState("");
+  const [file, setFile] = useState(null);
+
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
 
   useEffect(() => {
     console.log(props.auth);
     props.getUser(props.auth.token);
+    props.getHistory(props.auth.token);
   }, []);
+
+  const formData = (e) => {
+    e.preventDefault();
+    props.updateProfile(
+      {
+        name,
+        email,
+        address,
+        number,
+        file,
+      },
+      props.auth.token
+    );
+  };
 
   return (
     <div>
@@ -26,7 +55,6 @@ function UserProfile(props) {
           product="text-gray-500"
           cart="text-gray-500"
           history="text-gray-500"
-          onClick={props.authLogout}
         />
       </header>
       <main className="bg-bg-profile w-full h-full px-32 bg-cover">
@@ -38,12 +66,19 @@ function UserProfile(props) {
             <div className="bg-yellow-900 rounded-xl">
               <div className="bg-white rounded-t-xl px-10 py-12 pb-14 flex flex-col items-center justify-center space-y-4 ">
                 <div className="relative flex flex-col w-28 h-28">
-                  <img
-                    className="w-28 h-28 rounded-full "
-                    src={ILUser4}
-                    alt="profile pic"
-                  />
-                  <button className="absolute bottom-0 right-1">
+                  {users.map((user) => {
+                    return (
+                      <img
+                        className="w-28 h-28 rounded-full object-cover "
+                        src={user.picture}
+                        alt="profile pic"
+                      />
+                    );
+                  })}
+                  <button
+                    onClick={handleClick}
+                    className="absolute bottom-0 right-1 focus:outline-none"
+                  >
                     <BsPencil
                       size={30}
                       color="#fff"
@@ -52,6 +87,12 @@ function UserProfile(props) {
                   </button>
                 </div>
                 <div className="flex flex-col items-center">
+                  <input
+                    type="file"
+                    ref={hiddenFileInput}
+                    onChange={(value) => setFile(value.target.files[0])}
+                    style={{ display: "none" }}
+                  />
                   {users.map((user) => {
                     return (
                       <div>
@@ -63,7 +104,9 @@ function UserProfile(props) {
                     );
                   })}
                 </div>
-                <p className="text-gray-500">Has been ordered 15 products</p>
+                <p className="text-gray-500">
+                  Has been ordered {lengthHistory} products
+                </p>
               </div>
             </div>
             {users.map((user) => {
@@ -71,11 +114,14 @@ function UserProfile(props) {
                 <FormProfile
                   title="Contact"
                   label1="Email address :"
-                  valuelabel1={user.email}
+                  placeholder1={user.email}
+                  onChange1={(value) => setEmail(value.target.value)}
                   label2="Delivery address : "
-                  valuelabel2={user.address}
+                  placeholder2={user.address}
+                  onChange2={(value) => setAddress(value.target.value)}
                   label4="Mobile number :"
-                  valuelabel4={user.phone_number}
+                  placeholder4={user.phone_number}
+                  onChange4={(value) => setNumber(value.target.value)}
                 />
               );
             })}
@@ -88,15 +134,13 @@ function UserProfile(props) {
                 <FormProfile
                   title="Details"
                   label1="Display name :"
-                  valuelabel1={user.name}
+                  placeholder1={user.name}
+                  onChange1={(value) => setName(value.target.value)}
                   label2="First name :"
-                  valuelabel2={user.name.split(" ")[0]}
+                  placeholder2={user.name.split(" ")[0]}
                   label3="Last name :"
-                  valuelabel3={
-                    user.name.split(" ")[1] ? user.name.split(" ")[1] : ""
-                  }
+                  placeholder3={user.name.split(" ")[1]}
                   label4="DD/MM/YY"
-                  valuelabel4="03/04/90"
                   isRadio
                 />
               );
@@ -107,7 +151,7 @@ function UserProfile(props) {
               Do you want to save the change ?
             </h3>
             <div className="w-72 space-y-3">
-              <Button type="brown" text="Save Change" />
+              <Button type="brown" text="Save Change" onClick={formData} />
               <Button type="main" text="Cancel" />
             </div>
             <div className="w-72 space-y-3 flex flex-col mt-3">
@@ -115,7 +159,10 @@ function UserProfile(props) {
                 <p>Edit Password</p>
                 <MdKeyboardArrowRight size={28} />
               </button>
-              <button className="bg-gray-300 text-lg font-bold text-yellow-900 px-5 py-3 rounded-lg flex flex-row justify-between items-center">
+              <button
+                onClick={props.authLogout}
+                className="bg-gray-300 text-lg font-bold text-yellow-900 px-5 py-3 rounded-lg flex flex-row justify-between items-center"
+              >
                 <p>Log out</p>
                 <MdKeyboardArrowRight size={28} />
               </button>
@@ -132,7 +179,9 @@ function UserProfile(props) {
 const mapStateToProps = (state) => ({
   users: state.users,
   auth: state.auth,
+  profile: state.profile,
+  history: state.history,
 });
 
-const mapDisPatchToProps = { getUser, authLogout };
+const mapDisPatchToProps = { getUser, authLogout, updateProfile, getHistory };
 export default connect(mapStateToProps, mapDisPatchToProps)(UserProfile);

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import {
   IcAcc,
   IcAccV2,
@@ -22,7 +23,11 @@ import {
   SectionBar,
   Slider,
 } from "../../components";
-function Home() {
+import { getUser } from "../../redux/actions/users";
+function Home(props) {
+  useEffect(() => {
+    props.getUser(props.auth.token);
+  }, []);
   return (
     <div>
       <header className="px-32 sticky top-0 bg-white">
@@ -205,4 +210,11 @@ function Home() {
   );
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  users: state.users,
+  auth: state.auth,
+});
+
+const mapDisPatchToProps = { getUser };
+
+export default connect(mapStateToProps, mapDisPatchToProps)(Home);

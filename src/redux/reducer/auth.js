@@ -1,7 +1,6 @@
 const initialState = {
   onAuth: false,
   token: null,
-  message: "",
   isRegister: false,
 };
 
@@ -17,15 +16,10 @@ const auth = (state = initialState, action) => {
         ...state,
         token: action.payload,
       };
-    case "SET_AUTH_LOGIN_FAILED":
-      return {
-        ...state,
-        message: action.payload,
-      };
     case "SET_AUTH_REGISTER":
       return {
         ...state,
-        isRegister: !state.payload,
+        isRegister: state.isRegister,
       };
     case "SET_AUTH_LOGOUT":
       return {

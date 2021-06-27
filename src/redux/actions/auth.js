@@ -26,32 +26,12 @@ const authLogin = (email, password) => {
   };
 };
 
-const authRegister = (email, password, phoneNumber) => {
-  return async (dispatch) => {
-    const form = new URLSearchParams();
-    form.append("email", email);
-    form.append("password", password);
-    form.append("phone_number", phoneNumber);
-    try {
-      const { data } = await http().post(
-        `${URL}/auth/register`,
-        form.toString()
-      );
-      dispatch({
-        type: "SET_AUTH_REGISTER",
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: "SET_AUTH_LOGIN_FAILED",
-        payload: error.response.data.message,
-      });
-    }
-  };
-};
-
 const authLogout = () => ({
   type: "SET_AUTH_LOGOUT",
 });
 
-export { toggleAuth, authLogin, authRegister, authLogout };
+const clearMessage = () => ({
+  type: "SET_CLEAR_MESSAGE",
+});
+
+export { toggleAuth, authLogin, authLogout, clearMessage };
