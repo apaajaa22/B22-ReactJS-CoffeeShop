@@ -15,9 +15,10 @@ function Item({ name, picture, price, to }) {
       <h4 className="text-center flex-1 font-bold w-20 flex justify-center text-xl leading-tight">
         {name}
       </h4>
-      <h5 className="text-yellow-900 font-medium">IDR {price}</h5>
+      <h5 className="text-yellow-900 font-medium text-align">IDR {price}</h5>
     </Link>
   );
 }
 
 export default Item;
+//default image, update patch, window alert jadi modal, responsive, searching, sorting, eslint

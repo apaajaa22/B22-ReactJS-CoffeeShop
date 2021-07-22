@@ -37,16 +37,18 @@ function Register(props) {
   return (
     <div>
       <div className="flex flex-row ">
-        <div className=" flex-1 bg-bg-form h-widthSection bg-cover bg-no-repeat" />
+        <div className=" flex-1 bg-bg-form h-widthSection bg-cover bg-no-repeat hidden md:block " />
         <div className="flex-1">
+        <header className='hidden md:block'>
           <Header type="form" label="Login" navigation="/login" />
-          <main className="mt-20">
+        </header>
+          <main className="md:mt-20">
             <section>
               <h3 className="text-center font-bold text-2xl text-red-900">
                 Sign Up
               </h3>
               {message !== "" && <Alert message={message} />}
-              <div className="px-32 space-y-6 mb-8">
+              <div className="space-y-6 mb-8 px-10 md:px-32">
                 <Form
                   onChange={(e) => setEmail(e.target.value)}
                   label="Email Address :"
@@ -64,7 +66,7 @@ function Register(props) {
                   placeholder="Enter your phone number"
                 />
               </div>
-              <div className="px-32 pb-10 space-y-5">
+              <div className="px-10 md:px-32 pb-10 space-y-5">
                 <Button onClick={onRegister} type="square" text="Sign Up" />
                 <Button
                   type="squaresec"
@@ -76,13 +78,15 @@ function Register(props) {
           </main>
         </div>
       </div>
+      <div className='hidden md:block'>
       <SectionBar
         type="info"
         title="Get your member card now!"
         subTitle="Let's join with our member and enjoy the deals."
         buttonName="Create Now"
       />
-      <footer className="px-32 py-20">
+      </div>
+      <footer className="px-32 py-20 hidden md:block">
         <Footer />
       </footer>
     </div>

@@ -16,6 +16,7 @@ import IcMessage from "./IC_Messages.svg";
 import IcBank from "./IC_Bank.svg";
 import IcCard from "./IC_Card.svg";
 import IcCar from "./IC_Car.svg";
+import IcUserDefault from "./IC_userDefault.png";
 
 export {
   IcLogo,
@@ -36,4 +37,5 @@ export {
   IcBank,
   IcCar,
   IcCard,
+  IcUserDefault,
 };

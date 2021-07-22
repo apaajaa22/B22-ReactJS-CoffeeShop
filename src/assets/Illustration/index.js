@@ -21,6 +21,7 @@ import BGCart from "./BG_Cart.png";
 import BGProfile from "./BG_Profile.png";
 import BGPassword from "./BG_Password.png";
 import BGHistory from "./BG_History.png";
+import ILUserDefault from "./IL_userDefault.svg";
 
 export {
   HeroBg,
@@ -46,4 +47,5 @@ export {
   BGProfile,
   BGPassword,
   BGHistory,
+  ILUserDefault,
 };

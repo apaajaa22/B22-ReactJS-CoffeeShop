@@ -7,6 +7,7 @@ import { getUser } from "../../redux/actions/users";
 import { authLogout } from "../../redux/actions/auth";
 import { updateProfile } from "../../redux/actions/profile";
 import { getHistory } from "../../redux/actions/history";
+import { ILUserDefault } from "../../assets";
 
 function UserProfile(props) {
   const { users } = props.users;
@@ -20,16 +21,26 @@ function UserProfile(props) {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [number, setNumber] = useState("");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState('');
+  const [date, setDate] = useState('')
+  const [gender, setGender] = useState('Male')
 
   const handleClick = (event) => {
-    hiddenFileInput.current.click();
+    setFile(hiddenFileInput.current.click());
   };
 
   useEffect(() => {
     console.log(props.auth);
     props.getUser(props.auth.token);
     props.getHistory(props.auth.token);
+    users.map((user) => {
+      setName(user.name)
+      setEmail(user.email)
+      setNumber(user.phone_number)
+      setAddress(user.address)
+      setFile(user.picture)
+      setDate(user.birth)
+    })
   }, []);
 
   const formData = (e) => {
@@ -40,6 +51,7 @@ function UserProfile(props) {
         email,
         address,
         number,
+        date,
         file,
       },
       props.auth.token
@@ -67,11 +79,17 @@ function UserProfile(props) {
               <div className="bg-white rounded-t-xl px-10 py-12 pb-14 flex flex-col items-center justify-center space-y-4 ">
                 <div className="relative flex flex-col w-28 h-28">
                   {users.map((user) => {
-                    return (
+                    return user.picture !== null ? (
                       <img
                         className="w-28 h-28 rounded-full object-cover "
-                        src={user.picture}
+                        src={file}
                         alt="profile pic"
+                      />
+                    ) : (
+                      <img
+                        src={ILUserDefault}
+                        alt="user"
+                        className="w-28 h-28 rounded-full object-cover "
                       />
                     );
                   })}
@@ -114,13 +132,13 @@ function UserProfile(props) {
                 <FormProfile
                   title="Contact"
                   label1="Email address :"
-                  placeholder1={user.email}
+                  value1={email}
                   onChange1={(value) => setEmail(value.target.value)}
                   label2="Delivery address : "
-                  placeholder2={user.address}
+                  value2={address}
                   onChange2={(value) => setAddress(value.target.value)}
                   label4="Mobile number :"
-                  placeholder4={user.phone_number}
+                  value4={number}
                   onChange4={(value) => setNumber(value.target.value)}
                 />
               );
@@ -134,13 +152,16 @@ function UserProfile(props) {
                 <FormProfile
                   title="Details"
                   label1="Display name :"
-                  placeholder1={user.name}
+                  value1={name}
                   onChange1={(value) => setName(value.target.value)}
                   label2="First name :"
-                  placeholder2={user.name.split(" ")[0]}
+                  value2={user.name.split(" ")[0]}
                   label3="Last name :"
-                  placeholder3={user.name.split(" ")[1]}
+                  value3={user.name.split(" ")[1]}
                   label4="DD/MM/YY"
+                  value4={date}
+                  onChange4={(value) => setDate(value.target.value)}
+                  date
                   isRadio
                 />
               );

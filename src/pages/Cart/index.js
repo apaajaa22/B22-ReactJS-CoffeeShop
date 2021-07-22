@@ -95,7 +95,11 @@ class Cart extends Component {
                       <p>SHIPPING</p>
                     </div>
                     <div className="leading-relaxed ">
-                      <p>IDR 120.000</p>
+                      {products.map((data) =>
+                        data
+                          .filter((item) => item.amount !== 0)
+                          .map((item, idx) => <p>IDR {item.price}</p>)
+                      )}
                       <p>IDR 20.000</p>
                       <p>IDR 10.000</p>
                     </div>

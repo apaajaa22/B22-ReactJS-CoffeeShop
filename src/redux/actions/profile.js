@@ -1,21 +1,32 @@
 import { http } from "../../helpers/http";
+import { getUser } from "./users"
 const { REACT_APP_BACKEND_URL: URL } = process.env;
 
 export const updateProfile = (data, token) => {
   return async (dispatch) => {
+    const form = new FormData();
     const sizeLimit = 1024 * 1024 * 2;
     if (data.file) {
       if (data.file.size > sizeLimit) {
         window.alert("File size is too large");
       }
+      form.append("picture", data.file);
+      const { data: newData } = await http(token).put(
+        `${URL}/private/profile`,
+        form
+      );
+      dispatch({
+        type: "SET_UPDATE_PROFILE",
+        payload: window.alert(newData.message),
+      });
+      dispatch(getUser(token))
     }
     try {
-      const form = new FormData();
       form.append("name", data.name);
       form.append("email", data.email);
       form.append("address", data.address);
       form.append("number", data.number);
-      form.append("picture", data.file);
+      form.append("birth", data.date);
       // for (let i in data) {
       //   if (data[i] !== "") {
       //     form.append(i, data[i]);
@@ -29,6 +40,7 @@ export const updateProfile = (data, token) => {
         type: "SET_UPDATE_PROFILE",
         payload: window.alert(newData.message),
       });
+      dispatch(getUser(token))
     } catch (error) {
       return window.alert("failed to update");
     }

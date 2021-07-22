@@ -12,6 +12,9 @@ function Header({
   history,
   isSearchInput,
   onClick,
+  onKeyDown,
+  onChange,
+  value
 }) {
   switch (type) {
     case "main":
@@ -22,6 +25,9 @@ function Header({
           cart={cart}
           history={history}
           isSearchInput={isSearchInput}
+          onKeyDown={onKeyDown}
+          onChange={onChange}
+          value={value}
         />
       );
     case "secondary":

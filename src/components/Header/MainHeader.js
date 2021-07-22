@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Logo } from "..";
-import { IcMessage, IcSearch } from "../../assets";
+import {
+  IcMessage,
+  IcSearch,
+  IcUserDefault,
+  ILUserDefault,
+} from "../../assets";
 import Search from "../Search";
 import { getUser } from "../../redux/actions/users";
 
@@ -14,6 +19,9 @@ function MainHeader({
   history,
   isSearchInput,
   users,
+  onChange,
+  onKeyDown,
+  value
 }) {
   useEffect(() => {
     console.log(auth);
@@ -74,7 +82,7 @@ function MainHeader({
         {auth.token !== null ? (
           <div className="flex flex-row items-center justify-center space-x-8 ">
             {isSearchInput ? (
-              <Search type="header" />
+              <Search value={value} onKeyDown={onKeyDown} onChange={onChange} type="header" />
             ) : (
               <button>
                 <img src={IcSearch} alt="icon search" />
@@ -88,11 +96,17 @@ function MainHeader({
             </button>
             <Link to="/userprofile">
               {users.users.map((user) => {
-                return (
+                return user.picture !== null ? (
                   <img
                     className="w-10 h-10 rounded-full object-cover"
-                    src={user.picture !== null ? user.picture : null}
+                    src={user.picture}
                     alt="user"
+                  />
+                ) : (
+                  <img
+                    src={ILUserDefault}
+                    alt="user"
+                    className="w-10 h-10 rounded-full object-cover "
                   />
                 );
               })}

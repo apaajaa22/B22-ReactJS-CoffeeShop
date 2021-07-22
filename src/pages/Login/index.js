@@ -39,16 +39,18 @@ function Login(props) {
   return (
     <div>
       <div className="flex flex-row ">
-        <div className=" flex-1 bg-bg-form h-widthSection bg-cover bg-no-repeat" />
+        <div className="hidden md:block flex-1 bg-bg-form h-widthSection bg-cover bg-no-repeat" />
         <div className="flex-1">
+        <header className='hidden md:block'>
           <Header type="form" label="Sign Up" navigation="/register" />
+        </header>
           <main className="mt-20">
             <section>
               <h3 className="text-center font-bold text-2xl text-red-900">
                 Login
               </h3>
               {message !== "" && <Alert message={message} />}
-              <form className="px-32 space-y-6 mb-8">
+              <form className="px-10 md:px-32 space-y-6 mb-8">
                 <Form
                   onChange={(e) => setEmail(e.target.value)}
                   label="Email Address :"
@@ -62,12 +64,12 @@ function Login(props) {
                 />
               </form>
               <Link
-                className="px-32 underline text-yellow-900 font-bold"
+                className="px-10 md:px-32 underline text-yellow-900 font-bold"
                 to="/forgotpassword"
               >
                 Forgot Password ?
               </Link>
-              <div className="px-32 py-10 space-y-5">
+              <div className="px-10 md:px-32 py-10 space-y-5">
                 <Button onClick={onLogin} type="square" text="Login" />
                 <Button
                   type="squaresec"
@@ -79,13 +81,15 @@ function Login(props) {
           </main>
         </div>
       </div>
+      <div className='hidden md:block'>
       <SectionBar
         type="info"
         title="Get your member card now!"
         subTitle="Let's join with our member and enjoy the deals."
         buttonName="Create Now"
       />
-      <footer className="px-32 py-20">
+      </div>
+      <footer className="px-32 py-20 hidden md:block">
         <Footer />
       </footer>
     </div>

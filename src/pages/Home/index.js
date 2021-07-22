@@ -30,7 +30,7 @@ function Home(props) {
   }, []);
   return (
     <div>
-      <header className="px-32 sticky top-0 bg-white">
+      <header className="px-32 sticky top-0 bg-white hidden md:block">
         <Header
           type="main"
           home="text-yellow-900 font-bold"
@@ -42,7 +42,7 @@ function Home(props) {
       <main>
         <section className="bg-bg-hero bg-cover w-full h-screen bg-center px-32 flex-row flex">
           <div className="pt-20 tracking-wide flex-1 flex-col space-y-7">
-            <h2 className="text-white text-5xl font-bold leading-tight">
+            <h2 className="text-white text-5xl font-bold leading-tight text-center md:text-left">
               Start Your Day with <br /> Coffee and Good Meals
             </h2>
             <p className="text-white text-lg font-bold leading-relaxed tracking-wide ">
@@ -54,12 +54,14 @@ function Home(props) {
               <Button type="square" text="Get Started" />
             </div>
           </div>
-          <div className=" flex-col pt-5">
+          <div className=" flex-col pt-5 hidden md:block">
             <Search />
           </div>
         </section>
+        <div className='hidden md:block'>
         <SectionBar type="status" />
-        <section className="py-24 px-32 flex flex-row justify-between items-center space-x-48">
+        </div>
+        <section className="hidden md:block py-24 px-32 flex flex-row justify-between items-center space-x-48">
           <img src={IlTeamWork} alt="illustration team work" />
           <div className="space-y-8">
             <h3 className="font-bold text-4xl ">
@@ -105,7 +107,7 @@ function Home(props) {
             Let’s choose and have a bit taste of poeple’s favorite. It might be
             yours too!
           </p>
-          <div className="flex flex-row space-x-12">
+          <div className="md:flex md:flex-row grid grid-col-1 justify-center space-x-12">
             <FavoriteProduct
               pic={ILFood1}
               title="Hazelnut Latte"
@@ -195,15 +197,19 @@ function Home(props) {
             />
           </div>
         </section>
-        <Slider />
+        <div className='hidden md:block'>
+          <Slider />
+        </div>
+        <div className='hidden md:block'>
         <SectionBar
           type="info"
           buttonName="See promo"
           title="Check our promo today!"
           subTitle="Let's see the deals and pick yours!"
         />
+        </div>
       </main>
-      <footer className="pt-40 px-32 mb-5">
+      <footer className="pt-40 px-32 mb-5 hidden md:block">
         <Footer />
       </footer>
     </div>

@@ -6,16 +6,21 @@ function FormProfile({
   label2,
   label3,
   label4,
-  placeholder1,
-  placeholder2,
-  placeholder3,
-  placeholder4,
+  value1,
+  value2,
+  value3,
+  value4,
+  valueRadio1,
+  valueRadio2,
   isRadio,
   onChange1,
   onChange2,
   onChange3,
   onChange4,
+  onChangeRadio1,
+  onChangeRadio2,
   onClick,
+  date
 }) {
   return (
     <div className="rounded-xl bg-yellow-900 pb-4 flex-1 ">
@@ -36,14 +41,14 @@ function FormProfile({
             <input
               className="border-b-2 border-gray-400 focus:outline-none cursor-default placeholder-black"
               type="text"
-              placeholder={placeholder1}
+              value={value1}
               onChange={onChange1}
             />
             <h5 className="text-gray-500 text-lg">{label2}</h5>
             <input
               className="border-b-2 border-gray-400 focus:outline-none cursor-default placeholder-black"
               type="text"
-              placeholder={placeholder2}
+              value={value2}
               onChange={onChange2}
             />
             {label3 ? (
@@ -52,7 +57,7 @@ function FormProfile({
                 <input
                   className="border-b-2 border-gray-400 focus:outline-none w-full cursor-default placeholder-black"
                   type="text"
-                  placeholder={placeholder3}
+                  value={value3}
                   onChange={onChange3}
                 />
               </div>
@@ -64,22 +69,22 @@ function FormProfile({
             <h5 className="text-gray-500 text-lg pb-3">{label4}</h5>
             <input
               className="border-b-2 border-gray-400 focus:outline-none cursor-default placeholder-black"
-              type="text"
-              placeholder={placeholder4}
+              type={date ? 'date' : 'text'}
+              value={value4}
               onChange={onChange4}
             />
             {isRadio ? (
               <div className="-ml-2">
                 <div class="flex flex-row items-center mt-5 ">
                   <label class="radioGender m-3">
-                    <input type="radio" name="gender" />
+                    <input value={valueRadio1} onChange={onChangeRadio1} type="radio" name="gender" />
                     <span class="item"></span>
                   </label>
                   <p class="font-semibold text-gray-500">Male</p>
                 </div>
                 <div class="flex flex-row items-center mt-5 ">
                   <label class="radioGender m-3">
-                    <input type="radio" name="gender" />
+                    <input value={valueRadio2} onChange={onChangeRadio2} type="radio" name="gender" />
                     <span class="item"></span>
                   </label>
                   <p class="font-semibold text-gray-500">Female</p>

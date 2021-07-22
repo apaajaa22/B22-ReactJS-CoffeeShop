@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Logo, Search } from "..";
-import { IcMessage, IcSearch } from "../../assets";
+import { IcMessage, IcSearch, ILUserDefault } from "../../assets";
 import { getUser } from "../../redux/actions/users";
 function SecondaryHeader({
   home,
@@ -86,11 +86,17 @@ function SecondaryHeader({
         </button>
         <Link to="/userprofile">
           {users.users.map((user) => {
-            return (
+            return user.picture !== null ? (
               <img
                 className="w-10 h-10 rounded-full object-cover"
-                src={user.picture !== null ? user.picture : null}
+                src={user.picture}
                 alt="user"
+              />
+            ) : (
+              <img
+                src={ILUserDefault}
+                alt="user"
+                className="w-10 h-10 rounded-full object-cover "
               />
             );
           })}
