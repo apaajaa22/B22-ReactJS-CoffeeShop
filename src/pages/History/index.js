@@ -8,9 +8,10 @@ function History(props) {
   const { history } = props.history;
 
   useEffect(() => {
-    console.log(props.auth);
     props.getHistory(props.auth.token);
-  }, [getHistory]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

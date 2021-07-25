@@ -29,6 +29,7 @@ function UserProfile(props) {
     setFile(hiddenFileInput.current.click());
   };
 
+
   useEffect(() => {
     console.log(props.auth);
     props.getUser(props.auth.token);
@@ -60,7 +61,7 @@ function UserProfile(props) {
 
   return (
     <div>
-      <header className="px-32">
+      <header className="px-32 hidden md:block">
         <Header
           type="secondary"
           home="text-gray-500"
@@ -69,20 +70,20 @@ function UserProfile(props) {
           history="text-gray-500"
         />
       </header>
-      <main className="bg-bg-profile w-full h-full px-32 bg-cover">
-        <section className="py-20">
+      <main className="bg-bg-profile w-full h-full md:px-32 px-10 bg-cover md:space-y-0 space-y-5">
+        <section className="md:py-20">
           <h3 className="text-white text-2xl font-bold tracking-wide mb-10">
             User Profile
           </h3>
-          <div className="flex flex-row space-x-10">
-            <div className="bg-yellow-900 rounded-xl">
+          <div className="flex md:flex-row md:space-x-10 flex-col">
+            <div className="bg-yellow-900 rounded-xl mb-10 md:mb-0">
               <div className="bg-white rounded-t-xl px-10 py-12 pb-14 flex flex-col items-center justify-center space-y-4 ">
                 <div className="relative flex flex-col w-28 h-28">
                   {users.map((user) => {
                     return user.picture !== null ? (
                       <img
                         className="w-28 h-28 rounded-full object-cover "
-                        src={file}
+                        src={user.picture}
                         alt="profile pic"
                       />
                     ) : (
@@ -127,6 +128,7 @@ function UserProfile(props) {
                 </p>
               </div>
             </div>
+            <div className='flex-1 justify-center'>
             {users.map((user) => {
               return (
                 <FormProfile
@@ -143,9 +145,10 @@ function UserProfile(props) {
                 />
               );
             })}
+            </div>
           </div>
         </section>
-        <section className="flex flex-row pb-20">
+        <section className="flex md:flex-row flex-col pb-20">
           <div className="flex-1">
             {users.map((user) => {
               return (
@@ -167,7 +170,7 @@ function UserProfile(props) {
               );
             })}
           </div>
-          <div className="w-fourpersen flex flex-col items-center">
+          <div className="w-fourpersen flex flex-col md:ml-0 ml-24 items-center">
             <h3 className="text-white font-bold text-xl w-60 text-center mb-4">
               Do you want to save the change ?
             </h3>
@@ -191,7 +194,7 @@ function UserProfile(props) {
           </div>
         </section>
       </main>
-      <footer className="px-32 py-14">
+      <footer className="px-32 py-14 hidden md:block">
         <Footer />
       </footer>
     </div>

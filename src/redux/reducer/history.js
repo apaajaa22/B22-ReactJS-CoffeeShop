@@ -15,6 +15,11 @@ const getHistory = (state = initialState, action) => {
         ...state,
         details: action.payload,
       };
+    case "SET_CLEAR_HISTORY":
+      return {
+        ...state,
+        history: [],
+      };
     default:
       return { ...state };
   }

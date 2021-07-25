@@ -21,7 +21,10 @@ function MainHeader({
   users,
   onChange,
   onKeyDown,
-  value
+  value,
+  valueSort,
+  onChangeSort,
+  onClickSearch
 }) {
   useEffect(() => {
     console.log(auth);
@@ -32,7 +35,7 @@ function MainHeader({
     <nav className="flex flex-row justify-between py-7 items-center  ">
       <Logo />
       {isSearchInput ? (
-        <ul className="flex flex-row space-x-8 text-md ">
+        <ul className="flex flex-row space-x-8 text-md -mr-24">
           <li>
             <Link className={home} to="/">
               Home
@@ -82,7 +85,7 @@ function MainHeader({
         {auth.token !== null ? (
           <div className="flex flex-row items-center justify-center space-x-8 ">
             {isSearchInput ? (
-              <Search value={value} onKeyDown={onKeyDown} onChange={onChange} type="header" />
+              <Search onClickSearch={onClickSearch} valueSort={valueSort} onChangeSort={onChangeSort} value={value} onKeyDown={onKeyDown} onChange={onChange} type="header" />
             ) : (
               <button>
                 <img src={IcSearch} alt="icon search" />

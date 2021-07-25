@@ -8,18 +8,23 @@ export const updateProfile = (data, token) => {
     const sizeLimit = 1024 * 1024 * 2;
     if (data.file) {
       if (data.file.size > sizeLimit) {
-        window.alert("File size is too large");
+        window.alert("File too large");
       }
-      form.append("picture", data.file);
-      const { data: newData } = await http(token).put(
-        `${URL}/private/profile`,
-        form
-      );
-      dispatch({
-        type: "SET_UPDATE_PROFILE",
-        payload: window.alert(newData.message),
-      });
-      dispatch(getUser(token))
+      try {
+        form.append("picture", data.file);
+        const { data: newData } = await http(token).put(
+          `${URL}/private/profile`,
+          form
+        );
+        dispatch({
+          type: "SET_UPDATE_PROFILE",
+          payload: window.alert(newData.message),
+        });
+        dispatch(getUser(token))
+      }
+      catch (err){
+        return window.alert(err.response.data.message);
+      }
     }
     try {
       form.append("name", data.name);

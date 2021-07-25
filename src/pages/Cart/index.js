@@ -26,7 +26,15 @@ class Cart extends Component {
     const { products } = this.props.carts;
     const { users } = this.props.users;
 
-    console.log(users);
+    const price = products.map((data) =>
+      data
+        .filter((item) => item.amount !== 0)
+        .map((item, idx) => parseInt(item.price) * parseInt(item.amount))
+    )
+    const itemTotal = price.reduce((acc, curr) => parseInt(acc) + parseInt(curr), 0);
+    const tax = itemTotal * (10 /100)
+    const shippingFee = 10000
+    const grandPrice = itemTotal+tax+shippingFee
 
     return (
       <section>
@@ -43,7 +51,6 @@ class Cart extends Component {
           <h3 className="text-white font-bold w-56 text-2xl shadow-2xl py-10">
             Checkout your item now!
           </h3>
-
           <div className="flex flex-row">
             <section className="w-threepersen bg-white h-full rounded-xl py-16 ">
               {products.length < 1 ? (
@@ -56,22 +63,6 @@ class Cart extends Component {
                     Order Summary
                   </h4>
                   <div className="border-b-2 border-gray-300 mx-10 pb-2">
-                    {/* {products.map((product, idx) => {
-                      return (
-                        <ItemCart
-                          key={product[idx]?.id}
-                          pic={
-                            product[idx]?.picture !== undefined
-                              ? product[idx]?.picture
-                              : null
-                          }
-                          name={product[idx]?.product}
-                          quantity={product[idx]?.amount}
-                          size={product[idx]?.name}
-                          price={product[idx]?.price}
-                        />
-                      );
-                    })} */}
                     {products.map((data) =>
                       data
                         .filter((item) => item.amount !== 0)
@@ -95,51 +86,50 @@ class Cart extends Component {
                       <p>SHIPPING</p>
                     </div>
                     <div className="leading-relaxed ">
-                      {products.map((data) =>
-                        data
-                          .filter((item) => item.amount !== 0)
-                          .map((item, idx) => <p>IDR {item.price}</p>)
-                      )}
-                      <p>IDR 20.000</p>
-                      <p>IDR 10.000</p>
+                      <p>IDR {itemTotal.toLocaleString('en')}</p>
+                      <p>IDR {tax.toLocaleString('en')}</p>
+                      <p>IDR {shippingFee.toLocaleString('en')}</p>
                     </div>
                   </div>
                   <div className="flex flex-row justify-between mx-10 text-yellow-900 font-bold text-2xl pt-5">
                     <p>TOTAL</p>
-                    <p>IDR 150.000</p>
+                    <p>IDR {grandPrice.toLocaleString('en')}</p>
                   </div>
                 </div>
               )}
             </section>
             <section className="flex-1 w-fourpersen h-screen ml-20 px-28 pr-52 -mt-12">
-              <div className="text-white font-bold flex flex-row justify-between mb-5">
-                <p className="text-xl">Address details</p>
-                <button className="focus:outline-none">edit</button>
-              </div>
-              {users.map((user) => {
-                return (
-                  <div className="bg-white w-full p-10 space-y-3 rounded-2xl">
-                    <p className="border-b-2 border-gray-300 py-1">
-                      <span className="font-bold">Delivery to</span>
-                    </p>
-                    <div className="border-b-2 border-gray-300 ">
-                      <p className="py-1 w-96">{user.address}</p>
-                    </div>
-                    <p>{user.phone_number}</p>
+              {products.length < 1 ? <div></div>
+              : <div>
+                  <div className="text-white font-bold flex flex-row justify-between mb-5">
+                    <p className="text-xl">Address details</p>
+                    <button className="focus:outline-none">edit</button>
                   </div>
-                );
-              })}
-              <p className="text-white pt-5 pb-2 font-bold text-xl">
-                Payment Method
-              </p>
-              <div className="space-y-4">
-                <PaymentMethod />
-                <Button
-                  onClick={this.onCheckout}
-                  type="brown"
-                  text="Confirm and Pay"
-                />
-              </div>
+                  {users.map((user) => {
+                    return (
+                      <div className="bg-white w-full p-10 space-y-3 rounded-2xl">
+                        <p className="border-b-2 border-gray-300 py-1">
+                          <span className="font-bold">Delivery to</span>
+                        </p>
+                        <div className="border-b-2 border-gray-300 ">
+                          <p className="py-1 w-96">{user.address}</p>
+                        </div>
+                        <p>{user.phone_number}</p>
+                      </div>
+                    );
+                  })}
+                  <p className="text-white pt-5 pb-2 font-bold text-xl">
+                    Payment Method
+                  </p>
+                  <div className="space-y-4">
+                    <PaymentMethod />
+                    <Button
+                      onClick={this.onCheckout}
+                      type="brown"
+                      text="Confirm and Pay"
+                    />
+                </div>
+              </div>}
             </section>
           </div>
         </main>

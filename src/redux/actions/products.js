@@ -31,4 +31,18 @@ const getDetailProducts = (id) => {
   };
 };
 
-export { getProducts, getDetailProducts };
+const searchProducts = (search, sort='name') => {
+  return async (dispatch) => {
+    const {data} = await http().get(`${URL}/products?search=${search}&sort=${sort}`)
+    dispatch({
+      type: "SET_GET_PRODUCTS",
+      payload: { products: data.results, pageInfo: data.pageInfo },
+    })
+    dispatch({
+      type: "SET_PRODUCT_CATEGORY",
+      payload: { productCategory: data.results, pageInfo: data.pageInfo },
+    });
+  }
+}
+
+export { getProducts, getDetailProducts, searchProducts };

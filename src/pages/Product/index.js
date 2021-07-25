@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom"
 import { Button, Coupon, Footer, Header, Item } from "../../components";
 import { getCategory, getProductCategory } from "../../redux/actions/category";
-import { getProducts } from "../../redux/actions/products";
+import { getProducts, searchProducts } from "../../redux/actions/products";
 import { getUser } from "../../redux/actions/users";
 import qs from 'querystring'
 
@@ -34,24 +34,30 @@ function Product(props) {
     }
   };
 
-  const [isSearch, setIsSearch] = useState('')
-  const [search, setSearch] = useState('')
-  const history = useHistory()
+  const parseQuery = (str) => {
+    return qs.parse(str.slice('1'))
+  }
   const location = useLocation()
+  const [searchTemp, setSearchTemp] = useState('')
+  const [search, setSearch] = useState('')
+  const [sort, setSort] = useState('')
+  const history = useHistory()
 
   const onSearch = (e) => {
     if(e.key === "Enter"){
-      history.push(`/products?search=${isSearch}`)
-      setSearch(isSearch)
+      history.push(`/products?search=${searchTemp}`)
+      setSearchTemp(search)
+      setSearch(searchTemp)
+      props.searchProducts(searchTemp, sort)
     }
   }
-  // const parseQuery = (str) => {
-  //   return qs.parse(str.slice('1'))
-  // }
-  // useEffect((e) => {
-  //   const {search} = parseQuery(location.search)
-  //   setIsSearch(search)
-  // },[])
+
+  useEffect((e) => {
+    const {search} = parseQuery(location.search)
+    setSearchTemp(search)
+  },[location.search])
+
+  console.log(sort)
 
   return (
     <div>
@@ -64,8 +70,11 @@ function Product(props) {
           history="text-gray-500"
           isSearchInput
           onKeyDown={onSearch}
-          onChange={(e) => setIsSearch(e.target.value)}
-          value={isSearch}
+          onChange={(e) => setSearchTemp(e.target.value)}
+          value={searchTemp}
+          valueSort={sort}
+          onChangeSort={(e) => setSort(e.target.value)}
+          onClickSearch={onSearch}
         />
       </header>
       <main>
@@ -112,7 +121,7 @@ function Product(props) {
             </ul>
             <div className="grid md:grid-cols-4 grid-cols-2 gap-7 px-10 md:px-32">
               {props.category.productCategory < 1
-                ? data.filter(item => item.name.toLowerCase().includes(search)).map((products) => {
+                ? data.map((products) => {
                     return (
                       <Item
                         name={products.name}
@@ -122,7 +131,7 @@ function Product(props) {
                       />
                     );
                   })
-                : productCategory.filter(item => item.name.toLowerCase().includes(search)).map((product) => {
+                : productCategory.map((product) => {
                     if (props.category.productCategory === 0) {
                       return <></>;
                     }
@@ -138,13 +147,13 @@ function Product(props) {
             </div>
             {props.category.productCategory < 1 ? (
               <div className=" flex flex-row justify-center mt-10">
-                <div className="w-72">
+                <div className="w-72 pb-20">
                   <Button onClick={loadMore} type="square" text="Load More" />
                 </div>
               </div>
             ) : (
               <div className=" flex flex-row justify-center mt-10">
-                <div className="w-72">
+                <div className="w-72 pb-20">
                   <Button
                     onClick={loadMoreProdCat}
                     type="square"
@@ -166,11 +175,11 @@ function Product(props) {
 const mapStateToProps = (state) => ({
   products: state.products,
   category: state.category,
-
   auth: state.auth,
 });
 const mapDispatchToProps = {
   getProducts,
+  searchProducts,
   getCategory,
   getProductCategory,
   getUser,

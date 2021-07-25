@@ -14,7 +14,10 @@ function Header({
   onClick,
   onKeyDown,
   onChange,
-  value
+  value,
+  valueSort,
+  onChangeSort,
+  onClickSearch
 }) {
   switch (type) {
     case "main":
@@ -28,6 +31,9 @@ function Header({
           onKeyDown={onKeyDown}
           onChange={onChange}
           value={value}
+          valueSort={valueSort}
+          onChangeSort={onChangeSort}
+          onClickSearch={onClickSearch}
         />
       );
     case "secondary":

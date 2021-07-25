@@ -26,9 +26,12 @@ const authLogin = (email, password) => {
   };
 };
 
-const authLogout = () => ({
-  type: "SET_AUTH_LOGOUT",
-});
+const authLogout = () => {
+  return async (dispatch) => {
+    dispatch({type: 'SET_AUTH_LOGOUT'})
+    dispatch({type: 'SET_CLEAR_HISTORY'})
+  }
+};
 
 const clearMessage = () => ({
   type: "SET_CLEAR_MESSAGE",

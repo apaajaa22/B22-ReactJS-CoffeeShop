@@ -2,10 +2,11 @@ import { http } from "../../helpers/http";
 const { REACT_APP_BACKEND_URL: URL } = process.env;
 
 const addProducts = (data) => {
-  return {
-    type: "SET_CART_ADD_ITEM",
-    payload: data,
-  };
+  return async (dispatch) => {
+    dispatch({type: "SET_CART_ADD_ITEM",
+    payload: data})
+    window.alert('product added to cart')
+  }
 };
 
 const createTransaction = (data, token) => {
