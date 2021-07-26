@@ -23,4 +23,14 @@ const getDetailHistory = (token, id) => {
   };
 };
 
-export { getHistory, getDetailHistory };
+const deleteHistory = (token, id) => {
+  return async (dispatch) => {
+    const { data } = await http(token).delete(`${URL}/private/transactions/${id}`);
+    dispatch({
+      type: "SET_GET_HISTORY",
+      payload: data.results,
+    });
+  };
+};
+
+export { getHistory, getDetailHistory, deleteHistory };

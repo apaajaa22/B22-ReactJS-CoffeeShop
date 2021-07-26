@@ -38,7 +38,7 @@ class Cart extends Component {
 
     return (
       <section>
-        <header className="px-32">
+        <header className="hidden md:block px-32">
           <Header
             type="secondary"
             home="text-gray-500"
@@ -47,14 +47,14 @@ class Cart extends Component {
             history="text-gray-500"
           />
         </header>
-        <main className="bg-bg-cart w-full h-full px-32 bg-cover bg-center">
-          <h3 className="text-white font-bold w-56 text-2xl shadow-2xl py-10">
+        <main className="bg-bg-cart w-full md:h-full h-screen md:px-32 px-16 bg-cover bg-center pb-20">
+          <h3 className="text-white font-bold md:w-56 text-2xl shadow-2xl py-10">
             Checkout your item now!
           </h3>
-          <div className="flex flex-row">
-            <section className="w-threepersen bg-white h-full rounded-xl py-16 ">
+          <div className="flex md:flex-row flex-col">
+            <section className=" bg-white h-full rounded-xl py-16 ">
               {products.length < 1 ? (
-                <h4 className="text-yellow-800 text-2xl font-bold text-center">
+                <h4 className="md:px-16 text-yellow-800 text-2xl font-bold text-center">
                   You don't have any orders
                 </h4>
               ) : (
@@ -62,7 +62,7 @@ class Cart extends Component {
                   <h4 className="text-yellow-800 text-2xl font-bold text-center">
                     Order Summary
                   </h4>
-                  <div className="border-b-2 border-gray-300 mx-10 pb-2">
+                  <div className="border-b-2 border-gray-300 md:px-5 px-5 pb-2">
                     {products.map((data) =>
                       data
                         .filter((item) => item.amount !== 0)
@@ -79,7 +79,7 @@ class Cart extends Component {
                         ))
                     )}
                   </div>
-                  <div className="flex flex-row items-center justify-between mt-5 mx-10">
+                  <div className="flex flex-row items-center justify-between mt-5 md:px-5 px-5">
                     <div className="leading-relaxed flex-1">
                       <p>SUBTOTAL</p>
                       <p>TAX & FEES</p>
@@ -91,17 +91,17 @@ class Cart extends Component {
                       <p>IDR {shippingFee.toLocaleString('en')}</p>
                     </div>
                   </div>
-                  <div className="flex flex-row justify-between mx-10 text-yellow-900 font-bold text-2xl pt-5">
+                  <div className="flex flex-row justify-between md:px-5 px-5 text-yellow-900 font-bold text-2xl pt-5">
                     <p>TOTAL</p>
                     <p>IDR {grandPrice.toLocaleString('en')}</p>
                   </div>
                 </div>
               )}
             </section>
-            <section className="flex-1 w-fourpersen h-screen ml-20 px-28 pr-52 -mt-12">
+            <section className="flex-1 md:ml-20 md:px-28 md:pr-52 md:pr-0 md:-mt-12">
               {products.length < 1 ? <div></div>
               : <div>
-                  <div className="text-white font-bold flex flex-row justify-between mb-5">
+                  <div className="text-white font-bold flex flex-row justify-between md:mb-5 md:mt-0 mt-5">
                     <p className="text-xl">Address details</p>
                     <button className="focus:outline-none">edit</button>
                   </div>
@@ -112,7 +112,7 @@ class Cart extends Component {
                           <span className="font-bold">Delivery to</span>
                         </p>
                         <div className="border-b-2 border-gray-300 ">
-                          <p className="py-1 w-96">{user.address}</p>
+                          <p className="py-1 md:w-96">{user.address}</p>
                         </div>
                         <p>{user.phone_number}</p>
                       </div>
@@ -133,7 +133,7 @@ class Cart extends Component {
             </section>
           </div>
         </main>
-        <footer className="px-32 py-20">
+        <footer className="hidden md:block px-32 py-20">
           <Footer />
         </footer>
       </section>

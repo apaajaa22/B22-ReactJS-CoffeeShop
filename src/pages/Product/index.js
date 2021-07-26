@@ -153,7 +153,12 @@ function Product(props) {
                     );
                   })}
             </div>
-            {props.category.productCategory < 1 ? (
+            {urlSearch ? <div className=" flex flex-row justify-center mt-10">
+                <div className="w-72 pb-20">
+                  <Button onClick={loadMore} type="square" text="Load More" />
+                </div>
+              </div> : <div>
+              {props.category.productCategory < 1 ? (
               <div className=" flex flex-row justify-center mt-10">
                 <div className="w-72 pb-20">
                   <Button onClick={loadMore} type="square" text="Load More" />
@@ -170,6 +175,7 @@ function Product(props) {
                 </div>
               </div>
             )}
+              </div>}
           </div>
         </section>
       </main>

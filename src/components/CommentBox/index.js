@@ -3,8 +3,8 @@ import { IcStar } from "../../assets";
 
 function CommentBox({ pic, name, origin, rate, desc }) {
   return (
-    <div className="bg-white w-widthBox h-heightBox p-6 rounded-xl border-2 border-gray-300 hover:border-red-900">
-      <div className="flex flex-row space-x-5 items-center mb-8">
+    <div className="bg-white w-widthBox h-heightBox mb-5 p-6 rounded-xl border-2 border-gray-300 hover:border-red-900">
+      <div className="flex flex-row space-x-5 items-center md:mb-8">
         <img className="rounded-full w-14 h-14" src={pic} alt="img user" />
         <div className="flex-1">
           <h5 className="font-semibold text-lg">{name}</h5>

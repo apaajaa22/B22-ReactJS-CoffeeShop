@@ -31,7 +31,7 @@ const getDetailProducts = (id) => {
   };
 };
 
-const searchProducts = (search, sort='name') => {
+const searchProducts = (search, sort) => {
   return async (dispatch) => {
     const {data} = await http().get(`${URL}/products?search=${search}&sort=${sort}`)
     dispatch({

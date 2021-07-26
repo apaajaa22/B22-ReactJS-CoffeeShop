@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom"
 import { Footer, Header, ItemHistory } from "../../components";
 import { authLogout } from "../../redux/actions/auth";
 import { getDetailHistory, getHistory } from "../../redux/actions/history";
 
 function History(props) {
   const { history } = props.history;
+
 
   useEffect(() => {
     props.getHistory(props.auth.token);
@@ -16,7 +18,7 @@ function History(props) {
   return (
     <>
       <div>
-        <header className="px-32">
+        <header className="hidden md:block px-32">
           <Header
             type="secondary"
             home="text-gray-500"
@@ -25,7 +27,7 @@ function History(props) {
             history="text-yellow-900 font-bold"
           />
         </header>
-        <main className="bg-bg-history w-full h-full bg-cover bg-center px-32 py-20 flex flex-col ">
+        <main className="bg-bg-history w-full md:h-full h-screen bg-cover bg-center md:px-32 py-20 flex flex-col ">
           <section className="flex flex-col items-center">
             <h3 className="text-white text-2xl font-medium">
               Let’s see what you have bought!
@@ -33,12 +35,12 @@ function History(props) {
             <h4 className="text-white text-sm">Select item to delete</h4>
           </section>
           <div className="my-10 ">
-            <button className="text-white float-right focus:outline-none hover:underline px-32">
+            <button className="text-white float-right focus:outline-none hover:underline md:px-32 px-16">
               Delete
             </button>
           </div>
-          <div className="grid grid-flow-row grid-cols-3 gap-5 px-32">
-            {history.map((item) => {
+          <div className="grid grid-flow-row md:grid-cols-3 grid-cols-1 gap-5 md:px-32 px-16 ">
+            {history?.map((item) => {
               const total = item.total + item.tax + item.shipping_cost;
               return (
                 <ItemHistory
@@ -51,7 +53,7 @@ function History(props) {
             })}
           </div>
         </main>
-        <footer className="px-32 py-20">
+        <footer className="px-32 py-20 hidden md:block ">
           <Footer />
         </footer>
       </div>

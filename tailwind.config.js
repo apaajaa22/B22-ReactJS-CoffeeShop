@@ -67,7 +67,7 @@ module.exports = {
       widthSection: "1140px",
       wcoupon: "30%",
       fourpersen: "40%",
-      threepersen: "35%",
+      threepersen: "400px",
       wdetailbox: "559px",
       hdetailbox: "550px",
     },

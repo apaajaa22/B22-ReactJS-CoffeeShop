@@ -30,7 +30,7 @@ function Home(props) {
   }, []);
   return (
     <div>
-      <header className="px-32 sticky top-0 bg-white hidden md:block">
+      <header className="md:px-32 px-16 sticky top-0 bg-white hidden md:block">
         <Header
           type="main"
           home="text-yellow-900 font-bold"
@@ -40,12 +40,12 @@ function Home(props) {
         />
       </header>
       <main>
-        <section className="bg-bg-hero bg-cover w-full h-screen bg-center px-32 flex-row flex">
+        <section className="bg-bg-hero bg-cover w-full h-screen bg-center md:px-32 px-16 flex-row flex">
           <div className="pt-20 tracking-wide flex-1 flex-col space-y-7">
-            <h2 className="text-white text-5xl font-bold leading-tight text-center md:text-left">
+            <h2 className="text-white md:text-5xl text-2xl font-bold leading-tight text-center md:text-left">
               Start Your Day with <br /> Coffee and Good Meals
             </h2>
-            <p className="text-white text-lg font-bold leading-relaxed tracking-wide ">
+            <p className=" text-white text-lg font-bold leading-relaxed tracking-wide ">
               We provide high quality beans, good taste, and healthy <br />
               meals made by love just for you. Start your day with us <br /> for
               a bigger smile!
@@ -61,7 +61,7 @@ function Home(props) {
         <div className='hidden md:block'>
         <SectionBar type="status" />
         </div>
-        <section className="hidden md:block py-24 px-32 flex flex-row justify-between items-center space-x-48">
+        <section className=" py-24 md:px-32 px-16 flex md:flex-row flex-col justify-between items-center md:space-x-48">
           <img src={IlTeamWork} alt="illustration team work" />
           <div className="space-y-8">
             <h3 className="font-bold text-4xl ">
@@ -99,7 +99,7 @@ function Home(props) {
             </ul>
           </div>
         </section>
-        <section className="px-32 flex flex-col items-center bg-gray-100 py-20">
+        <section className="md:px-32 px-16 flex flex-col items-center bg-gray-100 py-20">
           <h3 className="text-4xl font-semibold mb-5">
             Here is People’s Favorite
           </h3>
@@ -107,7 +107,7 @@ function Home(props) {
             Let’s choose and have a bit taste of poeple’s favorite. It might be
             yours too!
           </p>
-          <div className="md:flex md:flex-row grid grid-col-1 justify-center space-x-12">
+          <div className="md:flex md:flex-row grid grid-col-1 justify-center md:space-x-12 space-y-5">
             <FavoriteProduct
               pic={ILFood1}
               title="Hazelnut Latte"
@@ -149,7 +149,7 @@ function Home(props) {
             />
           </div>
         </section>
-        <section className="px-32 flex flex-col items-center bg-gray-100 pb-20">
+        <section className="md:px-32 px-16 flex flex-col items-center bg-gray-100 pb-20">
           <div className="text-4xl font-medium text-center mt-20 mb-10">
             <h3>Visit Our Store in the </h3>
             <h3>Spot on the Map Below</h3>
@@ -160,11 +160,11 @@ function Home(props) {
           </p>
           <img src={ILMap} alt="img world" />
         </section>
-        <section className="flex flex-col items-center bg-gray-100 px-32">
+        <section className="flex flex-col items-center bg-gray-100 md:px-32 px-16">
           <h3 className="font-semibold text-4xl ">Our Partner</h3>
           <img src={ILPartner} alt="img partner" />
         </section>
-        <section className=" px-32 flex flex-col items-center bg-gray-100 pt-10">
+        <section className="hidden md:block md:px-32 px-16 flex flex-col items-center bg-gray-100 pt-10">
           <div className="text-center font-semibold text-4xl">
             <h3>Loved by Thousands of</h3>
             <h3>Happy Customer</h3>
@@ -173,7 +173,7 @@ function Home(props) {
             These are the stories of our customers who have visited us with
             great <br /> pleasure.
           </p>
-          <div className="flex flex-row space-x-10 mt-20 overflow-x-scroll pb-20">
+          <div className="flex md:flex-row md:items-center flex-col md:space-x-10 mt-20 overflow-x-scroll pb-20">
             <CommentBox
               pic={ILUser1}
               name="Viezh Robert"
@@ -209,7 +209,7 @@ function Home(props) {
         />
         </div>
       </main>
-      <footer className="pt-40 px-32 mb-5 hidden md:block">
+      <footer className="pt-40 md:px-32 mb-5 hidden md:block">
         <Footer />
       </footer>
     </div>
