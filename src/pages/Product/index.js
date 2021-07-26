@@ -8,12 +8,21 @@ import { getUser } from "../../redux/actions/users";
 import qs from 'querystring'
 
 function Product(props) {
+  const parseQuery = (str) => {
+    return qs.parse(str.slice('1'))
+  }
+  const location = useLocation()
+  const urlSearch = parseQuery(location.search).search
   const { data } = props.products;
   const { data: categoryData } = props.category;
   const { productCategory } = props.category;
   useEffect(() => {
     props.getUser(props.auth.token);
-    props.getProducts();
+    if(urlSearch){
+      props.searchProducts(searchTemp, sort)
+    }else{
+      props.getProducts();
+    }
     props.getCategory();
   }, []);
 
@@ -34,27 +43,26 @@ function Product(props) {
     }
   };
 
-  const parseQuery = (str) => {
-    return qs.parse(str.slice('1'))
-  }
-  const location = useLocation()
-  const [searchTemp, setSearchTemp] = useState('')
-  const [search, setSearch] = useState('')
-  const [sort, setSort] = useState('')
+
+
+
+  const [searchTemp, setSearchTemp] = useState(urlSearch ? urlSearch : '')
+  const [search, setSearch] = useState(urlSearch ? urlSearch : '')
+  const [sort, setSort] = useState('id')
   const history = useHistory()
 
   const onSearch = (e) => {
     if(e.key === "Enter"){
-      history.push(`/products?search=${searchTemp}`)
+      history.push(`/products?search=${searchTemp}&sort=${sort}`)
       setSearchTemp(search)
       setSearch(searchTemp)
       props.searchProducts(searchTemp, sort)
     }
   }
+  console.log(`search`, urlSearch)
 
   useEffect((e) => {
-    const {search} = parseQuery(location.search)
-    setSearchTemp(search)
+    setSearchTemp(urlSearch)
   },[location.search])
 
   console.log(sort)
