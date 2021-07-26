@@ -13,7 +13,7 @@ function UserProfile(props) {
   const { users } = props.users;
   const { history } = props.history;
 
-  const lengthHistory = history.length;
+  const lengthHistory = history?.length;
   // const { data } = props.profile;
   const hiddenFileInput = React.useRef(null);
 

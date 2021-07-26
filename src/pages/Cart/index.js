@@ -47,12 +47,12 @@ class Cart extends Component {
             history="text-gray-500"
           />
         </header>
-        <main className="bg-bg-cart w-full md:h-full h-screen md:px-32 px-16 bg-cover bg-center pb-20">
+        <main className="bg-bg-cart w-full h-full md:px-32 px-16 bg-cover bg-center pb-20">
           <h3 className="text-white font-bold md:w-56 text-2xl shadow-2xl py-10">
             Checkout your item now!
           </h3>
           <div className="flex md:flex-row flex-col">
-            <section className=" bg-white h-full rounded-xl py-16 ">
+            <section className="bg-white h-full rounded-xl py-16 ">
               {products.length < 1 ? (
                 <h4 className="md:px-16 text-yellow-800 text-2xl font-bold text-center">
                   You don't have any orders
@@ -62,7 +62,7 @@ class Cart extends Component {
                   <h4 className="text-yellow-800 text-2xl font-bold text-center">
                     Order Summary
                   </h4>
-                  <div className="border-b-2 border-gray-300 md:px-5 px-5 pb-2">
+                  <div className="border-b-2 border-gray-300 md:px-10 px-5 pb-2 pt-5">
                     {products.map((data) =>
                       data
                         .filter((item) => item.amount !== 0)
@@ -79,7 +79,7 @@ class Cart extends Component {
                         ))
                     )}
                   </div>
-                  <div className="flex flex-row items-center justify-between mt-5 md:px-5 px-5">
+                  <div className="flex flex-row items-center justify-between mt-5 md:px-10 px-5">
                     <div className="leading-relaxed flex-1">
                       <p>SUBTOTAL</p>
                       <p>TAX & FEES</p>
@@ -91,7 +91,7 @@ class Cart extends Component {
                       <p>IDR {shippingFee.toLocaleString('en')}</p>
                     </div>
                   </div>
-                  <div className="flex flex-row justify-between md:px-5 px-5 text-yellow-900 font-bold text-2xl pt-5">
+                  <div className="flex flex-row justify-between md:px-10 px-5 text-yellow-900 font-bold text-2xl pt-5">
                     <p>TOTAL</p>
                     <p>IDR {grandPrice.toLocaleString('en')}</p>
                   </div>
