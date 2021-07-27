@@ -1,7 +1,11 @@
 # React JS - React_CoffeeShop
 
+![image](https://user-images.githubusercontent.com/59022153/127201194-a850a2a2-178a-4ee3-8f95-02e51c981e27.png)
+
+## About
 Web application for ordering food and drinks, \
 this application is made using ReactJs as a framework and Tailwind CSS as styling
+
 
 ## Built With
 
