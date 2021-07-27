@@ -16,7 +16,7 @@ function FavoriteProduct({
   buttonName,
 }) {
   return (
-    <div className="rounded-lg border-2 border-gray-300 hover:border-yellow-900 pt-16 px-16 flex flex-col items-center bg-white">
+    <div className="rounded-lg border-2 border-gray-300 hover:border-yellow-900 pt-16 md:mb-0 mb-5 px-16 flex flex-col items-center bg-white">
       <img className="rounded-full w-36 h-36 mb-20" src={pic} alt="img food" />
       <h5 className="font-semibold text-lg mb-10">{title}</h5>
       <ul className="space-y-4 text-gray-500 flex-1 mb-10 ">

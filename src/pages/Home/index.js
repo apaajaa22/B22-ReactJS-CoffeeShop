@@ -40,7 +40,7 @@ function Home(props) {
         />
       </header>
       <main>
-        <section className="bg-bg-hero bg-cover w-full h-screen bg-center md:px-32 px-16 flex-row flex">
+        <section className="bg-bg-hero bg-cover w-full md:h-screen h-full md:pb-0 pb-10 bg-center md:px-32 px-16 flex-row flex">
           <div className="pt-20 tracking-wide flex-1 flex-col space-y-7">
             <h2 className="text-white md:text-5xl text-2xl font-bold leading-tight text-center md:text-left">
               Start Your Day with <br /> Coffee and Good Meals
@@ -107,7 +107,7 @@ function Home(props) {
             Let’s choose and have a bit taste of poeple’s favorite. It might be
             yours too!
           </p>
-          <div className="md:flex md:flex-row grid grid-col-1 justify-center md:space-x-12 space-y-5">
+          <div className="md:flex md:flex-row grid grid-col-1 justify-center md:space-x-12 ">
             <FavoriteProduct
               pic={ILFood1}
               title="Hazelnut Latte"
