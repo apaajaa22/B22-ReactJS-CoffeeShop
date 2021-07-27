@@ -1,12 +1,27 @@
 /* eslint-disable no-undef */
 import { http } from '../../helpers/http'
 const { REACT_APP_BACKEND_URL: URL } = process.env
+import Swal from 'sweetalert2'
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 
 const addProducts = (data) => {
   return async (dispatch) => {
     dispatch({type: 'SET_CART_ADD_ITEM',
     payload: data})
-    window.alert('product added to cart')
+    Toast.fire({
+      icon: 'none',
+      title: 'product added to cart'
+    })
   }
 }
 
@@ -35,7 +50,10 @@ const createTransaction = (data, token) => {
       })
       dispatch({
         type: 'SET_TRANSACTION_SUCCESS',
-        payload: window.alert(newData.message),
+        payload: Toast.fire({
+          icon: 'success',
+          title: newData.message
+        })
       })
       dispatch({
         type: 'SET_CLEAR_PRODUCTS',
@@ -43,7 +61,10 @@ const createTransaction = (data, token) => {
     } catch (error) {
       dispatch({
         type: 'SET_TRANSACTION_FAILED',
-        payload: window.alert(error.response.data.message),
+        payload: Toast.fire({
+          icon: 'error',
+          title: error.response.data.message
+        })
       })
     }
   }

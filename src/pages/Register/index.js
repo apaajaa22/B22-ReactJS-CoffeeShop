@@ -12,6 +12,18 @@ import {
 } from '../../components'
 import { authRegister } from '../../redux/actions/register'
 import { useHistory } from 'react-router-dom'
+import Swal from 'sweetalert2'
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 
 function Register(props) {
   let history = useHistory()
@@ -24,7 +36,10 @@ function Register(props) {
   const isLogin = () => {
     if (isRegister) {
       history.push('/login')
-      window.alert('Register successfully')
+      Toast.fire({
+        icon: 'success',
+        title: 'Register successfully'
+      })
     }
   }
   useEffect(() => {

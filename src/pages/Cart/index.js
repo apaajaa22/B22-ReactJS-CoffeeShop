@@ -13,6 +13,7 @@ import {
 import { authLogout } from '../../redux/actions/auth'
 import { getUser } from '../../redux/actions/users'
 import { createTransaction } from '../../redux/actions/carts'
+import { Link } from 'react-router-dom'
 
 class Cart extends Component {
   componentDidMount() {
@@ -109,7 +110,7 @@ class Cart extends Component {
               : <div>
                   <div className="text-white font-bold flex flex-row justify-between md:mb-5 md:mt-0 mt-5">
                     <p className="text-xl">Address details</p>
-                    <button className="focus:outline-none">edit</button>
+                    <Link to='/userprofile' className="focus:outline-none">edit</Link>
                   </div>
                   {users.map((user) => {
                     return (

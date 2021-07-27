@@ -21,7 +21,8 @@ function FormProfile({
   onChangeRadio1,
   onChangeRadio2,
   onClick,
-  date
+  date,
+  checked
 }) {
   return (
     <div className="rounded-xl bg-yellow-900 pb-4 flex-1 sm:items-center">
@@ -78,14 +79,14 @@ function FormProfile({
               <div className="-ml-2">
                 <div className="flex flex-row items-center mt-5 ">
                   <label className="radioGender m-3">
-                    <input value={valueRadio1} onChange={onChangeRadio1} type="radio" name="gender" />
+                    <input checked={checked} value={valueRadio1} onChange={onChangeRadio1} type="radio" name="gender" />
                     <span className="item"></span>
                   </label>
                   <p className="font-semibold text-gray-500">Male</p>
                 </div>
                 <div className="flex flex-row items-center mt-5 ">
                   <label className="radioGender m-3">
-                    <input value={valueRadio2} onChange={onChangeRadio2} type="radio" name="gender" />
+                    <input checked={checked} value={valueRadio2} onChange={onChangeRadio2} type="radio" name="gender" />
                     <span className="item"></span>
                   </label>
                   <p className="font-semibold text-gray-500">Female</p>

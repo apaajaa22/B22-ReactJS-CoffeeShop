@@ -2,6 +2,19 @@
 import { http } from '../../helpers/http'
 import { getUser } from './users'
 const { REACT_APP_BACKEND_URL: URL } = process.env
+import Swal from 'sweetalert2'
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 
 export const updateProfile = (data, token) => {
   return async (dispatch) => {
@@ -9,7 +22,10 @@ export const updateProfile = (data, token) => {
     const sizeLimit = 1024 * 1024 * 2
     if (data.file) {
       if (data.file.size > sizeLimit) {
-        window.alert('File too large')
+        Toast.fire({
+          icon: 'error',
+          title: 'File too large'
+        })
       }
       try {
         form.append('picture', data.file)
@@ -19,12 +35,18 @@ export const updateProfile = (data, token) => {
         )
         dispatch({
           type: 'SET_UPDATE_PROFILE',
-          payload: window.alert(newData.message),
+          payload: Toast.fire({
+            icon: 'success',
+            title: newData.message
+          })
         })
         dispatch(getUser(token))
       }
       catch (err){
-        return window.alert(err.response.data.message)
+        return Toast.fire({
+          icon: 'error',
+          title: err.response.data.message
+        })
       }
     }
     try {
@@ -44,11 +66,17 @@ export const updateProfile = (data, token) => {
       )
       dispatch({
         type: 'SET_UPDATE_PROFILE',
-        payload: window.alert(newData.message),
+        payload: Toast.fire({
+          icon: 'success',
+          title: newData.message
+        })
       })
       dispatch(getUser(token))
     } catch (error) {
-      return window.alert('failed to update')
+      return Toast.fire({
+        icon: 'error',
+        title: 'Failed to update'
+      })
     }
   }
 }

@@ -9,7 +9,20 @@ import { getCategory, getProductCategory } from '../../redux/actions/category'
 import { getProducts, searchProducts } from '../../redux/actions/products'
 import { getUser } from '../../redux/actions/users'
 import qs from 'querystring'
+import Swal from 'sweetalert2'
 
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 
 function Product(props) {
   const parseQuery = (str) => {
@@ -35,7 +48,10 @@ function Product(props) {
     if (nextPage !== null) {
       props.getProducts(nextPage)
     } else {
-      window.alert('no more items')
+      Toast.fire({
+        icon: 'error',
+        title: 'no more items'
+      })
     }
   }
   const loadMoreProdCat = () => {
@@ -43,7 +59,10 @@ function Product(props) {
     if (nextPage !== null) {
       props.getProductCategory(null, nextPage)
     } else {
-      window.alert('no more items')
+      Toast.fire({
+        icon: 'error',
+        title: 'no more items'
+      })
     }
   }
 

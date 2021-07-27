@@ -28,6 +28,7 @@ function HeaderSearch({ onKeyDown, onChange, value, valueSort, onChangeSort, onC
           Name
         </option>
         <option value="price">Price</option>
+        <option value="quantity">Quantity</option>
       </select>
     </div>
   )

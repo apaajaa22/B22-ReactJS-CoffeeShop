@@ -7,7 +7,7 @@ import { ILFood4 } from '../../assets'
 import { Button, Footer, Header, ItemCart, ItemHistory } from '../../components'
 import { authLogout } from '../../redux/actions/auth'
 import { getDetailHistory, getHistory, deleteHistory } from '../../redux/actions/history'
-
+import Swal from 'sweetalert2'
 function HistoryDetail(props) {
   const { slug } = useParams()
   const [setModal] = useState(false)
@@ -17,8 +17,24 @@ function HistoryDetail(props) {
   const navigation = useHistory()
 
   const deleteHistory = () => {
-    props.deleteHistory(props.auth.token, slug)
-    navigation.push('/history')
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your history has been deleted.',
+          'success'
+        )
+        props.deleteHistory(props.auth.token, slug)
+        navigation.push('/history')
+      }
+    })
   }
 
   useEffect(() => {

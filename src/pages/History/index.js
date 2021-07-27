@@ -32,18 +32,13 @@ function History(props) {
         <header className='bg-yellow-400 p-3 md:hidden block'>
         <Header type='responsive' />
         </header>
-				<main className="bg-bg-history w-full md:h-full h-screen bg-cover bg-center md:px-32 py-20 flex flex-col ">
+				<main className="bg-bg-history w-full h-screen bg-cover bg-center md:px-32 py-20 flex flex-col ">
 					<section className="flex flex-col items-center">
 						<h3 className="text-white text-2xl font-medium">
               Let’s see what you have bought!
 						</h3>
 						<h4 className="text-white text-sm">Select item to delete</h4>
 					</section>
-					<div className="my-10 ">
-						<button className="text-white float-right focus:outline-none hover:underline md:px-32 px-16">
-              Delete
-						</button>
-					</div>
 					<div className="grid grid-flow-row md:grid-cols-3 grid-cols-1 gap-5 md:px-32 px-16 ">
 						{history?.map((item) => {
 							const total = item.total + item.tax + item.shipping_cost

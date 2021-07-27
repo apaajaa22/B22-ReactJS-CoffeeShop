@@ -1,6 +1,18 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 // eslint-disable-next-line no-unused-vars
 function Counter({ onValueChange, stateValue, max, onIncrease, onDecrease }) {
   const [counter, setCounter] = useState(stateValue)
@@ -9,7 +21,10 @@ function Counter({ onValueChange, stateValue, max, onIncrease, onDecrease }) {
     let result = counter
     if (type === 'plus') {
       if (counter === max) {
-        window.alert(`There are only ${max} of these items`)
+        Toast.fire({
+          icon: 'none',
+          title: `There are only ${max} of these items`
+        })
       } else {
         onIncrease()
         result = counter + 1
