@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react'
 
+// eslint-disable-next-line react/prop-types
 function ItemCart({ pic, name, quantity, size, price }) {
   return (
     <div className="flex flex-row items-center py-2">
@@ -13,7 +14,7 @@ function ItemCart({ pic, name, quantity, size, price }) {
         <p>IDR {price}</p>
       </div>
     </div>
-  );
+  )
 }
 
-export default ItemCart;
+export default ItemCart

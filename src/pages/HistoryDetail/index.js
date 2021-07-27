@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { ILFood4 } from "../../assets";
-import { Button, Footer, Header, ItemCart, ItemHistory } from "../../components";
-import { authLogout } from "../../redux/actions/auth";
-import { getDetailHistory, getHistory, deleteHistory } from "../../redux/actions/history";
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { Link, useHistory, useParams } from 'react-router-dom'
+import { ILFood4 } from '../../assets'
+import { Button, Footer, Header, ItemCart, ItemHistory } from '../../components'
+import { authLogout } from '../../redux/actions/auth'
+import { getDetailHistory, getHistory, deleteHistory } from '../../redux/actions/history'
 
 function HistoryDetail(props) {
-  const { slug } = useParams();
-  const [setModal] = useState(false);
-  const { history } = props.history;
-  const { results } = props.history?.details;
-  const { invoice } = props.history?.details;
+  const { slug } = useParams()
+  const [setModal] = useState(false)
+  const { history } = props.history
+  const { results } = props.history?.details
+  const { invoice } = props.history?.details
   const navigation = useHistory()
 
   const deleteHistory = () => {
@@ -20,16 +22,16 @@ function HistoryDetail(props) {
   }
 
   useEffect(() => {
-    console.log("ini id", slug);
-    props.getHistory(props.auth.token);
-    props.getDetailHistory(props.auth.token, slug);
-    console.log(invoice, results);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug]);
+    console.log('ini id', slug)
+    props.getHistory(props.auth.token)
+    props.getDetailHistory(props.auth.token, slug)
+    console.log(invoice, results)
+
+  }, [slug])
 
   const modalChecked = () => {
-    setModal(true);
-  };
+    setModal(true)
+  }
 
 
   return (
@@ -59,16 +61,16 @@ function HistoryDetail(props) {
           </div>
           <div className="grid grid-flow-row md:grid-cols-3 grid-cols-1 gap-5 md:px-32 px-16 gap-5 px-32">
             {history?.map((item) => {
-              const total = item.total + item.tax + item.shipping_cost;
+              const total = item.total + item.tax + item.shipping_cost
               return (
                 <ItemHistory
                   key={item.id}
                   onClick={modalChecked}
                   code={item.code}
-                  total={total.toLocaleString("en")}
+                  total={total.toLocaleString('en')}
                   payment={item.payment_method}
                 />
-              );
+              )
             })}
           </div>
         </main>
@@ -88,10 +90,10 @@ function HistoryDetail(props) {
                   pic={ILFood4}
                   name={item.name}
                   quantity={item.amount}
-                  price={item.price.toLocaleString("en")}
+                  price={item.price.toLocaleString('en')}
                   size={item.variants}
                 />
-              );
+              )
             })}
           </div>
           <div className="flex flex-row items-center justify-between mt-5">
@@ -106,21 +108,21 @@ function HistoryDetail(props) {
               {invoice?.map((res) => {
                 return (
                   <div>
-                    <p>IDR {res.total.toLocaleString("en")}</p>
-                    <p>IDR {res.tax.toLocaleString("en")}</p>
-                    <p>IDR {res.shipping_cost.toLocaleString("en")}</p>
+                    <p>IDR {res.total.toLocaleString('en')}</p>
+                    <p>IDR {res.tax.toLocaleString('en')}</p>
+                    <p>IDR {res.shipping_cost.toLocaleString('en')}</p>
                     <p className="uppercase"> {res.payment_method}</p>
                     <p className="uppercase"> {res.shipping_address}</p>
                   </div>
-                );
+                )
               })}
             </div>
           </div>
           <div className="flex flex-row justify-between text-yellow-900 font-bold text-2xl pt-5">
             <p>TOTAL</p>
             {invoice?.map((res) => {
-              const total = res.total + res.tax + res.shipping_cost;
-              return <p>IDR {total.toLocaleString("en")}</p>;
+              const total = res.total + res.tax + res.shipping_cost
+              return <p>IDR {total.toLocaleString('en')}</p>
             })}
           </div>
           <div className="bg-white text-white font-bold rounded-xl px-20 mt-5 py-2 focus:outline-none tracking-widest">
@@ -128,7 +130,7 @@ function HistoryDetail(props) {
           </div>
           <div className="flex flex-row justify-center ">
             <Link
-              to={`/history`}
+              to={'/history'}
               className="bg-yellow-900 text-white font-bold rounded-xl px-10 py-2 focus:outline-none tracking-widest"
             >
               CLOSE
@@ -137,15 +139,15 @@ function HistoryDetail(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => ({
   users: state.users,
   auth: state.auth,
   history: state.history,
-});
+})
 
-const mapDispatchToProps = { authLogout, getHistory, getDetailHistory, deleteHistory };
+const mapDispatchToProps = { authLogout, getHistory, getDetailHistory, deleteHistory }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HistoryDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryDetail)

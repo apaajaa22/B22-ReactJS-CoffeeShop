@@ -1,6 +1,6 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { PrivateRoute } from "../../components";
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { PrivateRoute } from '../../components'
 import {
   Cart,
   ForgotPassword,
@@ -12,7 +12,7 @@ import {
   ProductDetail,
   Register,
   UserProfile,
-} from "../../pages";
+} from '../../pages'
 function Routes() {
   return (
     <Router>
@@ -49,7 +49,7 @@ function Routes() {
         </Route>
       </Switch>
     </Router>
-  );
+  )
 }
 
-export default Routes;
+export default Routes

@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react'
 
+// eslint-disable-next-line react/prop-types
 function ListCategory({ category, onClick }) {
   return (
     <ul className="flex flex-row  my-8 space-x-24 justify-center">
@@ -12,7 +13,7 @@ function ListCategory({ category, onClick }) {
         </button>
       </li>
     </ul>
-  );
+  )
 }
 
-export default ListCategory;
+export default ListCategory

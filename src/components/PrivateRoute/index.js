@@ -1,24 +1,25 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Route, Redirect } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import React from 'react'
+import { connect } from 'react-redux'
+import { Route, Redirect } from 'react-router-dom'
 
 function PrivateRoute({ auth, children, ...rest }) {
-  const { token } = auth;
+  const { token } = auth
   return (
     <Route
       render={() => {
         if (token !== null) {
-          return children;
+          return children
         } else {
-          return <Redirect to="/login" />;
+          return <Redirect to="/login" />
         }
       }}
       {...rest}
     />
-  );
+  )
 }
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-});
-export default connect(mapStateToProps)(PrivateRoute);
+})
+export default connect(mapStateToProps)(PrivateRoute)

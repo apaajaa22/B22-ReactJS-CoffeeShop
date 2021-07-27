@@ -1,5 +1,6 @@
-import React from "react";
-import { BsPencil } from "react-icons/bs";
+/* eslint-disable react/prop-types */
+import React from 'react'
+import { BsPencil } from 'react-icons/bs'
 function FormProfile({
   title,
   label1,
@@ -62,7 +63,7 @@ function FormProfile({
                 />
               </div>
             ) : (
-              ""
+              ''
             )}
           </div>
           <div className=" flex flex-col flex-1">
@@ -75,19 +76,19 @@ function FormProfile({
             />
             {isRadio ? (
               <div className="-ml-2">
-                <div class="flex flex-row items-center mt-5 ">
-                  <label class="radioGender m-3">
+                <div className="flex flex-row items-center mt-5 ">
+                  <label className="radioGender m-3">
                     <input value={valueRadio1} onChange={onChangeRadio1} type="radio" name="gender" />
-                    <span class="item"></span>
+                    <span className="item"></span>
                   </label>
-                  <p class="font-semibold text-gray-500">Male</p>
+                  <p className="font-semibold text-gray-500">Male</p>
                 </div>
-                <div class="flex flex-row items-center mt-5 ">
-                  <label class="radioGender m-3">
+                <div className="flex flex-row items-center mt-5 ">
+                  <label className="radioGender m-3">
                     <input value={valueRadio2} onChange={onChangeRadio2} type="radio" name="gender" />
-                    <span class="item"></span>
+                    <span className="item"></span>
                   </label>
-                  <p class="font-semibold text-gray-500">Female</p>
+                  <p className="font-semibold text-gray-500">Female</p>
                 </div>
               </div>
             ) : (
@@ -97,7 +98,7 @@ function FormProfile({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default FormProfile;
+export default FormProfile

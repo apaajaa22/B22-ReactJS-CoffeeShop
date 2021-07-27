@@ -1,6 +1,6 @@
-import React from "react";
-import { InfoMarket } from "..";
-import { IcCustomer, IcGps, IcUser } from "../../assets";
+import React from 'react'
+import { InfoMarket } from '..'
+import { IcCustomer, IcGps, IcUser } from '../../assets'
 
 function SectionBarStatus() {
   return (
@@ -11,7 +11,7 @@ function SectionBarStatus() {
       <div className="border-r-4 border-gray-200 h-full" />
       <InfoMarket Icon={IcCustomer} value="800+" label="Customers" />
     </section>
-  );
+  )
 }
 
-export default SectionBarStatus;
+export default SectionBarStatus

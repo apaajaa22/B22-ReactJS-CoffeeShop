@@ -1,5 +1,6 @@
-import React from "react";
-import { Button } from "..";
+/* eslint-disable react/prop-types */
+import React from 'react'
+import { Button } from '..'
 
 function SectionBarInfo({ title, subTitle, buttonName }) {
   return (
@@ -12,7 +13,7 @@ function SectionBarInfo({ title, subTitle, buttonName }) {
         <Button text={buttonName} />
       </div>
     </section>
-  );
+  )
 }
 
-export default SectionBarInfo;
+export default SectionBarInfo

@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react'
 
+// eslint-disable-next-line react/prop-types
 function ButtonSquare({ text, ...rest }) {
   return (
     <button
@@ -8,7 +9,7 @@ function ButtonSquare({ text, ...rest }) {
     >
       {text}
     </button>
-  );
+  )
 }
 
-export default ButtonSquare;
+export default ButtonSquare

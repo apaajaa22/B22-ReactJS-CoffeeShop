@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { IcLogo } from "../../assets";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { IcLogo } from '../../assets'
 
 function Logo() {
   return (
@@ -11,7 +11,7 @@ function Logo() {
       <img src={IcLogo} alt="logoCoffee" />
       <h1 className="font-bold text-xl">Coffee Shop</h1>
     </Link>
-  );
+  )
 }
 
-export default Logo;
+export default Logo

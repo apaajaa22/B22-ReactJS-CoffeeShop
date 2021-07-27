@@ -1,13 +1,13 @@
-import Home from "./Home";
-import Login from "./Login";
-import Register from "./Register";
-import Product from "./Product";
-import ProductDetail from "./ProductDetail";
-import Cart from "./Cart";
-import UserProfile from "./UserProfile";
-import ForgotPassword from "./ForgotPassword";
-import History from "./History";
-import HistoryDetail from "./HistoryDetail";
+import Home from './Home'
+import Login from './Login'
+import Register from './Register'
+import Product from './Product'
+import ProductDetail from './ProductDetail'
+import Cart from './Cart'
+import UserProfile from './UserProfile'
+import ForgotPassword from './ForgotPassword'
+import History from './History'
+import HistoryDetail from './HistoryDetail'
 
 export {
   Home,
@@ -20,4 +20,4 @@ export {
   ForgotPassword,
   History,
   HistoryDetail,
-};
+}

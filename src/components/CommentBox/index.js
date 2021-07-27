@@ -1,6 +1,7 @@
-import React from "react";
-import { IcStar } from "../../assets";
+import React from 'react'
+import { IcStar } from '../../assets'
 
+// eslint-disable-next-line react/prop-types
 function CommentBox({ pic, name, origin, rate, desc }) {
   return (
     <div className="bg-white w-widthBox h-heightBox mb-5 p-6 rounded-xl border-2 border-gray-300 hover:border-red-900">
@@ -19,7 +20,7 @@ function CommentBox({ pic, name, origin, rate, desc }) {
         <p className="tracking-normal leading-relaxed">{desc}</p>
       </div>
     </div>
-  );
+  )
 }
 
-export default CommentBox;
+export default CommentBox

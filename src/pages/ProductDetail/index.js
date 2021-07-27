@@ -1,47 +1,50 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { connect } from "react-redux";
-import { useParams } from "react-router";
-import { Button, Footer, Header, SectionBar } from "../../components";
-import { addProducts } from "../../redux/actions/carts";
-import { getDetailProducts } from "../../redux/actions/products";
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+import { connect } from 'react-redux'
+import { useParams } from 'react-router'
+import { Button, Footer, Header, SectionBar } from '../../components'
+import { addProducts } from '../../redux/actions/carts'
+import { getDetailProducts } from '../../redux/actions/products'
 
 function ProductDetail(props) {
-  const { id } = useParams();
-  const { details } = props.products;
-  const [price, setPrice] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState(0);
-  const [variant, setVariant] = useState(null);
+  const { id } = useParams()
+  const { details } = props.products
+  const [price, setPrice] = useState(0)
+  const [selectedVariant, setSelectedVariant] = useState(0)
+  const [variant, setVariant] = useState(null)
 
   useEffect(() => {
     if (details?.variants) {
-      console.log("changing");
+      console.log('changing')
       const data = details?.variants.map((variant) => {
-        return { ...variant, amount: 0 };
-      });
-      setVariant(data);
-      console.log(`data`, data);
+        return { ...variant, amount: 0 }
+      })
+      setVariant(data)
+      console.log('data', data)
     }
-  }, [details?.variants]);
+  }, [details?.variants])
 
   useEffect(() => {
     if (details?.base_price) {
-      setPrice(details?.base_price);
+      setPrice(details?.base_price)
     }
-  }, [details]);
+  }, [details])
 
   useEffect(() => {
-    props.getDetailProducts(id);
+    props.getDetailProducts(id)
     return () => {
-      setVariant(null);
-    };
-  }, []);
+      setVariant(null)
+    }
+  }, [])
 
   const getPrice = (idx) => {
-    const getPrice = details.variants[idx].price;
-    setPrice(getPrice);
-    setSelectedVariant(getPrice);
-  };
+    const getPrice = details.variants[idx].price
+    setPrice(getPrice)
+    setSelectedVariant(getPrice)
+  }
 
   return (
     <div>
@@ -59,9 +62,9 @@ function ProductDetail(props) {
         <section className="bg-gray-200 w-full h-full px-32 flex flex-row pb-40">
           <div className="w-fourpersen ml-20">
             <p className="text-sm my-10">
-              Favorite & Promo{" "}
+              Favorite & Promo{' '}
               <span>
-                {">"} {details?.name}
+                {'>'} {details?.name}
               </span>
             </p>
             <div className="w-72 text-center space-y-5">
@@ -72,7 +75,7 @@ function ProductDetail(props) {
               />
               <h3 className="text-4xl font-extrabold">{details?.name}</h3>
               <h4 className="text-2xl font-medium">
-                IDR {price.toLocaleString("en")}
+                IDR {price.toLocaleString('en')}
               </h4>
               <Button
                 onClick={() => props.addProducts(variant)}
@@ -103,7 +106,7 @@ function ProductDetail(props) {
                     >
                       {variant.code}
                     </button>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -156,13 +159,13 @@ function ProductDetail(props) {
         </footer>
       </main>
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => ({
   products: state.products,
-});
+})
 
-const mapdispatchToProps = { getDetailProducts, addProducts };
+const mapdispatchToProps = { getDetailProducts, addProducts }
 
-export default connect(mapStateToProps, mapdispatchToProps)(ProductDetail);
+export default connect(mapStateToProps, mapdispatchToProps)(ProductDetail)

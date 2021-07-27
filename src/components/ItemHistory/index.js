@@ -1,7 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ILFood4 } from "../../assets";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { ILFood4 } from '../../assets'
 
+// eslint-disable-next-line react/prop-types
 function ItemHistory({ code, total, payment, to }) {
   return (
     <Link
@@ -15,7 +16,7 @@ function ItemHistory({ code, total, payment, to }) {
         <p className="text-yellow-900">Payment: {payment}</p>
       </div>
     </Link>
-  );
+  )
 }
 
-export default ItemHistory;
+export default ItemHistory

@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react'
 
+// eslint-disable-next-line react/prop-types
 function Alert({ message }) {
   return (
     <div
@@ -9,7 +10,7 @@ function Alert({ message }) {
       <p className="font-bold">Be Warned</p>
       <p>{message}</p>
     </div>
-  );
+  )
 }
 
-export default Alert;
+export default Alert

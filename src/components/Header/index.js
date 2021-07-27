@@ -1,7 +1,8 @@
-import React from "react";
-import FormHeader from "./FormHeader";
-import MainHeader from "./MainHeader";
-import SecondaryHeader from "./SecondaryHeader";
+/* eslint-disable react/prop-types */
+import React from 'react'
+import FormHeader from './FormHeader'
+import MainHeader from './MainHeader'
+import SecondaryHeader from './SecondaryHeader'
 function Header({
   type,
   label,
@@ -20,7 +21,7 @@ function Header({
   onClickSearch
 }) {
   switch (type) {
-    case "main":
+    case 'main':
       return (
         <MainHeader
           home={home}
@@ -35,8 +36,8 @@ function Header({
           onChangeSort={onChangeSort}
           onClickSearch={onClickSearch}
         />
-      );
-    case "secondary":
+      )
+    case 'secondary':
       return (
         <SecondaryHeader
           home={home}
@@ -46,12 +47,12 @@ function Header({
           isSearchInput={isSearchInput}
           onClick={onClick}
         />
-      );
-    case "form":
-      return <FormHeader label={label} navigation={navigation} />;
+      )
+    case 'form':
+      return <FormHeader label={label} navigation={navigation} />
     default:
-      return <MainHeader />;
+      return <MainHeader />
   }
 }
 
-export default Header;
+export default Header

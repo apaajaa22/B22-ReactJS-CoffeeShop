@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Logo } from "..";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { Logo } from '..'
 import {
   IcMessage,
   IcSearch,
   IcUserDefault,
   ILUserDefault,
-} from "../../assets";
-import Search from "../Search";
-import { getUser } from "../../redux/actions/users";
+} from '../../assets'
+import Search from '../Search'
+import { getUser } from '../../redux/actions/users'
 
 function MainHeader({
   auth,
@@ -27,9 +29,9 @@ function MainHeader({
   onClickSearch
 }) {
   useEffect(() => {
-    console.log(auth);
-    getUser(auth.token);
-  }, []);
+    console.log(auth)
+    getUser(auth.token)
+  }, [])
 
   return (
     <nav className="flex flex-row justify-between py-7 items-center  ">
@@ -111,7 +113,7 @@ function MainHeader({
                     alt="user"
                     className="w-10 h-10 rounded-full object-cover "
                   />
-                );
+                )
               })}
             </Link>
           </div>
@@ -134,13 +136,13 @@ function MainHeader({
         )}
       </div>
     </nav>
-  );
+  )
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
   users: state.users,
-});
+})
 
-const mapDisPatchToProps = { getUser };
+const mapDisPatchToProps = { getUser }
 
-export default connect(mapStateToProps, mapDisPatchToProps)(MainHeader);
+export default connect(mapStateToProps, mapDisPatchToProps)(MainHeader)

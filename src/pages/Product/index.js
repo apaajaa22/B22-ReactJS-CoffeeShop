@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom"
-import { Button, Coupon, Footer, Header, Item } from "../../components";
-import { getCategory, getProductCategory } from "../../redux/actions/category";
-import { getProducts, searchProducts } from "../../redux/actions/products";
-import { getUser } from "../../redux/actions/users";
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { useHistory, useLocation } from 'react-router-dom'
+import { Button, Coupon, Footer, Header, Item } from '../../components'
+import { getCategory, getProductCategory } from '../../redux/actions/category'
+import { getProducts, searchProducts } from '../../redux/actions/products'
+import { getUser } from '../../redux/actions/users'
 import qs from 'querystring'
 
 function Product(props) {
@@ -13,35 +15,35 @@ function Product(props) {
   }
   const location = useLocation()
   const urlSearch = parseQuery(location.search).search
-  const { data } = props.products;
-  const { data: categoryData } = props.category;
-  const { productCategory } = props.category;
+  const { data } = props.products
+  const { data: categoryData } = props.category
+  const { productCategory } = props.category
   useEffect(() => {
-    props.getUser(props.auth.token);
+    props.getUser(props.auth.token)
     if(urlSearch){
       props.searchProducts(searchTemp, sort)
     }else{
-      props.getProducts();
+      props.getProducts()
     }
-    props.getCategory();
-  }, []);
+    props.getCategory()
+  }, [])
 
   const loadMore = () => {
-    const { nextPage } = props.products.pageInfo;
+    const { nextPage } = props.products.pageInfo
     if (nextPage !== null) {
-      props.getProducts(nextPage);
+      props.getProducts(nextPage)
     } else {
-      window.alert("no more items");
+      window.alert('no more items')
     }
-  };
+  }
   const loadMoreProdCat = () => {
-    const { nextPage } = props.category.pageInfo;
+    const { nextPage } = props.category.pageInfo
     if (nextPage !== null) {
-      props.getProductCategory(null, nextPage);
+      props.getProductCategory(null, nextPage)
     } else {
-      window.alert("no more items");
+      window.alert('no more items')
     }
-  };
+  }
 
 
 
@@ -52,16 +54,16 @@ function Product(props) {
   const history = useHistory()
 
   const onSearch = (e) => {
-    if(e.key === "Enter"){
+    if(e.key === 'Enter'){
       history.push(`/products?search=${searchTemp}&sort=${sort}`)
       setSearchTemp(search)
       setSearch(searchTemp)
       props.searchProducts(searchTemp, sort)
     }
   }
-  console.log(`search`, urlSearch)
+  console.log('search', urlSearch)
 
-  useEffect((e) => {
+  useEffect(() => {
     setSearchTemp(urlSearch)
   },[location.search])
 
@@ -124,7 +126,7 @@ function Product(props) {
                       {cat.name}
                     </button>
                   </li>
-                );
+                )
               })}
             </ul>
             <div className="grid md:grid-cols-4 grid-cols-2 gap-7 px-10 md:px-32">
@@ -133,24 +135,24 @@ function Product(props) {
                     return (
                       <Item
                         name={products.name}
-                        price={products.price.toLocaleString("en")}
+                        price={products.price.toLocaleString('en')}
                         picture={products.picture}
                         to={`/products/${products.id}`}
                       />
-                    );
+                    )
                   })
                 : productCategory.map((product) => {
                     if (props.category.productCategory === 0) {
-                      return <></>;
+                      return <></>
                     }
                     return (
                       <Item
                         name={product.name}
-                        price={product.price.toLocaleString("en")}
+                        price={product.price.toLocaleString('en')}
                         picture={product.picture}
                         to={`/products/${product.id}`}
                       />
-                    );
+                    )
                   })}
             </div>
             {urlSearch ? <div className=" flex flex-row justify-center mt-10">
@@ -183,20 +185,20 @@ function Product(props) {
         <Footer />
       </footer>
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => ({
   products: state.products,
   category: state.category,
   auth: state.auth,
-});
+})
 const mapDispatchToProps = {
   getProducts,
   searchProducts,
   getCategory,
   getProductCategory,
   getUser,
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default connect(mapStateToProps, mapDispatchToProps)(Product)

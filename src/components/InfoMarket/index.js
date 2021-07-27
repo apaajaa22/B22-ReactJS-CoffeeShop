@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react'
 
+// eslint-disable-next-line react/prop-types
 function InfoMarket({ value, label, Icon }) {
   return (
     <div className="flex flex-row justify-center items-center space-x-5">
@@ -9,7 +10,7 @@ function InfoMarket({ value, label, Icon }) {
         <p className="text-lg text-gray-500">{label}</p>
       </div>
     </div>
-  );
+  )
 }
 
-export default InfoMarket;
+export default InfoMarket

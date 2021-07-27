@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Logo, Search } from "..";
-import { IcMessage, IcSearch, ILUserDefault } from "../../assets";
-import { getUser } from "../../redux/actions/users";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { Logo, Search } from '..'
+import { IcMessage, IcSearch, ILUserDefault } from '../../assets'
+import { getUser } from '../../redux/actions/users'
 function SecondaryHeader({
   home,
   product,
@@ -15,9 +17,9 @@ function SecondaryHeader({
   users,
 }) {
   useEffect(() => {
-    console.log(auth);
-    getUser(auth.token);
-  }, []);
+    console.log(auth)
+    getUser(auth.token)
+  }, [])
   return (
     <nav className="flex flex-row justify-between py-7 items-center">
       <Logo />
@@ -98,18 +100,18 @@ function SecondaryHeader({
                 alt="user"
                 className="w-10 h-10 rounded-full object-cover "
               />
-            );
+            )
           })}
         </Link>
       </div>
     </nav>
-  );
+  )
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
   users: state.users,
-});
+})
 
-const mapDisPatchToProps = { getUser };
+const mapDisPatchToProps = { getUser }
 
-export default connect(mapStateToProps, mapDisPatchToProps)(SecondaryHeader);
+export default connect(mapStateToProps, mapDisPatchToProps)(SecondaryHeader)

@@ -1,5 +1,5 @@
-import React from "react";
-import { IcArLeft, IcArRight } from "../../assets";
+import React from 'react'
+import { IcArLeft, IcArRight } from '../../assets'
 
 function Slider() {
   return (
@@ -27,7 +27,7 @@ function Slider() {
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-export default Slider;
+export default Slider

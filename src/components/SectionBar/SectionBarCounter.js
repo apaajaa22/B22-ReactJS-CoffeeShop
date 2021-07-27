@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Counter } from "..";
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useEffect, useState } from 'react'
+import { Counter } from '..'
 
 function SectionBarCounter({
   title,
@@ -11,27 +14,27 @@ function SectionBarCounter({
   onClick,
   variant,
 }) {
-  const [item, setItem] = useState(variant);
+  const [item, setItem] = useState(variant)
 
   useEffect(() => {
     if (variant.length) {
-      setItem(variant);
+      setItem(variant)
     }
-  }, [variant]);
+  }, [variant])
 
   const onIncrease = (idx) => {
-    const data = [...item];
-    data[idx].amount = data[idx].amount + 1;
-    console.log(data);
-    setItem(data);
-  };
+    const data = [...item]
+    data[idx].amount = data[idx].amount + 1
+    console.log(data)
+    setItem(data)
+  }
 
   const onDecrease = (idx) => {
-    const data = [...item];
-    data[idx].amount = data[idx].amount - 1;
-    console.log(data);
-    setItem(data);
-  };
+    const data = [...item]
+    data[idx].amount = data[idx].amount - 1
+    console.log(data)
+    setItem(data)
+  }
 
   return (
     <section className="z-50 relative -mt-24 mx-32 flex flex-row space-x-10">
@@ -48,7 +51,7 @@ function SectionBarCounter({
               <h5>
                 x{variant.amount} {variant.name}
               </h5>
-            );
+            )
           })}
         </div>
         <div className="space-y-1">
@@ -61,7 +64,7 @@ function SectionBarCounter({
                 stateValue={stateValue}
                 max={max}
               />
-            );
+            )
           })}
         </div>
       </section>
@@ -74,9 +77,9 @@ function SectionBarCounter({
         </button>
       </section>
     </section>
-  );
+  )
 }
 SectionBarCounter.defaultProps = {
   variant: [],
-};
-export default SectionBarCounter;
+}
+export default SectionBarCounter

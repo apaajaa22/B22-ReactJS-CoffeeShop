@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { IcGoogle } from "../../assets";
+/* eslint-disable react/prop-types */
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { IcGoogle } from '../../assets'
 import {
   Alert,
   Button,
@@ -8,31 +9,31 @@ import {
   Form,
   Header,
   SectionBar,
-} from "../../components";
-import { authRegister } from "../../redux/actions/register";
-import { useHistory } from "react-router-dom";
+} from '../../components'
+import { authRegister } from '../../redux/actions/register'
+import { useHistory } from 'react-router-dom'
 
 function Register(props) {
-  let history = useHistory();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const { message } = props.message;
-  const { isRegister } = props.register;
+  let history = useHistory()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const { message } = props.message
+  const { isRegister } = props.register
 
   const isLogin = () => {
     if (isRegister) {
-      history.push("/login");
-      window.alert("Register successfully");
+      history.push('/login')
+      window.alert('Register successfully')
     }
-  };
+  }
   useEffect(() => {
-    isLogin();
-  }, [isLogin]);
+    isLogin()
+  }, [isLogin])
 
   const onRegister = () => {
-    props.authRegister(email, password, phoneNumber);
-  };
+    props.authRegister(email, password, phoneNumber)
+  }
 
   return (
     <div>
@@ -47,7 +48,7 @@ function Register(props) {
               <h3 className="text-center font-bold text-2xl text-red-900">
                 Sign Up
               </h3>
-              {message !== "" && <Alert message={message} />}
+              {message !== '' && <Alert message={message} />}
               <div className="space-y-6 mb-8 px-10 md:px-32">
                 <Form
                   onChange={(e) => setEmail(e.target.value)}
@@ -90,12 +91,12 @@ function Register(props) {
         <Footer />
       </footer>
     </div>
-  );
+  )
 }
 const mapStateToProps = (state) => ({
   message: state.message,
   register: state.register,
-});
-const mapDispatchToProps = { authRegister };
+})
+const mapDispatchToProps = { authRegister }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

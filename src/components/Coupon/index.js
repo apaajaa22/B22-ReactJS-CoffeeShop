@@ -1,5 +1,5 @@
-import React from "react";
-import { ILFood6 } from "../../assets";
+import React from 'react'
+import { ILFood6 } from '../../assets'
 
 function Coupon() {
   return (
@@ -26,7 +26,7 @@ function Coupon() {
       <div className="bg-black w-6 h-96 rounded-r-xl"></div>
       <div className="bg-yellow-900 w-5 h-80 rounded-r-xl"></div>
     </div>
-  );
+  )
 }
 
-export default Coupon;
+export default Coupon

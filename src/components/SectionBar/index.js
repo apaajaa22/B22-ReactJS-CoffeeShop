@@ -1,7 +1,8 @@
-import React from "react";
-import SectionBarCounter from "./SectionBarCounter";
-import SectionBarInfo from "./SectionBarInfo";
-import SectionBarStatus from "./SectionBarStatus";
+/* eslint-disable react/prop-types */
+import React from 'react'
+import SectionBarCounter from './SectionBarCounter'
+import SectionBarInfo from './SectionBarInfo'
+import SectionBarStatus from './SectionBarStatus'
 
 function SectionBar({
   type,
@@ -15,18 +16,18 @@ function SectionBar({
   variant,
 }) {
   switch (type) {
-    case "status":
-      return <SectionBarStatus />;
-    case "info":
+    case 'status':
+      return <SectionBarStatus />
+    case 'info':
       return (
         <SectionBarInfo
           title={title}
           subTitle={subTitle}
           buttonName={buttonName}
         />
-      );
-    case "counter":
-      console.log("telat masuk", variant);
+      )
+    case 'counter':
+      console.log('telat masuk', variant)
       return (
         <SectionBarCounter
           variant={variant}
@@ -38,10 +39,10 @@ function SectionBar({
           picture={picture}
           onClick={onClick}
         />
-      );
+      )
     default:
-      return <SectionBarStatus />;
+      return <SectionBarStatus />
   }
 }
 
-export default SectionBar;
+export default SectionBar

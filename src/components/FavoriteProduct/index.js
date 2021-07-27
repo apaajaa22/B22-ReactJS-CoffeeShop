@@ -1,5 +1,6 @@
-import React from "react";
-import { Button } from "..";
+/* eslint-disable react/prop-types */
+import React from 'react'
+import { Button } from '..'
 
 function FavoriteProduct({
   pic,
@@ -70,7 +71,7 @@ function FavoriteProduct({
         <Button type={buttonType} text={buttonName} />
       </div>
     </div>
-  );
+  )
 }
 
-export default FavoriteProduct;
+export default FavoriteProduct

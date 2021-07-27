@@ -1,5 +1,6 @@
-import React from "react";
-import { Button, Footer } from "../../components";
+/* eslint-disable react/no-unescaped-entities */
+import React from 'react'
+import { Button, Footer } from '../../components'
 function ForgotPassword() {
   return (
     <div>
@@ -37,7 +38,7 @@ function ForgotPassword() {
         <Footer />
       </footer>
     </div>
-  );
+  )
 }
 
-export default ForgotPassword;
+export default ForgotPassword

@@ -1,37 +1,40 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   Button,
   Footer,
   Header,
   ItemCart,
   PaymentMethod,
-} from "../../components";
-import { authLogout } from "../../redux/actions/auth";
-import { getUser } from "../../redux/actions/users";
-import { createTransaction } from "../../redux/actions/carts";
+} from '../../components'
+import { authLogout } from '../../redux/actions/auth'
+import { getUser } from '../../redux/actions/users'
+import { createTransaction } from '../../redux/actions/carts'
 
 class Cart extends Component {
   componentDidMount() {
-    this.props.getUser(this.props.auth.token);
+    this.props.getUser(this.props.auth.token)
   }
 
   onCheckout = () => {
-    const { products } = this.props.carts;
-    const { token } = this.props.auth;
-    this.props.createTransaction(products, token);
+    const { products } = this.props.carts
+    const { token } = this.props.auth
+    this.props.createTransaction(products, token)
   };
 
   render() {
-    const { products } = this.props.carts;
-    const { users } = this.props.users;
+    const { products } = this.props.carts
+    const { users } = this.props.users
 
     const price = products.map((data) =>
       data
         .filter((item) => item.amount !== 0)
-        .map((item, idx) => parseInt(item.price) * parseInt(item.amount))
+        .map((item) => parseInt(item.price) * parseInt(item.amount))
     )
-    const itemTotal = price.reduce((acc, curr) => parseInt(acc) + parseInt(curr), 0);
+    const itemTotal = price.reduce((acc, curr) => parseInt(acc) + parseInt(curr), 0)
     const tax = itemTotal * (10 /100)
     const shippingFee = 10000
     const grandPrice = itemTotal+tax+shippingFee
@@ -66,7 +69,7 @@ class Cart extends Component {
                     {products.map((data) =>
                       data
                         .filter((item) => item.amount !== 0)
-                        .map((item, idx) => (
+                        .map((item) => (
                           <ItemCart
                             pic={
                               item?.picture !== undefined ? item?.picture : null
@@ -74,7 +77,7 @@ class Cart extends Component {
                             name={item?.product}
                             quantity={item?.amount}
                             size={item?.name}
-                            price={item?.price.toLocaleString("en")}
+                            price={item?.price.toLocaleString('en')}
                           />
                         ))
                     )}
@@ -116,7 +119,7 @@ class Cart extends Component {
                         </div>
                         <p>{user.phone_number}</p>
                       </div>
-                    );
+                    )
                   })}
                   <p className="text-white pt-5 pb-2 font-bold text-xl">
                     Payment Method
@@ -137,7 +140,7 @@ class Cart extends Component {
           <Footer />
         </footer>
       </section>
-    );
+    )
   }
 }
 
@@ -146,7 +149,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   users: state.users,
   message: state.message,
-});
+})
 
-const mapDispatchToProps = { authLogout, getUser, createTransaction };
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+const mapDispatchToProps = { authLogout, getUser, createTransaction }
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

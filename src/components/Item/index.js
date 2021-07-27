@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
+// eslint-disable-next-line react/prop-types
 function Item({ name, picture, price, to }) {
   return (
     <Link
@@ -17,8 +18,8 @@ function Item({ name, picture, price, to }) {
       </h4>
       <h5 className="text-yellow-900 font-medium text-align">IDR {price}</h5>
     </Link>
-  );
+  )
 }
 
-export default Item;
+export default Item
 //default image, update patch, window alert jadi modal, responsive, searching, sorting, eslint

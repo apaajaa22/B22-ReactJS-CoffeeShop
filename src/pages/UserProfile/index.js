@@ -1,39 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { BsPencil } from "react-icons/bs";
-import { Button, Footer, FormProfile, Header } from "../../components";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { connect } from "react-redux";
-import { getUser } from "../../redux/actions/users";
-import { authLogout } from "../../redux/actions/auth";
-import { updateProfile } from "../../redux/actions/profile";
-import { getHistory } from "../../redux/actions/history";
-import { ILUserDefault } from "../../assets";
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useEffect, useState } from 'react'
+import { BsPencil } from 'react-icons/bs'
+import { Button, Footer, FormProfile, Header } from '../../components'
+import { MdKeyboardArrowRight } from 'react-icons/md'
+import { connect } from 'react-redux'
+import { getUser } from '../../redux/actions/users'
+import { authLogout } from '../../redux/actions/auth'
+import { updateProfile } from '../../redux/actions/profile'
+import { getHistory } from '../../redux/actions/history'
+import { ILUserDefault } from '../../assets'
 
 function UserProfile(props) {
-  const { users } = props.users;
-  const { history } = props.history;
+  const { users } = props.users
+  const { history } = props.history
 
-  const lengthHistory = history?.length;
+  const lengthHistory = history?.length
   // const { data } = props.profile;
-  const hiddenFileInput = React.useRef(null);
+  const hiddenFileInput = React.useRef(null)
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [number, setNumber] = useState("");
-  const [file, setFile] = useState('');
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [address, setAddress] = useState('')
+  const [number, setNumber] = useState('')
+  const [file, setFile] = useState('')
   const [date, setDate] = useState('')
   const [gender, setGender] = useState('Male')
 
   const handleClick = (event) => {
-    setFile(hiddenFileInput.current.click());
-  };
+    setFile(hiddenFileInput.current.click())
+  }
 
 
   useEffect(() => {
-    console.log(props.auth);
-    props.getUser(props.auth.token);
-    props.getHistory(props.auth.token);
+    console.log(props.auth)
+    props.getUser(props.auth.token)
+    props.getHistory(props.auth.token)
     users.map((user) => {
       setName(user.name)
       setEmail(user.email)
@@ -42,10 +45,10 @@ function UserProfile(props) {
       setFile(user.picture)
       setDate(user.birth)
     })
-  }, []);
+  }, [])
 
   const formData = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     props.updateProfile(
       {
         name,
@@ -56,8 +59,8 @@ function UserProfile(props) {
         file,
       },
       props.auth.token
-    );
-  };
+    )
+  }
 
   return (
     <div>
@@ -92,7 +95,7 @@ function UserProfile(props) {
                         alt="user"
                         className="w-28 h-28 rounded-full object-cover "
                       />
-                    );
+                    )
                   })}
                   <button
                     onClick={handleClick}
@@ -110,7 +113,7 @@ function UserProfile(props) {
                     type="file"
                     ref={hiddenFileInput}
                     onChange={(value) => setFile(value.target.files[0])}
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                   />
                   {users.map((user) => {
                     return (
@@ -120,7 +123,7 @@ function UserProfile(props) {
                         </p>
                         <p className="text-xs text-center">{user.email}</p>
                       </div>
-                    );
+                    )
                   })}
                 </div>
                 <p className="text-gray-500">
@@ -143,7 +146,7 @@ function UserProfile(props) {
                   value4={number}
                   onChange4={(value) => setNumber(value.target.value)}
                 />
-              );
+              )
             })}
             </div>
           </div>
@@ -158,16 +161,16 @@ function UserProfile(props) {
                   value1={name}
                   onChange1={(value) => setName(value.target.value)}
                   label2="First name :"
-                  value2={user.name.split(" ")[0]}
+                  value2={user.name.split(' ')[0]}
                   label3="Last name :"
-                  value3={user.name.split(" ")[1]}
+                  value3={user.name.split(' ')[1]}
                   label4="DD/MM/YY"
                   value4={date}
                   onChange4={(value) => setDate(value.target.value)}
                   date
                   isRadio
                 />
-              );
+              )
             })}
           </div>
           <div className="w-fourpersen flex flex-col md:ml-0 ml-24 items-center">
@@ -198,14 +201,14 @@ function UserProfile(props) {
         <Footer />
       </footer>
     </div>
-  );
+  )
 }
 const mapStateToProps = (state) => ({
   users: state.users,
   auth: state.auth,
   profile: state.profile,
   history: state.history,
-});
+})
 
-const mapDisPatchToProps = { getUser, authLogout, updateProfile, getHistory };
-export default connect(mapStateToProps, mapDisPatchToProps)(UserProfile);
+const mapDisPatchToProps = { getUser, authLogout, updateProfile, getHistory }
+export default connect(mapStateToProps, mapDisPatchToProps)(UserProfile)

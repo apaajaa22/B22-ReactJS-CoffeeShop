@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 import {
   IcAcc,
   IcAccV2,
@@ -12,7 +13,7 @@ import {
   ILUser1,
   ILUser2,
   ILUser3,
-} from "../../assets";
+} from '../../assets'
 import {
   Button,
   CommentBox,
@@ -22,12 +23,12 @@ import {
   Search,
   SectionBar,
   Slider,
-} from "../../components";
-import { getUser } from "../../redux/actions/users";
+} from '../../components'
+import { getUser } from '../../redux/actions/users'
 function Home(props) {
   useEffect(() => {
-    props.getUser(props.auth.token);
-  }, []);
+    props.getUser(props.auth.token)
+  }, [])
   return (
     <div>
       <header className="md:px-32 px-16 sticky top-0 bg-white hidden md:block">
@@ -81,19 +82,19 @@ function Home(props) {
               <li className="flex flex-row items-center">
                 <span className="mr-2">
                   <img src={IcAcc} alt="icon accept" />
-                </span>{" "}
+                </span>{' '}
                 Healthy meals, you can request the ingredients
               </li>
               <li className="flex flex-row items-center">
                 <span className="mr-2">
                   <img src={IcAcc} alt="icon accept" />
-                </span>{" "}
+                </span>{' '}
                 Chat with our staff to get better experience for ordering
               </li>
               <li className="flex flex-row items-center">
                 <span className="mr-2">
                   <img src={IcAcc} alt="icon accept" />
-                </span>{" "}
+                </span>{' '}
                 Free member card with a minimum purchase of IDR 200.000.
               </li>
             </ul>
@@ -213,14 +214,14 @@ function Home(props) {
         <Footer />
       </footer>
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => ({
   users: state.users,
   auth: state.auth,
-});
+})
 
-const mapDisPatchToProps = { getUser };
+const mapDisPatchToProps = { getUser }
 
-export default connect(mapStateToProps, mapDisPatchToProps)(Home);
+export default connect(mapStateToProps, mapDisPatchToProps)(Home)

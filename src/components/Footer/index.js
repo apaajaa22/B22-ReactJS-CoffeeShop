@@ -1,6 +1,6 @@
-import React from "react";
-import { Logo } from "..";
-import { IcFacebook, IcInstagram, IcTwitter } from "../../assets";
+import React from 'react'
+import { Logo } from '..'
+import { IcFacebook, IcInstagram, IcTwitter } from '../../assets'
 
 function Footer() {
   return (
@@ -55,7 +55,7 @@ function Footer() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

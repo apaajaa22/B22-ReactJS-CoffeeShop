@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Logo } from "..";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Logo } from '..'
+// eslint-disable-next-line react/prop-types
 function FormHeader({ label, navigation }) {
   return (
     <nav className="flex flex-row justify-between py-8 items-center px-20 pr-32">
@@ -16,7 +17,7 @@ function FormHeader({ label, navigation }) {
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
-export default FormHeader;
+export default FormHeader

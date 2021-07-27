@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react'
 
+// eslint-disable-next-line react/prop-types
 function Form({ label, placeholder, ...rest }) {
   return (
     <div>
@@ -10,7 +11,7 @@ function Form({ label, placeholder, ...rest }) {
         placeholder={placeholder}
       />
     </div>
-  );
+  )
 }
 
-export default Form;
+export default Form

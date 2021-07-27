@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import { IcSearch } from "../../assets";
-import qs from "querystring";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
+import { IcSearch } from '../../assets'
+import qs from 'querystring'
 
 function HeaderSearch({ onKeyDown, onChange, value, valueSort, onChangeSort, onClickSearch }) {
   return (
@@ -28,7 +30,7 @@ function HeaderSearch({ onKeyDown, onChange, value, valueSort, onChangeSort, onC
         <option value="price">Price</option>
       </select>
     </div>
-  );
+  )
 }
 
-export default HeaderSearch;
+export default HeaderSearch
