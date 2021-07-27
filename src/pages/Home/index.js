@@ -40,6 +40,9 @@ function Home(props) {
           history="text-gray-500"
         />
       </header>
+      <header className='bg-yellow-400 p-3 md:hidden block'>
+        <Header type='responsive' />
+      </header>
       <main>
         <section className="bg-bg-hero bg-cover w-full md:h-screen h-full md:pb-0 pb-10 bg-center md:px-32 px-16 flex-row flex">
           <div className="pt-20 tracking-wide flex-1 flex-col space-y-7">

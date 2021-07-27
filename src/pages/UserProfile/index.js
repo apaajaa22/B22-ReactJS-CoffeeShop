@@ -73,9 +73,12 @@ function UserProfile(props) {
           history="text-gray-500"
         />
       </header>
+      <header className='bg-yellow-400 p-3 md:hidden block'>
+        <Header type='responsive' />
+        </header>
       <main className="bg-bg-profile w-full h-full md:px-32 px-10 bg-cover md:space-y-0 space-y-5">
         <section className="md:py-20">
-          <h3 className="text-white text-2xl font-bold tracking-wide mb-10">
+          <h3 className="text-white text-2xl font-bold tracking-wide mb-10 pt-10">
             User Profile
           </h3>
           <div className="flex md:flex-row md:space-x-10 flex-col">

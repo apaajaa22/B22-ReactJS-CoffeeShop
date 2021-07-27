@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
-import { Button, Coupon, Footer, Header, Item } from '../../components'
+import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Button, Coupon, Footer, Header, Item, Logo } from '../../components'
 import { getCategory, getProductCategory } from '../../redux/actions/category'
 import { getProducts, searchProducts } from '../../redux/actions/products'
 import { getUser } from '../../redux/actions/users'
 import qs from 'querystring'
+
 
 function Product(props) {
   const parseQuery = (str) => {
@@ -51,6 +53,7 @@ function Product(props) {
   const [searchTemp, setSearchTemp] = useState(urlSearch ? urlSearch : '')
   const [search, setSearch] = useState(urlSearch ? urlSearch : '')
   const [sort, setSort] = useState('id')
+
   const history = useHistory()
 
   const onSearch = (e) => {
@@ -86,6 +89,15 @@ function Product(props) {
           onChangeSort={(e) => setSort(e.target.value)}
           onClickSearch={onSearch}
         />
+      </header>
+      <header className='bg-yellow-400 p-3 md:hidden block'>
+        <Header type='responsive'
+          onKeyDown={onSearch}
+          onChange={(e) => setSearchTemp(e.target.value)}
+          value={searchTemp}
+          valueSort={sort}
+          onChangeSort={(e) => setSort(e.target.value)}
+          onClickSearch={onSearch} />
       </header>
       <main>
         <section className="flex flex-row ">

@@ -48,7 +48,7 @@ function ProductDetail(props) {
 
   return (
     <div>
-      <header className="px-32">
+      <header className="hidden md:block md:px-32">
         <Header
           type="main"
           home="text-gray-500"
@@ -58,20 +58,23 @@ function ProductDetail(props) {
           isSearchInput
         />
       </header>
+      <header className='bg-yellow-400 p-3 md:hidden block'>
+        <Header type='responsive' />
+      </header>
       <main>
-        <section className="bg-gray-200 w-full h-full px-32 flex flex-row pb-40">
-          <div className="w-fourpersen ml-20">
-            <p className="text-sm my-10">
+        <section className="bg-gray-200 w-full h-full md:px-32 px-5 flex md:flex-row flex-col pb-40">
+          <div className="w-fourpersen md:ml-20 md:px-0 px-10">
+            <p className="text-sm md:my-10 hidden md:block">
               Favorite & Promo{' '}
               <span>
                 {'>'} {details?.name}
               </span>
             </p>
-            <div className="w-72 text-center space-y-5">
+            <div className="w-72 items-center flex flex-col text-center space-y-5">
               <img
                 src={details?.picture}
                 alt="food"
-                className="w-72 h-72 rounded-full object-cover"
+                className="md:w-72 md:mt-0 mt-10 w-44 h-44 md:h-72 rounded-full object-cover"
               />
               <h3 className="text-4xl font-extrabold">{details?.name}</h3>
               <h4 className="text-2xl font-medium">
@@ -85,7 +88,7 @@ function ProductDetail(props) {
               <Button type="main" text="Ask a Staff" />
             </div>
           </div>
-          <div className="flex-1 ">
+          <div className="flex-1 hidden md:block">
             <div className="w-wdetailbox h-hdetailbox bg-white mb-3  mt-10 p-20 rounded-xl">
               <p className="text-xl mb-10 w-72 text-yellow-900 font-medium">
                 {details?.delivery_on}
@@ -145,6 +148,7 @@ function ProductDetail(props) {
             </div>
           </div>
         </section>
+        <div className='px-10 md:px-0'>
         <SectionBar
           variant={variant || []}
           onClick={() => props.addProducts(variant)}
@@ -154,7 +158,8 @@ function ProductDetail(props) {
           stateValue={0}
           max={details?.quantity}
         />
-        <footer className="px-32 my-32">
+        </div>
+        <footer className="md:px-32 my-32 hidden md:block">
           <Footer />
         </footer>
       </main>

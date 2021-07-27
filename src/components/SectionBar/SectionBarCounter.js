@@ -37,15 +37,15 @@ function SectionBarCounter({
   }
 
   return (
-    <section className="z-50 relative -mt-24 mx-32 flex flex-row space-x-10">
-      <section className="bg-white h-36 w-full py-7 rounded-xl shadow-lg flex flex-row items-center justify-between px-24">
+    <section className="z-50 relative -mt-24 md:mx-32 flex flex-row space-x-10">
+      <section className="bg-white px-5 h-36 w-full py-7 rounded-xl shadow-lg flex flex-row items-center justify-between md:px-24">
         <img
           src={picture}
           alt="food"
-          className="w-28 h-28 rounded-full object-cover"
+          className="hidden md:block w-28 h-28 rounded-full object-cover"
         />
-        <div className="flex-1 ml-10">
-          <h4>{title}</h4>
+        <div className="flex-1 md:ml-10">
+          <h4 className='md:block hidden'>{title}</h4>
           {item.map((variant) => {
             return (
               <h5>
@@ -68,7 +68,7 @@ function SectionBarCounter({
           })}
         </div>
       </section>
-      <section className="w-80 h-36 rounded-xl bg-yellow-400">
+      <section className="hidden md:block w-80 h-36 rounded-xl bg-yellow-400">
         <button
           onClick={onClick}
           className="focus:outline-none w-full h-full text-2xl font-bold text-center"

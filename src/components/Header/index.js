@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import FormHeader from './FormHeader'
+import HeaderResponsive from './HeaderResponsive'
 import MainHeader from './MainHeader'
 import SecondaryHeader from './SecondaryHeader'
 function Header({
@@ -50,6 +51,8 @@ function Header({
       )
     case 'form':
       return <FormHeader label={label} navigation={navigation} />
+    case 'responsive':
+      return <HeaderResponsive isSearchInput={isSearchInput} />
     default:
       return <MainHeader />
   }

@@ -50,6 +50,9 @@ class Cart extends Component {
             history="text-gray-500"
           />
         </header>
+        <header className='bg-yellow-400 p-3 md:hidden block'>
+        <Header type='responsive' />
+      </header>
         <main className="bg-bg-cart w-full h-full md:px-32 px-16 bg-cover bg-center pb-20">
           <h3 className="text-white font-bold md:w-56 text-2xl shadow-2xl py-10">
             Checkout your item now!
