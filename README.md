@@ -26,7 +26,7 @@ this application is made using ReactJs as a framework and Tailwind CSS as stylin
 4. Add .env file at root folder project
 
 #### `REACT_APP_BACKEND_URL=http://localhost:8080`
-5. yarn start
+5. yarn start or npm start
 
 ## Acknowledgements
 * [Axios](https://axios-http.com/docs/api_intro)
