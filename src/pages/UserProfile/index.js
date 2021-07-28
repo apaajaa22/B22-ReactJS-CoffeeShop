@@ -24,7 +24,7 @@ function UserProfile(props) {
   const [email, setEmail] = useState('')
   const [address, setAddress] = useState('')
   const [number, setNumber] = useState('')
-  const [file, setFile] = useState('')
+  const [file, setFile] = useState(null)
   const [date, setDate] = useState('')
   const [gender, setGender] = useState('Male')
 
@@ -34,7 +34,7 @@ function UserProfile(props) {
 
 
   useEffect(() => {
-    console.log(props.auth)
+    console.log('file',file)
     props.getUser(props.auth.token)
     props.getHistory(props.auth.token)
     users.map((user) => {

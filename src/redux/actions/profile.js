@@ -20,34 +20,13 @@ export const updateProfile = (data, token) => {
   return async (dispatch) => {
     const form = new FormData()
     const sizeLimit = 1024 * 1024 * 2
-    if (data.file) {
-      if (data.file.size > sizeLimit) {
-        Toast.fire({
-          icon: 'error',
-          title: 'File too large'
-        })
-      }
-      try {
-        form.append('picture', data.file)
-        const { data: newData } = await http(token).put(
-          `${URL}/private/profile`,
-          form
-        )
-        dispatch({
-          type: 'SET_UPDATE_PROFILE',
-          payload: Toast.fire({
-            icon: 'success',
-            title: newData.message
+    if(data.file){
+        if (data.file.size > sizeLimit) {
+          Toast.fire({
+            icon: 'error',
+            title: 'File too large'
           })
-        })
-        dispatch(getUser(token))
-      }
-      catch (err){
-        return Toast.fire({
-          icon: 'error',
-          title: err.response.data.message
-        })
-      }
+        }
     }
     try {
       form.append('name', data.name)
@@ -55,6 +34,7 @@ export const updateProfile = (data, token) => {
       form.append('address', data.address)
       form.append('number', data.number)
       form.append('birth', data.date)
+      form.append('picture', data.file)
       // for (let i in data) {
       //   if (data[i] !== "") {
       //     form.append(i, data[i]);
@@ -75,7 +55,7 @@ export const updateProfile = (data, token) => {
     } catch (error) {
       return Toast.fire({
         icon: 'error',
-        title: 'Failed to update'
+        title: error.response.data.message
       })
     }
   }
