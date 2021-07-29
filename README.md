@@ -16,7 +16,7 @@ this application is made using ReactJs as a framework and Tailwind CSS as stylin
 ## Requirements
 1. [Node Js](https://nodejs.org/en/)
 2. Node_modules npm install or yarn install
-3. Backend API backend_beginner [here](https://github.com/apaajaa22/b22-backend-beginner)
+3. Backend API Backend_CoffeeShop [here](https://github.com/apaajaa22/b22-backend-beginner)
 
 
 ## Getting Started
