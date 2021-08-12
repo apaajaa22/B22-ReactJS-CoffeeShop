@@ -13,6 +13,7 @@ import {
   Register,
   UserProfile,
 } from '../../pages'
+import Chat from '../../pages/Chat.js'
 function Routes() {
   return (
     <Router>
@@ -40,6 +41,9 @@ function Routes() {
         </Route>
         <PrivateRoute exact path="/history">
           <History />
+        </PrivateRoute>
+        <PrivateRoute exact path="/chat">
+          <Chat />
         </PrivateRoute>
         <PrivateRoute path="/history/:slug">
           <HistoryDetail />

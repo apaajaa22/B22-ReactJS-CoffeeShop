@@ -93,12 +93,12 @@ function MainHeader({
                 <img src={IcSearch} alt="icon search" />
               </button>
             )}
-            <button className="relative">
+            <Link to='/chat' className="relative">
               <img src={IcMessage} alt="icon message" />
               <p className="bg-yellow-900 text-white rounded-full w-4 h-4 items-center justify-center flex flex-row text-xs absolute -top-2 -left-2">
                 1
               </p>
-            </button>
+            </Link>
             <Link to="/userprofile">
               {users.users.map((user) => {
                 return user.picture !== null ? (

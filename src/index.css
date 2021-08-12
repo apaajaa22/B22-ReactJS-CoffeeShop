@@ -100,3 +100,6 @@
   align-items: center;
   font-size: 18px;
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

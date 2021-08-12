@@ -39,7 +39,7 @@ function History(props) {
 						</h3>
 						<h4 className="text-white text-sm">Select item to delete</h4>
 					</section>
-					<div className="grid grid-flow-row md:grid-cols-3 grid-cols-1 gap-5 md:px-32 px-16 ">
+					<div className="grid grid-flow-row md:grid-cols-3 grid-cols-1 gap-5 md:px-32 px-16 overflow-y-scroll no-scrollbar">
 						{history?.map((item) => {
 							const total = item.total + item.tax + item.shipping_cost
 							return (

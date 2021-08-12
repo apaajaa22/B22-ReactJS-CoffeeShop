@@ -42,7 +42,7 @@ function UserProfile(props) {
       setEmail(user.email)
       setNumber(user.phone_number)
       setAddress(user.address)
-      setFile(user.picture)
+      setFile(user.picture || ILUserDefault)
       setDate(user.birth)
     })
   }, [])
@@ -86,7 +86,7 @@ function UserProfile(props) {
               <div className="bg-white rounded-t-xl px-10 py-12 pb-14 flex flex-col items-center justify-center space-y-4 ">
                 <div className="relative flex flex-col w-28 h-28">
                   {users.map((user) => {
-                    return user.picture !== null ? (
+                    return user.picture !== null || user.picture !== undefined ? (
                       <img
                         className="w-28 h-28 rounded-full object-cover "
                         src={user.picture}

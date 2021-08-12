@@ -63,7 +63,7 @@ function HistoryDetail(props) {
             onClick={props.authLogout}
           />
         </header>
-        <main className="md:h-full h-screen bg-bg-history w-full bg-cover bg-center md:px-32 py-20 flex flex-col ">
+        <main className="md:h-screen h-screen bg-bg-history w-full bg-cover bg-center md:px-32 py-20 flex flex-col ">
           <section className="flex flex-col items-center">
             <h3 className="text-white text-2xl font-medium">
               Let’s see what you have bought!
@@ -75,7 +75,7 @@ function HistoryDetail(props) {
               Delete
             </button>
           </div>
-          <div className="grid grid-flow-row md:grid-cols-3 grid-cols-1 gap-5 md:px-32 px-16 gap-5 px-32">
+          <div className="grid grid-flow-row md:grid-cols-3 grid-cols-1 gap-5 md:px-32 px-16 gap-5 px-32 overflow-y-scroll no-scrollbar">
             {history?.map((item) => {
               const total = item.total + item.tax + item.shipping_cost
               return (
@@ -99,7 +99,7 @@ function HistoryDetail(props) {
           <h4 className="text-yellow-800 text-2xl font-bold text-center">
             INVOICE
           </h4>
-          <div className="border-b-2 border-gray-300 pb-2">
+          <div className="border-b-2 border-gray-300 pb-2 ">
             {results?.map((item) => {
               return (
                 <ItemCart
