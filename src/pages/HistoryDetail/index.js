@@ -63,7 +63,7 @@ function HistoryDetail(props) {
             onClick={props.authLogout}
           />
         </header>
-        <main className="md:h-screen h-screen bg-bg-history w-full bg-cover bg-center md:px-32 py-20 flex flex-col ">
+        <main className="md:h-screen h-screen bg-bg-history w-full bg-cover bg-center md:px-32 py-12 flex flex-col ">
           <section className="flex flex-col items-center">
             <h3 className="text-white text-2xl font-medium">
               Let’s see what you have bought!

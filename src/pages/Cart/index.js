@@ -69,7 +69,7 @@ class Cart extends Component {
                   <h4 className="text-yellow-800 text-2xl font-bold text-center">
                     Order Summary
                   </h4>
-                  <div className="border-b-2 border-gray-300 md:px-10 px-5 pb-2 pt-5">
+                  <div className="border-b-2 border-gray-300 md:px-10 px-5 pb-2 pt-5 overflow-y-scroll no-scrollbar h-60">
                     {products.map((data) =>
                       data
                         .filter((item) => item.amount !== 0)

@@ -32,7 +32,7 @@ function History(props) {
         <header className='bg-yellow-400 p-3 md:hidden block'>
         <Header type='responsive' />
         </header>
-				<main className="bg-bg-history w-full h-screen bg-cover bg-center md:px-32 py-20 flex flex-col ">
+				<main className="bg-bg-history w-full h-screen bg-cover bg-center md:px-32 py-12 flex flex-col ">
 					<section className="flex flex-col items-center">
 						<h3 className="text-white text-2xl font-medium">
               Let’s see what you have bought!
