@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import carts from './carts'
+import chat from './chat'
 import auth from './auth'
 import products from './products'
 import category from './category'
@@ -18,6 +19,7 @@ const persistAuth = {
 
 const reducer = combineReducers({
   carts,
+  chat,
   auth: persistReducer(persistAuth, auth),
   products,
   category,

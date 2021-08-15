@@ -10,12 +10,9 @@ function ChatRoom() {
       </div>
       <div className="space-y-3 overflow-y-scroll no-scrollbar flex-1">
         <ItemChat />
+        <ItemChat isMe />
         <ItemChat />
-        <ItemChat />
-        <ItemChat />
-        <ItemChat />
-        <ItemChat />
-        <ItemChat />
+        <ItemChat isMe />
       </div>
       <div className="w-full flex-row flex justify-between bg-white px-10 py-4 rounded-xl items-center">
         <input
