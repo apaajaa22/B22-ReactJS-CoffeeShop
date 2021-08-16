@@ -13,23 +13,9 @@ import { getUserChat, getChat, sendChat } from '../../redux/actions/chat'
 import { AiFillCamera } from 'react-icons/ai'
 import { RiSendPlaneFill } from 'react-icons/ri'
 import { useState } from 'react'
-import Swal from 'sweetalert2'
 import {io} from 'socket.io-client'
 
 const socket = io('http://localhost:8080')
-
-
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 2000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
 
 function Chat(props) {
   // eslint-disable-next-line no-unused-vars
@@ -39,9 +25,12 @@ function Chat(props) {
   useEffect(() => {
     props.getUserChat(props.auth.token)
     console.log('aaaa', user.message)
-    socket.on(props.users.users[0].phone_number, data => {
+    socket.on('recipient', data => {
       props.getChat(props.auth.token, data.sender)
-    } )
+    })
+    // socket.on('hello', (arg) => {
+    //   window.alert(arg) // world
+    // })
   }, [])
 
   const chooseChat = (res) => {
@@ -80,8 +69,10 @@ function Chat(props) {
             </p>
             <div className="overflow-y-scroll no-scrollbar">
               {user.message?.map((res) => {
+                const isMe = props.users.users[0].id !== res.id_users
+                console.log('sender',res.id_users, props.users.users[0].id)
                 return (
-                  <UserChat
+                  <UserChat isMe={isMe}
                     onClick={() => chooseChat(res)}
                     name={res.name}
                     picture={res.picture === null ? ILUserDefault : res.picture}
@@ -93,7 +84,7 @@ function Chat(props) {
           </div>
           <div className="flex flex-col space-y-3 flex-1">
             <div className="bg-white px-10 py-5 rounded-xl">
-              <h3 className="font-bold text-3xl text-gray-500">
+              <h3 className="font-bold text-3xl text-gray-500 capitalize">
                 {props.chat.chat.recipient?.name}
               </h3>
             </div>
@@ -131,9 +122,9 @@ function Chat(props) {
                   <AiFillCamera size={28} />
                 </button>
               </div>
-              <div className='bg-yellow-900 items-center rounded-full w-10 h-10 justify-center flex ml-5'>
+              <div className='items-center rounded-full justify-center flex ml-5'>
                 <button type='submit' className="focus:outline-none ">
-                  <RiSendPlaneFill size={22} color='white' />
+                  <RiSendPlaneFill size={25} color='brown' />
                 </button>
               </div>
             </form>
