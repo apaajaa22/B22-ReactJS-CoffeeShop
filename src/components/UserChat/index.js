@@ -11,7 +11,11 @@ function UserChat({isMe, name, chat, picture, onClick, onDelete}) {
           {chat}
         </p>
       </div>
-      <button onClick={onDelete} className='w-8 h-8 focus:outline-none'><p className='text-2xl text-white'>X</p></button>
+      {
+        onDelete && <button onClick={onDelete} className='w-8 h-8 focus:outline-none'>
+        <p className='text-2xl text-white'>X</p>
+      </button>
+      }
     </button>
     }else {
       return <div></div>

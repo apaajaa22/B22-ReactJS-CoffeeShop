@@ -9,7 +9,7 @@ import { Footer, Header, Search } from '../../components'
 import ChatRoom from '../../components/ChatRoom'
 import ItemChat from '../../components/ItemChat'
 import UserChat from '../../components/UserChat'
-import { getUserChat, getChat, sendChat, getAllUser } from '../../redux/actions/chat'
+import { getUserChat, getChat, sendChat, getAllUser, deleteChat } from '../../redux/actions/chat'
 import { AiFillCamera } from 'react-icons/ai'
 import { RiSendPlaneFill } from 'react-icons/ri'
 import { useState } from 'react'
@@ -74,8 +74,8 @@ function Chat(props) {
     // )
   }
 
-  const onDelete = () => {
-    console.log('a')
+  const onDelete = (res) => {
+    console.log(res)
     Swal.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',
@@ -87,6 +87,7 @@ function Chat(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log('hapus')
+        props.deleteChat(props.auth.token, res.id, recp)
         Swal.fire(
           'Deleted!',
           'chat has been deleted.',
@@ -141,7 +142,6 @@ function Chat(props) {
                 const isMe = props.users.users[0].id !== res.id_users
                 return (
                   <UserChat
-                    onDelete={onDelete}
                     isMe={isMe}
                     onClick={() => chooseChat(res)}
                     name={res.name}
@@ -174,6 +174,7 @@ function Chat(props) {
                 const isMe = props.users.users[0].phone_number === res.sender
                 return (
                   <ItemChat
+                  onClick={() => onDelete(res)}
                     isMe={!isMe}
                     chat={res.message}
                     name={
@@ -230,6 +231,6 @@ const mapStateToProps = (state) => ({
   chat: state.chat,
 })
 
-const mapDispatchToProps = { getUserChat, getChat, sendChat, getAllUser }
+const mapDispatchToProps = { getUserChat, getChat, sendChat, getAllUser, deleteChat }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat)
