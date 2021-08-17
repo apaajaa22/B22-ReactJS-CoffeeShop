@@ -22,6 +22,7 @@ function Chat(props) {
   const { user } = props.chat
   const [chat, setChat] = useState('')
   const [recp, setRecp] = useState('')
+  const [name, setName] = useState('')
   useEffect(() => {
     props.getUserChat(props.auth.token)
     console.log('aaaa', user.message)
@@ -36,7 +37,12 @@ function Chat(props) {
   const chooseChat = (res) => {
     console.log(res)
     setRecp(res.sender)
-    props.getChat(props.auth.token, res.sender)
+    setName(res.name)
+    props.getChat(
+      props.auth.token,
+      props.users.users[0].phone_number === res.recipient ?
+      res.sender : res.recipient
+      )
   }
 
   const onSubmit = (e) => {
@@ -71,7 +77,6 @@ function Chat(props) {
             <div className="overflow-y-scroll no-scrollbar">
               {user.message?.map((res) => {
                 const isMe = props.users.users[0].id !== res.id_users
-                console.log('sender',res.id_users, props.users.users[0].id)
                 return (
                   <UserChat isMe={isMe}
                     onClick={() => chooseChat(res)}
@@ -86,7 +91,7 @@ function Chat(props) {
           <div className="flex flex-col space-y-3 flex-1">
             <div className="bg-white px-10 py-5 rounded-xl">
               <h3 className="font-bold text-3xl text-gray-500 capitalize">
-                {props.chat.chat.recipient?.name}
+                {name}
               </h3>
             </div>
             <div className="space-y-3 overflow-y-scroll no-scrollbar flex-1">
