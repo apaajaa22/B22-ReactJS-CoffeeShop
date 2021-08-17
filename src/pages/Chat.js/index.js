@@ -14,8 +14,10 @@ import { AiFillCamera } from 'react-icons/ai'
 import { RiSendPlaneFill } from 'react-icons/ri'
 import { useState } from 'react'
 import { io } from 'socket.io-client'
+import Swal from 'sweetalert2'
 
 const socket = io('http://localhost:8080')
+
 
 function Chat(props) {
   // eslint-disable-next-line no-unused-vars
@@ -24,6 +26,7 @@ function Chat(props) {
   const [recp, setRecp] = useState('')
   const [send, setSend] = useState('')
   const [name, setName] = useState('')
+  const [search, setSearch] = useState('')
   const [selected, setSelected] = useState(false)
   useEffect(() => {
     props.getUserChat(props.auth.token)
@@ -71,6 +74,28 @@ function Chat(props) {
     // )
   }
 
+  const onDelete = () => {
+    console.log('a')
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('hapus')
+        Swal.fire(
+          'Deleted!',
+          'chat has been deleted.',
+          'success'
+        )
+      }
+    })
+  }
+
   const onSubmit = (e) => {
     e.preventDefault()
     const form = {
@@ -78,9 +103,17 @@ function Chat(props) {
       recipient: recp,
     }
     props.sendChat(props.auth.token, form)
-    props.getChat(props.auth.token, props.users.users[0].phone_number)
     setChat('')
   }
+
+  const onEnterSearch = (e) => {
+    if (e.key === 'Enter'){
+      console.log(search)
+      props.getAllUser(props.auth.token, search)
+    }
+  }
+
+
   return (
     <div>
       <header className="hidden md:block px-32">
@@ -96,18 +129,19 @@ function Chat(props) {
         <section className="w-full h-full rounded-md flex flex-row justify-center">
           <div className="w-threepersen bg-yellow-900 mr-10 rounded-xl px-8 pt-16 items-center flex flex-col">
             <div>
-              <Search />
+              <Search type='main' value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={onEnterSearch} />
             </div>
             <p className="text-white my-5">
               Click a conversation to start a chat
             </p>
             <div className="overflow-y-scroll no-scrollbar">
               {
-                user.message?.length > 0 ?
+                search.length <= 0  ?
                 user.message?.map((res) => {
                 const isMe = props.users.users[0].id !== res.id_users
                 return (
                   <UserChat
+                    onDelete={onDelete}
                     isMe={isMe}
                     onClick={() => chooseChat(res)}
                     name={res.name}
