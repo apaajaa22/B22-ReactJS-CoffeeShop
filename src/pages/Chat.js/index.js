@@ -13,7 +13,7 @@ import { getUserChat, getChat, sendChat } from '../../redux/actions/chat'
 import { AiFillCamera } from 'react-icons/ai'
 import { RiSendPlaneFill } from 'react-icons/ri'
 import { useState } from 'react'
-import {io} from 'socket.io-client'
+import { io } from 'socket.io-client'
 
 const socket = io('http://localhost:8080')
 
@@ -22,11 +22,12 @@ function Chat(props) {
   const { user } = props.chat
   const [chat, setChat] = useState('')
   const [recp, setRecp] = useState('')
+  const [send, setSend] = useState('')
   const [name, setName] = useState('')
   useEffect(() => {
     props.getUserChat(props.auth.token)
     console.log('aaaa', user.message)
-    socket.on('recipient', data => {
+    socket.on('recipient', (data) => {
       props.getChat(props.auth.token, data.sender)
     })
     // socket.on('hello', (arg) => {
@@ -36,23 +37,30 @@ function Chat(props) {
 
   const chooseChat = (res) => {
     console.log(res)
-    setRecp(res.sender)
+    setRecp(
+      props.users.users[0].phone_number === res.recipient
+        ? res.sender
+        : res.recipient
+    )
+    setSend(res.sender)
     setName(res.name)
     props.getChat(
       props.auth.token,
-      props.users.users[0].phone_number === res.recipient ?
-      res.sender : res.recipient
-      )
+      props.users.users[0].phone_number === res.recipient
+        ? res.sender
+        : res.recipient
+    )
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
-    setChat('')
     const form = {
       message: chat,
-      recipient: recp
+      recipient: recp,
     }
-      props.sendChat(props.auth.token,form, recp)
+    props.sendChat(props.auth.token, form)
+    props.getChat(props.auth.token, props.users.users[0].phone_number)
+    setChat('')
   }
   return (
     <div>
@@ -78,7 +86,8 @@ function Chat(props) {
               {user.message?.map((res) => {
                 const isMe = props.users.users[0].id !== res.id_users
                 return (
-                  <UserChat isMe={isMe}
+                  <UserChat
+                    isMe={isMe}
                     onClick={() => chooseChat(res)}
                     name={res.name}
                     picture={res.picture === null ? ILUserDefault : res.picture}
@@ -95,7 +104,7 @@ function Chat(props) {
               </h3>
             </div>
             <div className="space-y-3 overflow-y-scroll no-scrollbar flex-1">
-              {props.chat.chat?.message?.map((res) => {
+              {props.chat.chat.message?.map((res) => {
                 const isMe = props.users.users[0].phone_number === res.sender
                 return (
                   <ItemChat
@@ -115,7 +124,10 @@ function Chat(props) {
                 )
               })}
             </div>
-            <form onSubmit={onSubmit} className="w-full flex-row flex justify-between bg-white px-10 py-4 rounded-xl items-center">
+            <form
+              onSubmit={onSubmit}
+              className="w-full flex-row flex justify-between bg-white px-10 py-4 rounded-xl items-center"
+            >
               <input
                 type="text"
                 className="w-full focus:outline-none"
@@ -123,14 +135,14 @@ function Chat(props) {
                 onChange={(e) => setChat(e.target.value)}
                 value={chat}
               />
-              <div className='items-center justify-center flex'>
+              <div className="items-center justify-center flex">
                 <button className="focus:outline-none">
                   <AiFillCamera size={28} />
                 </button>
               </div>
-              <div className='items-center rounded-full justify-center flex ml-5'>
-                <button type='submit' className="focus:outline-none ">
-                  <RiSendPlaneFill size={25} color='brown' />
+              <div className="items-center rounded-full justify-center flex ml-5">
+                <button type="submit" className="focus:outline-none ">
+                  <RiSendPlaneFill size={25} color="brown" />
                 </button>
               </div>
             </form>

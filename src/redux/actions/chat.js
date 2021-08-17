@@ -37,12 +37,12 @@ export const getChat = (token, num) => {
   }
 }
 
-export const sendChat = (token, data, recp) => {
+export const sendChat = (token, datauser) => {
     const form = new URLSearchParams()
-    form.append('message', data.message)
-    form.append('recipient', data.recipient)
+    form.append('message', datauser.message)
+    form.append('recipient', datauser.recipient)
     return async (dispatch) => {
-      const { data } = await http(token).post(`${URL}/private/chats`, form)
-      dispatch(getChat(token, recp))
+      const { data } = await http(token).post(`${URL}/private/chats`, form.toString())
+      dispatch(getChat(token, datauser.recipient))
     }
 }
