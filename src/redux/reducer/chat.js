@@ -1,6 +1,7 @@
 const initialState = {
   user: [],
-  chat: []
+  chat: [],
+  allUser: []
 }
 
 const chat = (state=initialState, action) => {
@@ -14,6 +15,11 @@ const chat = (state=initialState, action) => {
       return {
         ...state,
         chat: action.payload
+      }
+    case 'GET_ALL_USER':
+      return {
+        ...state,
+        allUser: action.payload
       }
       default:
         return {

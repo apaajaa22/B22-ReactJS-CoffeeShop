@@ -34,8 +34,9 @@ function Chat(props) {
   }, [])
 
   const chooseChat = (res) => {
-    setRecp(res.recipient)
-    props.getChat(props.auth.token, res.recipient)
+    console.log(res)
+    setRecp(res.sender)
+    props.getChat(props.auth.token, res.sender)
   }
 
   const onSubmit = (e) => {

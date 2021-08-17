@@ -16,6 +16,10 @@ const persistAuth = {
   storage,
   key: 'auth',
 }
+const persistUsers = {
+  storage,
+  key: 'users',
+}
 
 const reducer = combineReducers({
   carts,
@@ -23,7 +27,7 @@ const reducer = combineReducers({
   auth: persistReducer(persistAuth, auth),
   products,
   category,
-  users,
+  users: persistReducer(persistUsers, users),
   history,
   register,
   message,

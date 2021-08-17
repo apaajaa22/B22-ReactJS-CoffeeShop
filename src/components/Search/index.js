@@ -5,7 +5,7 @@ import MainSearch from './MainSearch'
 function Search({ type, onKeyDown, onChange, value, valueSort, onChangeSort, onClickSearch }) {
   switch (type) {
     case 'main':
-      return <MainSearch />
+      return <MainSearch onKeyDown={onKeyDown} onChange={onChange} onClick={onClickSearch} value={value} />
     case 'header':
       return <HeaderSearch onClickSearch={onClickSearch} valueSort={valueSort} onChangeSort={onChangeSort} onKeyDown={onKeyDown} onChange={onChange} value={value} />
     default:

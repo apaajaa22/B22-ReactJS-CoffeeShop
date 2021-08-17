@@ -23,6 +23,13 @@ export const getUserChat = (token) => {
   }
 }
 
+export const getAllUser = (token, search) => {
+  return async (dispatch) => {
+    const { data } = await http(token).get(`${URL}/private/chats/users?search=${search}`)
+    dispatch({type :'GET_ALL_USER', payload: data.results})
+  }
+}
+
 export const getChat = (token, num) => {
   return async (dispatch) => {
     const { data } = await http(token).get(`${URL}/private/chats/all?recipient=${num}`)
