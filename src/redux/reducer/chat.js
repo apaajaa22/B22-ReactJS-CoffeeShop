@@ -21,6 +21,11 @@ const chat = (state=initialState, action) => {
         ...state,
         allUser: action.payload
       }
+    case 'CLEAR_CHAT':
+      return {
+        ...state,
+        chat: []
+      }
       default:
         return {
           ...state

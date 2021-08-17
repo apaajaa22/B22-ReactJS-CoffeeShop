@@ -9,7 +9,7 @@ import { Footer, Header, Search } from '../../components'
 import ChatRoom from '../../components/ChatRoom'
 import ItemChat from '../../components/ItemChat'
 import UserChat from '../../components/UserChat'
-import { getUserChat, getChat, sendChat } from '../../redux/actions/chat'
+import { getUserChat, getChat, sendChat, getAllUser } from '../../redux/actions/chat'
 import { AiFillCamera } from 'react-icons/ai'
 import { RiSendPlaneFill } from 'react-icons/ri'
 import { useState } from 'react'
@@ -24,8 +24,10 @@ function Chat(props) {
   const [recp, setRecp] = useState('')
   const [send, setSend] = useState('')
   const [name, setName] = useState('')
+  const [selected, setSelected] = useState(false)
   useEffect(() => {
     props.getUserChat(props.auth.token)
+    props.getAllUser(props.auth.token, '')
     console.log('aaaa', user.message)
     socket.on('recipient', (data) => {
       props.getChat(props.auth.token, data.sender)
@@ -37,6 +39,7 @@ function Chat(props) {
 
   const chooseChat = (res) => {
     console.log(res)
+    setSelected(true)
     setRecp(
       props.users.users[0].phone_number === res.recipient
         ? res.sender
@@ -50,6 +53,22 @@ function Chat(props) {
         ? res.sender
         : res.recipient
     )
+  }
+
+  const chooseChat2 = (res) => {
+    console.log(res)
+    setSelected(true)
+    setRecp(
+      res.phone_number
+    )
+    setSend(props.users.users[0].phone_number)
+    setName(res.name)
+    // props.getChat(
+    //   props.auth.token,
+    //   props.users.users[0].phone_number === res.recipient
+    //     ? res.sender
+    //     : res.recipient
+    // )
   }
 
   const onSubmit = (e) => {
@@ -83,7 +102,9 @@ function Chat(props) {
               Click a conversation to start a chat
             </p>
             <div className="overflow-y-scroll no-scrollbar">
-              {user.message?.map((res) => {
+              {
+                user.message?.length > 0 ?
+                user.message?.map((res) => {
                 const isMe = props.users.users[0].id !== res.id_users
                 return (
                   <UserChat
@@ -94,10 +115,21 @@ function Chat(props) {
                     chat={res.message}
                   />
                 )
-              })}
+              }) :
+              props.chat.allUser.map((res) => {
+                const isMe = props.users.users[0].id !== res.id_users
+                return <UserChat
+                    isMe={isMe}
+                    onClick={() => chooseChat2(res)}
+                    name={res.name}
+                    picture={res.picture === null ? ILUserDefault : res.picture}
+                    chat={res.message}
+                  />
+              })
+              }
             </div>
           </div>
-          <div className="flex flex-col space-y-3 flex-1">
+          {selected ? <div className="flex flex-col space-y-3 flex-1">
             <div className="bg-white px-10 py-5 rounded-xl">
               <h3 className="font-bold text-3xl text-gray-500 capitalize">
                 {name}
@@ -146,7 +178,9 @@ function Chat(props) {
                 </button>
               </div>
             </form>
-          </div>
+          </div> : <div className='flex flex-1 bg-white rounded-xl items-center justify-center'>
+            <p className='text-2xl font-bold'>Select user to start a chat</p>
+          </div>}
         </section>
       </main>
       <footer className="px-32 py-20 hidden md:block ">
@@ -162,6 +196,6 @@ const mapStateToProps = (state) => ({
   chat: state.chat,
 })
 
-const mapDispatchToProps = { getUserChat, getChat, sendChat }
+const mapDispatchToProps = { getUserChat, getChat, sendChat, getAllUser }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat)

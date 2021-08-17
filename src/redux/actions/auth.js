@@ -31,6 +31,7 @@ const authLogout = () => {
   return async (dispatch) => {
     dispatch({type: 'SET_AUTH_LOGOUT'})
     dispatch({type: 'SET_CLEAR_HISTORY'})
+    dispatch({type: 'CLEAR_CHAT'})
   }
 }
 
