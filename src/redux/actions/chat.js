@@ -54,7 +54,7 @@ export const deleteChat = (token, id, recipient, myPhone) => {
     console.log(id)
     const form = new URLSearchParams()
     form.append('recipient', recipient)
-    const { data } = await http(token).delete(`${URL}/private/chats/${id}`, form)
+    const { data } = await http(token).delete(`${URL}/private/chats/${id}`, {data: form})
     dispatch(getChat(token, recipient))
     dispatch(getUserChat(token))
   }
