@@ -32,8 +32,9 @@ function Chat(props) {
     props.getUserChat(props.auth.token)
     props.getAllUser(props.auth.token, '')
     console.log('aaaa', user.message)
-    socket.on('recipient', (data) => {
+    socket.on(props.users.users[0].phone_number, (data) => {
       props.getChat(props.auth.token, data.sender)
+      props.getUserChat(props.auth.token)
     })
     // socket.on('hello', (arg) => {
     //   window.alert(arg) // world
