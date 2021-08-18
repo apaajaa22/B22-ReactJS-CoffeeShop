@@ -67,12 +67,11 @@ function Chat(props) {
     )
     setSend(props.users.users[0].phone_number)
     setName(res.name)
-    // props.getChat(
-    //   props.auth.token,
-    //   props.users.users[0].phone_number === res.recipient
-    //     ? res.sender
-    //     : res.recipient
-    // )
+    props.getChat(
+      props.auth.token,
+      props.users.users[0].phone_number !== res.phone_number
+      && res.phone_number
+    )
   }
 
   const onDelete = (res) => {
