@@ -41,6 +41,7 @@ export const sendChat = (token, datauser) => {
     const form = new URLSearchParams()
     form.append('message', datauser.message)
     form.append('recipient', datauser.recipient)
+    console.log('send',form)
     return async (dispatch) => {
       const { data } = await http(token).post(`${URL}/private/chats`, form.toString())
       dispatch(getChat(token, datauser.recipient))
@@ -48,9 +49,12 @@ export const sendChat = (token, datauser) => {
     }
 }
 
-export const deleteChat = (token, id, recipient) => {
+export const deleteChat = (token, id, recipient, myPhone) => {
   return async (dispatch) => {
-    const { data } = await http(token).delete(`${URL}/private/chats/${id}`)
+    console.log(id)
+    const form = new URLSearchParams()
+    form.append('recipient', recipient)
+    const { data } = await http(token).delete(`${URL}/private/chats/${id}`, form)
     dispatch(getChat(token, recipient))
     dispatch(getUserChat(token))
   }

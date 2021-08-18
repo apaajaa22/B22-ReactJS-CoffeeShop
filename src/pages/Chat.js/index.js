@@ -28,7 +28,19 @@ function Chat(props) {
   const [name, setName] = useState('')
   const [search, setSearch] = useState('')
   const [selected, setSelected] = useState(false)
+  const messageEnd = React.useRef(null)
+
+  const onScroll = () => {
+    if (messageEnd && messageEnd.current){
+      messageEnd.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      })
+    }
+  }
+
   useEffect(() => {
+    onScroll()
     props.getUserChat(props.auth.token)
     props.getAllUser(props.auth.token, '')
     console.log('aaaa', user.message)
@@ -39,7 +51,7 @@ function Chat(props) {
     // socket.on('hello', (arg) => {
     //   window.alert(arg) // world
     // })
-  }, [])
+  }, [onScroll()])
 
   const chooseChat = (res) => {
     console.log(res)
@@ -87,7 +99,7 @@ function Chat(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log('hapus')
-        props.deleteChat(props.auth.token, res.id, recp)
+        props.deleteChat(props.auth.token, res.id, recp, props.users.users[0].phone_number)
         Swal.fire(
           'Deleted!',
           'chat has been deleted.',
@@ -114,7 +126,6 @@ function Chat(props) {
     }
   }
 
-
   return (
     <div>
       <header className="hidden md:block px-32">
@@ -135,7 +146,7 @@ function Chat(props) {
             <p className="text-white my-5">
               Click a conversation to start a chat
             </p>
-            <div className="overflow-y-scroll no-scrollbar">
+            <div className="overflow-y-scroll overscroll-none no-scrollbar">
               {
                 search.length <= 0  ?
                 user.message?.map((res) => {
@@ -169,7 +180,7 @@ function Chat(props) {
                 {name}
               </h3>
             </div>
-            <div className="space-y-3 overflow-y-scroll no-scrollbar flex-1">
+            <div className="space-y-3 overflow-y-scroll overscroll-none no-scrollbar flex-1">
               {props.chat.chat.message?.map((res) => {
                 const isMe = props.users.users[0].phone_number === res.sender
                 return (
@@ -190,6 +201,9 @@ function Chat(props) {
                   />
                 )
               })}
+              <div ref={messageEnd}>
+                .
+              </div>
             </div>
             <form
               onSubmit={onSubmit}
@@ -203,7 +217,7 @@ function Chat(props) {
                 value={chat}
               />
               <div className="items-center justify-center flex">
-                <button className="focus:outline-none">
+                <button type='button' className="focus:outline-none">
                   <AiFillCamera size={28} />
                 </button>
               </div>
