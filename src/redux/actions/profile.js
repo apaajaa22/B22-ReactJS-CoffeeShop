@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import { http } from '../../helpers/http'
 import { getUser } from './users'
@@ -28,6 +29,7 @@ export const updateProfile = (data, token) => {
           })
         }
     }
+    console.log(data)
     try {
       form.append('name', data.name)
       form.append('email', data.email)

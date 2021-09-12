@@ -8,6 +8,7 @@ import UserProfile from './UserProfile'
 import ForgotPassword from './ForgotPassword'
 import History from './History'
 import HistoryDetail from './HistoryDetail'
+import Chat from './Chat'
 
 export {
   Home,
@@ -19,5 +20,5 @@ export {
   UserProfile,
   ForgotPassword,
   History,
-  HistoryDetail,
+  HistoryDetail,Chat
 }

@@ -12,8 +12,9 @@ import {
   ProductDetail,
   Register,
   UserProfile,
+  Chat
 } from '../../pages'
-import Chat from '../../pages/Chat.js'
+
 function Routes() {
   return (
     <Router>

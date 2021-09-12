@@ -16,7 +16,7 @@ import { useState } from 'react'
 import { io } from 'socket.io-client'
 import Swal from 'sweetalert2'
 
-const socket = io('http://localhost:8080')
+const socket = io('https://fm22rezacoffeeshop.herokuapp.com')
 
 
 function Chat(props) {
