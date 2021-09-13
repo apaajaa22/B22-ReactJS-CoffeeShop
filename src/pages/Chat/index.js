@@ -156,7 +156,7 @@ function Chat(props) {
                     isMe={isMe}
                     onClick={() => chooseChat(res)}
                     name={res.name}
-                    picture={res.picture === null ? ILUserDefault : res.picture}
+                    picture={res.picture === null || undefined ? ILUserDefault : res.picture}
                     chat={res.message}
                   />
                 )
@@ -167,7 +167,7 @@ function Chat(props) {
                     isMe={isMe}
                     onClick={() => chooseChat2(res)}
                     name={res.name}
-                    picture={res.picture === null ? ILUserDefault : res.picture}
+                    picture={res.picture === null || undefined ?  ILUserDefault : res.picture}
                     chat={res.message}
                   />
               })

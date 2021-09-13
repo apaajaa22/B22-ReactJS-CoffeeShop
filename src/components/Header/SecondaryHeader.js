@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Logo, Search } from '..'
-import { IcMessage, IcSearch, ILUserDefault } from '../../assets'
+import { IcMessage, IcSearch, IcUserDefault, ILUserDefault } from '../../assets'
 import { getUser } from '../../redux/actions/users'
 function SecondaryHeader({
   home,
@@ -91,7 +91,7 @@ function SecondaryHeader({
             return user.picture !== null ? (
               <img
                 className="w-10 h-10 rounded-full object-cover"
-                src={user.picture}
+                src={user.picture || IcUserDefault}
                 alt="user"
               />
             ) : (

@@ -104,7 +104,7 @@ function MainHeader({
                 return user.picture !== null ? (
                   <img
                     className="w-10 h-10 rounded-full object-cover"
-                    src={user.picture}
+                    src={user.picture || IcUserDefault}
                     alt="user"
                   />
                 ) : (
